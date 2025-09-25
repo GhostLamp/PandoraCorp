@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dorcbsanudkgh"]
+
+[ext_resource type="Script" path="res://actors/burning.gd" id="1_xmt85"]
+[ext_resource type="Texture2D" uid="uid://b15vk3vi250e2" path="res://pixel art/fire_particle.png" id="2_doklb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r37tq"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_47gn2"]
+offsets = PackedFloat32Array(0.137681, 0.139535, 0.293478, 0.300725)
+colors = PackedColorArray(1, 0.752941, 0, 1, 1, 0.529412, 0, 1, 1, 0.529412, 0, 1, 1, 0.0666667, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ocfij"]
+gradient = SubResource("Gradient_47gn2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lb63r"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 3, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(100, 100, 0)
+emission_ring_height = 100.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 0.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+gravity = Vector3(0, -200, 0)
+color_ramp = SubResource("GradientTexture1D_ocfij")
+anim_speed_min = 1.6
+anim_speed_max = 1.6
+
+[node name="burning" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xmt85")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 2
+material = SubResource("CanvasItemMaterial_r37tq")
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_lb63r")
+texture = ExtResource("2_doklb")
+randomness = 1.0
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

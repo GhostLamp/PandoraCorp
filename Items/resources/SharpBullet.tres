@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShapBullets" load_steps=3 format=3 uid="uid://b47mgjpf11bua"]
+
+[ext_resource type="Script" path="res://Items/script/SharpBullets.gd" id="1_ln2fc"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_k0qat"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ln2fc")
+texture = ExtResource("2_k0qat")
+item_region = Rect2(472, 100, 76, 76)

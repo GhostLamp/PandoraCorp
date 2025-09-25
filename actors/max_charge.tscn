@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0vwhrxna5oq2"]
+
+[ext_resource type="Script" path="res://max_charge.gd" id="1_ysbep"]
+
+[node name="max_charge" type="Node2D"]
+script = ExtResource("1_ysbep")
+max_charge = 1

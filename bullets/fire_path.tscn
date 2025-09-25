@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkc6cl0itawju"]
+
+[ext_resource type="Script" path="res://bullets/fire_path.gd" id="1_76cyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pktq"]
+size = Vector2(1088, 512)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrmx1"]
+font_size = 64
+
+[node name="fire_path" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_76cyb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8pktq")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 0.631373, 0.313726, 1)
+offset_left = -544.0
+offset_top = -256.0
+offset_right = 544.0
+offset_bottom = 256.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 208.0
+offset_right = 862.0
+offset_bottom = 296.0
+text = "cool fire animation :)"
+label_settings = SubResource("LabelSettings_yrmx1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

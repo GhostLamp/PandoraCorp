@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc8ev500heejt"]
+
+[ext_resource type="Script" path="res://GoldenEye.gd" id="1_y72bd"]
+[ext_resource type="PackedScene" uid="uid://cyi2v3ijs3jol" path="res://wearpons/single_use_weapon.tscn" id="2_6ituh"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="3_gbyl8"]
+[ext_resource type="PackedScene" uid="uid://wjulb1eipn3b" path="res://Items/kboom_specials/ricocheter.tscn" id="3_vx76k"]
+
+[node name="GoldenEye" type="Node2D" node_paths=PackedStringArray("special_cooldown")]
+script = ExtResource("1_y72bd")
+weapon = ExtResource("2_6ituh")
+special_cooldown = NodePath("Timer")
+effect = ExtResource("3_vx76k")
+item_region = Rect2(464, 188, 80, 84)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_gbyl8")
+region_enabled = true
+region_rect = Rect2(464, 188, 80, 84)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

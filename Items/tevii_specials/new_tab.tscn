@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcmdo5g05u3fe"]
+
+[ext_resource type="Script" path="res://actors/new_tab.gd" id="1_rlq1g"]
+[ext_resource type="PackedScene" uid="uid://bvojy81fjgxbq" path="res://Items/tevii_specials/wall_bouncer.tscn" id="2_jd0fu"]
+[ext_resource type="Script" path="res://actors/look_at.gd" id="3_pty8g"]
+
+[node name="new_tab" type="Node2D" node_paths=PackedStringArray("special_cooldown")]
+script = ExtResource("1_rlq1g")
+wallbouncer = ExtResource("2_jd0fu")
+special_cooldown = NodePath("special_cooldown")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_pty8g")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(129, 0)
+
+[node name="special_cooldown" type="Timer" parent="."]
+one_shot = true

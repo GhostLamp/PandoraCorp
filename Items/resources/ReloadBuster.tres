@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ReloadBuster" load_steps=3 format=3 uid="uid://cvul5ixaw8om2"]
+
+[ext_resource type="Script" path="res://Items/script/ReloadBuster.gd" id="1_wi35p"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_fou7s"]
+
+[resource]
+script = ExtResource("1_wi35p")
+texture = ExtResource("2_fou7s")
+item_region = Rect2(480, 12, 56, 72)

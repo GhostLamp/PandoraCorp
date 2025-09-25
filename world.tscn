@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=3 uid="uid://cdktll1tu4chu"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_fgeo2"]
+[ext_resource type="Resource" uid="uid://dtkukxxqea302" path="res://roomGeneration/dtest/1-1.tres" id="2_33sxn"]
+[ext_resource type="TileSet" uid="uid://dtwfi3wxt0y64" path="res://roomGeneration/dtest/rooms/tileset2.tres" id="3_pv4d8"]
+[ext_resource type="Script" path="res://enemy_maneger.gd" id="5_ypuqa"]
+[ext_resource type="Script" path="res://interact_map.gd" id="7_oyxlk"]
+[ext_resource type="AudioStream" uid="uid://cshxjchttsmi" path="res://audio/airshipfort1.mp3" id="8_gvh2g"]
+[ext_resource type="Script" path="res://audio_manager.gd" id="8_tp8ji"]
+[ext_resource type="PackedScene" uid="uid://cyryoa33kwjlu" path="res://objects/table_sideways.tscn" id="8_yt586"]
+[ext_resource type="AudioStream" uid="uid://cl8qjdcc8dxux" path="res://audio/airshipfort2.mp3" id="9_ymga3"]
+[ext_resource type="PackedScene" uid="uid://c6jfakk5qdnhw" path="res://chair.tscn" id="10_131n2"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mlxrs"]
+scenes/1/scene = ExtResource("10_131n2")
+scenes/2/scene = ExtResource("8_yt586")
+
+[sub_resource type="TileSet" id="TileSet_06wqp"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_mlxrs")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_4qxpe"]
+stream_count = 1
+stream_0 = ExtResource("8_gvh2g")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2aq7s"]
+stream_count = 1
+stream_0 = ExtResource("9_ymga3")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_4ky6p"]
+clip_count = 2
+clip_0/name = &"pandoraCorpMusic"
+clip_0/stream = SubResource("AudioStreamPlaylist_4qxpe")
+clip_0/auto_advance = 0
+clip_1/name = &"pandoraCorpMusicLowTime"
+clip_1/stream = SubResource("AudioStreamPlaylist_2aq7s")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[node name="world" type="Node2D" node_paths=PackedStringArray("tile_map")]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_fgeo2")
+tile_map = NodePath("TileMapLayer")
+dungeon = ExtResource("2_33sxn")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -5
+tile_set = ExtResource("3_pv4d8")
+
+[node name="interact_map" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_06wqp")
+script = ExtResource("7_oyxlk")
+
+[node name="enemy_maneger" type="Node2D" parent="."]
+script = ExtResource("5_ypuqa")
+
+[node name="ItemManeger" type="Node2D" parent="."]
+
+[node name="audioManager" type="Node" parent="."]
+script = ExtResource("8_tp8ji")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="audioManager"]
+stream = SubResource("AudioStreamInteractive_4ky6p")
+volume_db = -10.0
+bus = &"music"

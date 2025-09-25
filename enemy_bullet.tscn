@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtqshcltkvliw"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_n5u4k"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="4_d8ibd"]
+[ext_resource type="Script" path="res://trail.gd" id="5_laq2n"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="6_ixd2v"]
+[ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="7_hsb53"]
+[ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="8_bng65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdpgf"]
+size = Vector2(5, 5)
+
+[sub_resource type="Curve" id="Curve_ebe2u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bw3wp"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y103u"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_onlwc"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ms567"]
+resource_name = "enemy_bullet"
+step = 0.0625
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywepi"]
+_data = {
+"RESET": SubResource("Animation_onlwc"),
+"enemy_bullet": SubResource("Animation_ms567")
+}
+
+[node name="enemy_bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 80
+floor_max_angle = 0.0
+script = ExtResource("1_n5u4k")
+
+[node name="Sprite2DBack" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(40, 40)
+texture = ExtResource("8_bng65")
+
+[node name="Sprite2DFront" type="Sprite2D" parent="."]
+modulate = Color(0.976471, 0.552941, 1, 1)
+position = Vector2(-2.38419e-07, -2.38419e-07)
+rotation = 0.785398
+scale = Vector2(36, 36)
+texture = ExtResource("8_bng65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_jdpgf")
+
+[node name="status_manager" parent="." instance=ExtResource("4_d8ibd")]
+
+[node name="kill_timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="trail" type="Line2D" parent="."]
+show_behind_parent = true
+width_curve = SubResource("Curve_ebe2u")
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("5_laq2n")
+
+[node name="Area2D" type="Area2D" parent="." groups=["projectile"]]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bw3wp")
+
+[node name="speed" parent="." instance=ExtResource("6_ixd2v")]
+speed = 1000.0
+
+[node name="parry_area" parent="." instance=ExtResource("7_hsb53")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry_area"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_y103u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ywepi")
+}
+
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

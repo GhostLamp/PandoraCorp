@@ -1,0 +1,47 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b3fr7johgdwkm"]
+
+[ext_resource type="Shader" path="res://actors/palette_swap.gdshader" id="1_d81y5"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_d81y5")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0, 0, 0, 1)
+shader_parameter/replace_0 = Color(0, 0, 0, 1)
+shader_parameter/original_1 = Color(0, 0, 0, 1)
+shader_parameter/replace_1 = Color(0, 0, 0, 1)
+shader_parameter/original_2 = Color(0, 0, 0, 1)
+shader_parameter/replace_2 = Color(0, 0, 0, 1)
+shader_parameter/original_3 = Color(0, 0, 0, 1)
+shader_parameter/replace_3 = Color(0, 0, 0, 1)
+shader_parameter/original_4 = Color(0, 0, 0, 1)
+shader_parameter/replace_4 = Color(0, 0, 0, 1)
+shader_parameter/original_5 = Color(0, 0, 0, 1)
+shader_parameter/replace_5 = Color(0, 0, 0, 1)
+shader_parameter/original_6 = Color(0, 0, 0, 1)
+shader_parameter/replace_6 = Color(0, 0, 0, 1)
+shader_parameter/original_7 = Color(0, 0, 0, 1)
+shader_parameter/replace_7 = Color(0, 0, 0, 1)
+shader_parameter/original_8 = Color(0, 0, 0, 1)
+shader_parameter/replace_8 = Color(0, 0, 0, 1)
+shader_parameter/original_9 = Color(0, 0, 0, 1)
+shader_parameter/replace_9 = Color(0, 0, 0, 1)
+shader_parameter/original_10 = Color(0, 0, 0, 1)
+shader_parameter/replace_10 = Color(0, 0, 0, 1)
+shader_parameter/original_11 = Color(0, 0, 0, 1)
+shader_parameter/replace_11 = Color(0, 0, 0, 1)
+shader_parameter/original_12 = Color(0, 0, 0, 1)
+shader_parameter/replace_12 = null
+shader_parameter/original_13 = null
+shader_parameter/replace_13 = null
+shader_parameter/original_14 = null
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null

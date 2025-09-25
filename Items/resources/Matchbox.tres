@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MatchBox" load_steps=4 format=3 uid="uid://c3whyfnddxxto"]
+
+[ext_resource type="PackedScene" uid="uid://nb7p6ae1fqg1" path="res://States/heated.tscn" id="1_ymnew"]
+[ext_resource type="Script" path="res://Items/script/MacthBox.gd" id="2_c0jib"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_x6vll"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_c0jib")
+effect = ExtResource("1_ymnew")
+texture = ExtResource("2_x6vll")
+item_region = Rect2(376, 4, 76, 84)

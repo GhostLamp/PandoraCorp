@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://nb7p6ae1fqg1"]
+
+[ext_resource type="Script" path="res://States/heated.gd" id="1_j86bx"]
+
+[node name="heated" type="Node2D"]
+modulate = Color(1, 0.431373, 0, 1)
+script = ExtResource("1_j86bx")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

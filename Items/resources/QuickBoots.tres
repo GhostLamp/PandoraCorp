@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="QuickBoots" load_steps=3 format=3 uid="uid://b3k1gcuraaxnj"]
+
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="1_r001y"]
+
+[sub_resource type="GDScript" id="GDScript_x3vbh"]
+script/source = "class_name QuickBoots
+extends BaseItemStrat
+
+@export var speed_boost = 800
+
+func apply_boost(player: Player):
+	player.speed_stat.speed += speed_boost
+"
+
+[resource]
+resource_local_to_scene = true
+script = SubResource("GDScript_x3vbh")
+speed_boost = 300
+texture = ExtResource("1_r001y")
+item_region = Rect2(12, 24, 68, 64)

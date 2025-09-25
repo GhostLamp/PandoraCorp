@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ItemLoot" load_steps=13 format=3 uid="uid://tvdtu4bcprlo"]
+
+[ext_resource type="Script" path="res://Items/script/BaseItemScript.gd" id="1_4i30w"]
+[ext_resource type="Resource" uid="uid://dq02ex2fcx1fx" path="res://Items/resources/Boomerang.tres" id="2_cc6yr"]
+[ext_resource type="Script" path="res://objects/chestLoot/itemLoot.gd" id="2_dj5dv"]
+[ext_resource type="Resource" uid="uid://dg1bhubk2uapa" path="res://Items/resources/CrowbarItem.tres" id="3_n7u1j"]
+[ext_resource type="Resource" uid="uid://cgxfhx5qk08bs" path="res://Items/resources/ExplosiveAmmo.tres" id="4_sl076"]
+[ext_resource type="Resource" uid="uid://c3whyfnddxxto" path="res://Items/resources/Matchbox.tres" id="5_jjpsr"]
+[ext_resource type="Resource" uid="uid://b3k1gcuraaxnj" path="res://Items/resources/QuickBoots.tres" id="6_qc64r"]
+[ext_resource type="Resource" uid="uid://cvul5ixaw8om2" path="res://Items/resources/ReloadBuster.tres" id="7_kjgw5"]
+[ext_resource type="Resource" uid="uid://b47mgjpf11bua" path="res://Items/resources/SharpBullet.tres" id="8_8cwbs"]
+[ext_resource type="Resource" uid="uid://b0o06j21ngy0x" path="res://Items/resources/ShildGenerator.tres" id="9_lged6"]
+[ext_resource type="Resource" uid="uid://bt4xggfqueu67" path="res://Items/resources/SplitShooter.tres" id="10_3o304"]
+[ext_resource type="Resource" uid="uid://ni0hxh5fpvib" path="res://Items/resources/TrainingWeights.tres" id="11_c3k0t"]
+
+[resource]
+script = ExtResource("2_dj5dv")
+reward = Array[ExtResource("1_4i30w")]([ExtResource("2_cc6yr"), ExtResource("3_n7u1j"), ExtResource("4_sl076"), ExtResource("5_jjpsr"), ExtResource("6_qc64r"), ExtResource("7_kjgw5"), ExtResource("8_8cwbs"), ExtResource("9_lged6"), ExtResource("10_3o304"), ExtResource("11_c3k0t")])
+chance = 0.0

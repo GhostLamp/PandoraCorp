@@ -1,0 +1,190 @@
+[gd_scene load_steps=16 format=3 uid="uid://cigh6tyfty2bv"]
+
+[ext_resource type="Script" path="res://explosion.gd" id="1_8i0os"]
+[ext_resource type="Texture2D" uid="uid://bswv10n1fn3bj" path="res://pixel art/spritesheet.png" id="2_qg1j3"]
+[ext_resource type="Shader" path="res://shockwave.gdshader" id="4_8lbpd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b2gc"]
+radius = 208.614
+
+[sub_resource type="Animation" id="Animation_esbvk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ColorRect:material:shader_parameter/force")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.05]
+}
+
+[sub_resource type="Animation" id="Animation_gor3a"]
+resource_name = "boom"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 2, 0, 1, 3, 4, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ColorRect:material:shader_parameter/size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:material:shader_parameter/force")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwgnk"]
+_data = {
+"RESET": SubResource("Animation_esbvk"),
+"boom": SubResource("Animation_gor3a")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fosfa"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_rpo7a"]
+offsets = PackedFloat32Array(0, 0.124088, 0.131387, 0.514599, 0.518248, 0.850365, 0.857664, 0.861314)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0.486275, 0, 0, 1, 0.486275, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3kpuc"]
+gradient = SubResource("Gradient_rpo7a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_03emq"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector3(0, -100, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_3kpuc")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mixko"]
+load_path = "res://.godot/imported/explosion.png-10a4957a6c03d67e0ab553f973211479.ctex"
+
+[sub_resource type="Curve" id="Curve_vxfpl"]
+min_value = -1.0
+_data = [Vector2(0, -0.00277972), 0.0, 0.0, 0, 0, Vector2(0.221476, -0.0364864), 0.0, 0.0, 0, 0, Vector2(0.583893, -0.00135124), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6tk2c"]
+curve = SubResource("Curve_vxfpl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0ygw"]
+shader = ExtResource("4_8lbpd")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.05
+shader_parameter/size = 0.4
+shader_parameter/thick = 0.2
+shader_parameter/curve = SubResource("CurveTexture_6tk2c")
+
+[node name="enemy_explosion" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_8i0os")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4, -65)
+texture = ExtResource("2_qg1j3")
+hframes = 3
+vframes = 3
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2b2gc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_dwgnk")
+}
+autoplay = "boom"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_fosfa")
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_03emq")
+texture = SubResource("CompressedTexture2D_mixko")
+lifetime = 0.8
+explosiveness = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_g0ygw")
+offset_left = -704.0
+offset_top = -704.0
+scale = Vector2(2, 2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

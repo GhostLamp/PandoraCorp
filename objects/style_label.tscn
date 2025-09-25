@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://qepwapfil1q4"]
+
+[ext_resource type="Script" path="res://objects/style_label.gd" id="1_ckuek"]
+[ext_resource type="FontFile" uid="uid://b6fsicrej43s4" path="res://bruh.ttf" id="1_m86ia"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry1wk"]
+font = ExtResource("1_m86ia")
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="Animation" id="Animation_0lhcm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dg306"]
+resource_name = "startup"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p4ekv"]
+resource_name = "style_removed"
+length = 0.0334
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb2tk"]
+_data = {
+"RESET": SubResource("Animation_0lhcm"),
+"startup": SubResource("Animation_dg306"),
+"style_removed": SubResource("Animation_p4ekv")
+}
+
+[node name="StyleLabel" type="Label"]
+offset_right = 112.0
+offset_bottom = 40.0
+text = "multikill"
+label_settings = SubResource("LabelSettings_ry1wk")
+script = ExtResource("1_ckuek")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rb2tk")
+}
+autoplay = "startup"

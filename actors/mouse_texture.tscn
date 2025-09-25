@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck5fvo7n5owlw"]
+
+[ext_resource type="Script" path="res://sprite_cursor.gd" id="2_i017x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pm1do"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="texture_mouse" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_pm1do")
+autoplay = "default"
+frame_progress = 1.0
+script = ExtResource("2_i017x")
+
+[connection signal="frame_changed" from="." to="." method="_on_frame_changed"]

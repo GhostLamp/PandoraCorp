@@ -1,0 +1,237 @@
+[gd_scene load_steps=35 format=3 uid="uid://deasprax4y5r6"]
+
+[ext_resource type="Script" path="res://objects/chest.gd" id="1_wipen"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_4jef8"]
+[ext_resource type="Script" path="res://objects/chestLoot/chestLoot.gd" id="2_8bbmn"]
+[ext_resource type="Script" path="res://Items/script/BaseItemScript.gd" id="7_1hyl1"]
+[ext_resource type="Resource" uid="uid://dq02ex2fcx1fx" path="res://Items/resources/Boomerang.tres" id="8_i3414"]
+[ext_resource type="Resource" uid="uid://dg1bhubk2uapa" path="res://Items/resources/CrowbarItem.tres" id="9_sqyut"]
+[ext_resource type="Resource" uid="uid://cgxfhx5qk08bs" path="res://Items/resources/ExplosiveAmmo.tres" id="10_3i1kv"]
+[ext_resource type="Resource" uid="uid://c3whyfnddxxto" path="res://Items/resources/Matchbox.tres" id="11_oqi4n"]
+[ext_resource type="Resource" uid="uid://b3k1gcuraaxnj" path="res://Items/resources/QuickBoots.tres" id="12_5tvex"]
+[ext_resource type="Resource" uid="uid://cvul5ixaw8om2" path="res://Items/resources/ReloadBuster.tres" id="13_3isd6"]
+[ext_resource type="Resource" uid="uid://b47mgjpf11bua" path="res://Items/resources/SharpBullet.tres" id="14_essbn"]
+[ext_resource type="Script" path="res://Items/active_items/ActivePickup.gd" id="15_4ijt8"]
+[ext_resource type="Resource" uid="uid://b0o06j21ngy0x" path="res://Items/resources/ShildGenerator.tres" id="15_i24x3"]
+[ext_resource type="Resource" uid="uid://c2v6ggc2es5ec" path="res://Items/active_items/Yoyo.tres" id="16_c1y4i"]
+[ext_resource type="Resource" uid="uid://bt4xggfqueu67" path="res://Items/resources/SplitShooter.tres" id="16_uap1t"]
+[ext_resource type="Resource" uid="uid://ni0hxh5fpvib" path="res://Items/resources/TrainingWeights.tres" id="17_1mh8k"]
+[ext_resource type="PackedScene" uid="uid://driqxnntas24t" path="res://actors/exp_orb.tscn" id="17_178ce"]
+[ext_resource type="Resource" uid="uid://d4jts1mggxvj5" path="res://Items/active_items/Spring.tres" id="17_m0bsd"]
+[ext_resource type="Script" path="res://objects/chestLoot/expLoot.gd" id="18_3dpro"]
+[ext_resource type="Script" path="res://objects/chestLoot/itemLoot.gd" id="18_gqa8w"]
+[ext_resource type="Script" path="res://objects/chestLoot/activeLoot.gd" id="18_reuff"]
+[ext_resource type="Shader" path="res://actors/palette_swap.gdshader" id="22_juevw"]
+[ext_resource type="Texture2D" uid="uid://bdavv2120vocc" path="res://pixel art/pandoraCorpTilles.png" id="23_t0bhf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s4bao"]
+
+[sub_resource type="Resource" id="Resource_wl6yi"]
+script = ExtResource("18_reuff")
+reward = Array[ExtResource("15_4ijt8")]([ExtResource("16_c1y4i"), ExtResource("17_m0bsd")])
+chance = 5.0
+
+[sub_resource type="Resource" id="Resource_p8fg3"]
+script = ExtResource("18_gqa8w")
+reward = Array[ExtResource("7_1hyl1")]([ExtResource("8_i3414"), ExtResource("9_sqyut"), ExtResource("10_3i1kv"), ExtResource("11_oqi4n"), ExtResource("12_5tvex"), ExtResource("13_3isd6"), ExtResource("14_essbn"), ExtResource("15_i24x3"), ExtResource("16_uap1t"), ExtResource("17_1mh8k")])
+chance = 30.0
+
+[sub_resource type="Resource" id="Resource_372jv"]
+script = ExtResource("18_3dpro")
+fuel = ExtResource("17_178ce")
+amount = 5
+chance = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8k5k"]
+size = Vector2(112, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7by82"]
+size = Vector2(48, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_me82d"]
+resource_local_to_scene = true
+shader = ExtResource("22_juevw")
+shader_parameter/shader_color = Color(1, 0, 0, 1)
+shader_parameter/alpha = 0.0
+shader_parameter/original_0 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_0 = Color(0, 0, 0, 1)
+shader_parameter/original_1 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_1 = Color(1, 0, 0, 1)
+shader_parameter/original_2 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_2 = Color(0.526793, 1.2153e-06, 3.85046e-07, 1)
+shader_parameter/original_3 = Color(0.105882, 0.12549, 0.207843, 1)
+shader_parameter/replace_3 = Color(0.262089, 1.53417e-07, 3.60981e-08, 1)
+shader_parameter/original_4 = Color(0.054902, 0.0705882, 0.129412, 1)
+shader_parameter/replace_4 = Color(0, 0, 0, 1)
+shader_parameter/original_5 = Color(0, 0, 0, 1)
+shader_parameter/replace_5 = Color(0, 0, 0, 1)
+shader_parameter/original_6 = Color(0, 0, 0, 1)
+shader_parameter/replace_6 = Color(0, 0, 0, 1)
+shader_parameter/original_7 = Color(0, 0, 0, 1)
+shader_parameter/replace_7 = Color(0, 0, 0, 1)
+shader_parameter/original_8 = Color(0, 0, 0, 1)
+shader_parameter/replace_8 = Color(0, 0, 0, 1)
+shader_parameter/original_9 = Color(0, 0, 0, 1)
+shader_parameter/replace_9 = Color(0, 0, 0, 1)
+shader_parameter/original_10 = Color(0, 0, 0, 1)
+shader_parameter/replace_10 = Color(0, 0, 0, 1)
+shader_parameter/original_11 = Color(0, 0, 0, 1)
+shader_parameter/replace_11 = Color(0, 0, 0, 1)
+shader_parameter/original_12 = Color(0, 0, 0, 1)
+shader_parameter/replace_12 = null
+shader_parameter/original_13 = null
+shader_parameter/replace_13 = null
+shader_parameter/original_14 = null
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="Animation" id="Animation_tan57"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/shader_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3vgpd"]
+resource_name = "hit"
+length = 0.187506
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1875),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ng75r"]
+resource_name = "spawn"
+length = 0.250006
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.05, 1.7), Vector2(0.1, 1.5), Vector2(1.5, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/shader_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tdhly"]
+_data = {
+"RESET": SubResource("Animation_tan57"),
+"hit": SubResource("Animation_3vgpd"),
+"spawn": SubResource("Animation_ng75r")
+}
+
+[node name="chest" type="RigidBody2D"]
+position = Vector2(0, 24)
+collision_layer = 6
+collision_mask = 129
+physics_material_override = SubResource("PhysicsMaterial_s4bao")
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_wipen")
+chestProbabillity = Array[ExtResource("2_8bbmn")]([SubResource("Resource_wl6yi"), SubResource("Resource_p8fg3"), SubResource("Resource_372jv")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_g8k5k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_7by82")
+
+[node name="status_manager" parent="." instance=ExtResource("2_4jef8")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_me82d")
+position = Vector2(0, -24)
+texture = ExtResource("23_t0bhf")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(512, 0, 128, 64)
+
+[node name="hit_anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tdhly")
+}
+autoplay = "spawn"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

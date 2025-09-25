@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActiveLoot" load_steps=5 format=3 uid="uid://bhek851ckjhu"]
+
+[ext_resource type="Script" path="res://Items/active_items/ActivePickup.gd" id="1_03g4r"]
+[ext_resource type="Resource" uid="uid://c2v6ggc2es5ec" path="res://Items/active_items/Yoyo.tres" id="2_lkjxo"]
+[ext_resource type="Resource" uid="uid://d4jts1mggxvj5" path="res://Items/active_items/Spring.tres" id="3_38th4"]
+[ext_resource type="Script" path="res://objects/chestLoot/activeLoot.gd" id="4_kmrbc"]
+
+[resource]
+script = ExtResource("4_kmrbc")
+reward = Array[ExtResource("1_03g4r")]([ExtResource("2_lkjxo"), ExtResource("3_38th4")])
+chance = 40.0

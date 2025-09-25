@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="expLoot" load_steps=3 format=3 uid="uid://dcsaogmmfoyly"]
+
+[ext_resource type="Script" path="res://objects/chestLoot/expLoot.gd" id="1_0mwok"]
+[ext_resource type="PackedScene" uid="uid://driqxnntas24t" path="res://actors/exp_orb.tscn" id="1_m6gbo"]
+
+[resource]
+script = ExtResource("1_0mwok")
+fuel = ExtResource("1_m6gbo")
+amount = 5
+chance = 100.0

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch1goftlgxwa2"]
+
+[ext_resource type="Script" path="res://sheriff_star.gd" id="1_xmvnd"]
+[ext_resource type="PackedScene" uid="uid://06w4stx0t306" path="res://Items/kboom_specials/Star.tscn" id="2_2h34q"]
+
+[node name="SheriffStar" type="Node2D" node_paths=PackedStringArray("special_cooldown")]
+script = ExtResource("1_xmvnd")
+special_cooldown = NodePath("Timer")
+star = ExtResource("2_2h34q")
+adrenaline_cost = 35.0
+item_region = Rect2(556, 192, 84, 76)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

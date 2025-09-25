@@ -1,0 +1,668 @@
+[gd_scene load_steps=69 format=3 uid="uid://b3g6p3txi2t3a"]
+
+[ext_resource type="Script" path="res://wearpons/pistol.gd" id="1_ngd4q"]
+[ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_kt6sd"]
+[ext_resource type="PackedScene" uid="uid://cio5dq42dnlps" path="res://bullets/alt__fire.tscn" id="3_je8sk"]
+[ext_resource type="Texture2D" uid="uid://cq1mr3noctavi" path="res://pixel art/revolver2.png" id="4_agatt"]
+[ext_resource type="Texture2D" uid="uid://dfcwmg07chtut" path="res://pixel art/goddamn.png" id="5_vwisx"]
+[ext_resource type="Texture2D" uid="uid://bwrqa3i2fbhnp" path="res://pixel art/revolver_melee.png" id="6_ud1dn"]
+[ext_resource type="PackedScene" uid="uid://casvp34hmo6be" path="res://actors/charge_level.tscn" id="7_ecogo"]
+[ext_resource type="PackedScene" uid="uid://d0vwhrxna5oq2" path="res://actors/max_charge.tscn" id="8_vkxrs"]
+[ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="9_jr3qj"]
+[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="10_5kl8j"]
+[ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="11_aafqc"]
+[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="12_2fkgv"]
+[ext_resource type="PackedScene" uid="uid://dblol432kkq2a" path="res://States/parry.tscn" id="16_mbl1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgj85"]
+atlas = ExtResource("4_agatt")
+region = Rect2(2912, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayrq3"]
+atlas = ExtResource("4_agatt")
+region = Rect2(0, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nqj3"]
+atlas = ExtResource("4_agatt")
+region = Rect2(728, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wa5e"]
+atlas = ExtResource("4_agatt")
+region = Rect2(1456, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpei3"]
+atlas = ExtResource("4_agatt")
+region = Rect2(2184, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f84yh"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(0, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx23i"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(728, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6g8o"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(1456, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1tec"]
+atlas = ExtResource("4_agatt")
+region = Rect2(2184, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t486w"]
+atlas = ExtResource("6_ud1dn")
+region = Rect2(0, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1lvg"]
+atlas = ExtResource("6_ud1dn")
+region = Rect2(728, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcntn"]
+atlas = ExtResource("6_ud1dn")
+region = Rect2(1456, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhcd7"]
+atlas = ExtResource("6_ud1dn")
+region = Rect2(0, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl8lf"]
+atlas = ExtResource("6_ud1dn")
+region = Rect2(728, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d34pe"]
+atlas = ExtResource("4_agatt")
+region = Rect2(2912, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgha3"]
+atlas = ExtResource("4_agatt")
+region = Rect2(0, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tpip"]
+atlas = ExtResource("4_agatt")
+region = Rect2(728, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isky6"]
+atlas = ExtResource("4_agatt")
+region = Rect2(1456, 1456, 728, 728)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vl1ac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgj85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayrq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nqj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wa5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpei3")
+}],
+"loop": true,
+"name": &"alt_fire",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f84yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx23i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6g8o")
+}],
+"loop": true,
+"name": &"charged",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1tec")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t486w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1lvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcntn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhcd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl8lf")
+}],
+"loop": true,
+"name": &"melee",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d34pe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgha3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tpip")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isky6")
+}],
+"loop": true,
+"name": &"unloaded",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qevke"]
+radius = 35.97
+height = 259.94
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lveus"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(0, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4lgd"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(728, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p6gu"]
+atlas = ExtResource("5_vwisx")
+region = Rect2(1456, 2184, 728, 728)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2k0mm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lveus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4lgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p6gu")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 16.0
+}]
+
+[sub_resource type="Animation" id="Animation_svfa2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("melee_hitbox/CollisionShape2D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parry/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_susd5"]
+resource_name = "alt_fire"
+length = 0.5
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"alt_fire"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_k4t53"]
+resource_name = "charged"
+length = 0.125006
+loop_mode = 1
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"charged"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_6gawi"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h8nkf"]
+resource_name = "melee"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"melee"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("melee_hitbox/CollisionShape2D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parry/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pf003"]
+resource_name = "shooting"
+length = 0.187506
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shooting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_q3u4n"]
+resource_name = "unloaded"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"unloaded"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50qeu"]
+_data = {
+"RESET": SubResource("Animation_svfa2"),
+"alt_fire": SubResource("Animation_susd5"),
+"charged": SubResource("Animation_k4t53"),
+"default": SubResource("Animation_6gawi"),
+"melee": SubResource("Animation_h8nkf"),
+"shooting": SubResource("Animation_pf003"),
+"unloaded": SubResource("Animation_q3u4n")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k1b8m"]
+animation = &"alt_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_38bt7"]
+animation = &"charged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljuex"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7pi7l"]
+animation = &"melee"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22yaf"]
+animation = &"shooting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tu1jk"]
+animation = &"unloaded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tf24o"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dnfnd"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbumb"]
+advance_mode = 2
+advance_condition = &"no_ammo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssyas"]
+advance_mode = 2
+advance_condition = &"has_ammo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_om2oj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyskc"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1p62"]
+advance_mode = 2
+advance_condition = &"alt_fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3iol"]
+advance_mode = 2
+advance_condition = &"charged"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qd2hw"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgvxe"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"charged"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_38iy4"]
+advance_mode = 2
+advance_condition = &"alt_fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxl5o"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fw6di"]
+advance_mode = 2
+advance_condition = &"alt_melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12gl4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_son66"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1q6q2"]
+states/End/position = Vector2(903, 93)
+states/Start/position = Vector2(-7, 93)
+states/alt_fire/node = SubResource("AnimationNodeAnimation_k1b8m")
+states/alt_fire/position = Vector2(685, 192)
+states/charged/node = SubResource("AnimationNodeAnimation_38bt7")
+states/charged/position = Vector2(471, 93)
+states/default/node = SubResource("AnimationNodeAnimation_ljuex")
+states/default/position = Vector2(166, 93)
+states/melee/node = SubResource("AnimationNodeAnimation_7pi7l")
+states/melee/position = Vector2(685, 93)
+states/shooting/node = SubResource("AnimationNodeAnimation_22yaf")
+states/shooting/position = Vector2(471, 285)
+states/unloaded/node = SubResource("AnimationNodeAnimation_tu1jk")
+states/unloaded/position = Vector2(166, 285)
+transitions = ["default", "shooting", SubResource("AnimationNodeStateMachineTransition_tf24o"), "shooting", "default", SubResource("AnimationNodeStateMachineTransition_dnfnd"), "default", "unloaded", SubResource("AnimationNodeStateMachineTransition_xbumb"), "unloaded", "default", SubResource("AnimationNodeStateMachineTransition_ssyas"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_om2oj"), "unloaded", "shooting", SubResource("AnimationNodeStateMachineTransition_gyskc"), "unloaded", "alt_fire", SubResource("AnimationNodeStateMachineTransition_q1p62"), "default", "charged", SubResource("AnimationNodeStateMachineTransition_c3iol"), "charged", "default", SubResource("AnimationNodeStateMachineTransition_qd2hw"), "shooting", "charged", SubResource("AnimationNodeStateMachineTransition_hgvxe"), "charged", "alt_fire", SubResource("AnimationNodeStateMachineTransition_38iy4"), "alt_fire", "charged", SubResource("AnimationNodeStateMachineTransition_lxl5o"), "charged", "melee", SubResource("AnimationNodeStateMachineTransition_fw6di"), "melee", "charged", SubResource("AnimationNodeStateMachineTransition_12gl4"), "charged", "shooting", SubResource("AnimationNodeStateMachineTransition_son66")]
+graph_offset = Vector2(-199, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eklbl"]
+size = Vector2(397.375, 714)
+
+[node name="pistol" type="CharacterBody2D" node_paths=PackedStringArray("barrel_origin")]
+y_sort_enabled = true
+collision_layer = 16
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_ngd4q")
+bullet = ExtResource("2_kt6sd")
+alt_fire = ExtResource("3_je8sk")
+arc = 10.0
+barrel_origin = NodePath("nuzzel")
+parry_force = 2
+
+[node name="gunsprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(117, -4.76837e-07)
+sprite_frames = SubResource("SpriteFrames_vl1ac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(183, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qevke")
+disabled = true
+
+[node name="nuzzel" type="Marker2D" parent="."]
+position = Vector2(300, 0)
+gizmo_extents = 1.0
+
+[node name="charge" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(117, 0)
+sprite_frames = SubResource("SpriteFrames_2k0mm")
+animation = &"ready"
+autoplay = "ready"
+frame_progress = 0.979382
+
+[node name="charge_level" parent="." instance=ExtResource("7_ecogo")]
+
+[node name="max_charge" parent="." instance=ExtResource("8_vkxrs")]
+
+[node name="ammo" parent="." instance=ExtResource("9_jr3qj")]
+ammo = 6
+
+[node name="max_ammo" parent="." instance=ExtResource("10_5kl8j")]
+
+[node name="reload" parent="." instance=ExtResource("11_aafqc")]
+reload = 0
+
+[node name="max_reload" parent="." instance=ExtResource("12_2fkgv")]
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="alt_charge" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="alt_fire_timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="amin" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_50qeu")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_1q6q2")
+anim_player = NodePath("../amin")
+parameters/conditions/alt_fire = false
+parameters/conditions/alt_melee = false
+parameters/conditions/charged = false
+parameters/conditions/has_ammo = false
+parameters/conditions/idle = false
+parameters/conditions/no_ammo = false
+parameters/conditions/shooting = false
+
+[node name="melee_hitbox" type="Area2D" parent="."]
+collision_layer = 31
+collision_mask = 31
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="melee_hitbox"]
+position = Vector2(152, 0)
+shape = SubResource("RectangleShape2D_eklbl")
+disabled = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="parry" parent="." instance=ExtResource("16_mbl1d")]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry"]
+position = Vector2(152, 0)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_eklbl")
+disabled = true
+
+[connection signal="timeout" from="alt_charge" to="." method="_on_alt_charge_timeout"]
+[connection signal="area_entered" from="melee_hitbox" to="." method="_on_melee_hitbox_area_entered"]
+[connection signal="body_entered" from="melee_hitbox" to="." method="_on_melee_hitbox_body_entered"]

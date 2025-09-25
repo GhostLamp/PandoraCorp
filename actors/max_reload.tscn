@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo3bcubotgnaa"]
+
+[ext_resource type="Script" path="res://max_reload.gd" id="1_2q0so"]
+
+[node name="max_reload" type="Node2D"]
+script = ExtResource("1_2q0so")
+max_reload = 50

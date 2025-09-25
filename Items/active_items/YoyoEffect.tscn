@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://18cv7nepl3yy"]
+
+[ext_resource type="Script" path="res://Items/active_items/yoyo_effect.gd" id="1_8nt3u"]
+[ext_resource type="PackedScene" uid="uid://helxro2d4e87" path="res://bullets/Grapple.tscn" id="2_0jfxr"]
+[ext_resource type="Script" path="res://actors/look_at.gd" id="3_ayrqo"]
+
+[node name="YoyoEffect" type="Node2D" node_paths=PackedStringArray("barrel_origin", "special_cooldown")]
+script = ExtResource("1_8nt3u")
+yoyo = ExtResource("2_0jfxr")
+barrel_origin = NodePath("Node2D/Marker2D")
+special_cooldown = NodePath("special_cooldown")
+adrenaline_cost = 20.0
+item_region = Rect2(96, 188, 84, 84)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_ayrqo")
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(129, 0)
+
+[node name="special_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

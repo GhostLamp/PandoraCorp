@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://co6arblvjtdu3"]
+
+[ext_resource type="Texture2D" uid="uid://o1ulyx2k8sko" path="res://pixel art/tevii.new.png" id="1_2xcsq"]
+
+[node name="hologran" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.552941)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2xcsq")
+hframes = 5
+vframes = 7
+frame = 24

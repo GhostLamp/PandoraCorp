@@ -1,0 +1,177 @@
+[gd_scene load_steps=21 format=3 uid="uid://bvojy81fjgxbq"]
+
+[ext_resource type="Script" path="res://Items/tevii_specials/wall_bouncer.gd" id="1_cfq2y"]
+[ext_resource type="Texture2D" uid="uid://deh83bs2decrg" path="res://pixel art/spritesheet (2).png" id="2_pk41p"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="3_otrvj"]
+[ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="4_uiogh"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="5_3quti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hybyq"]
+size = Vector2(360, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrxiu"]
+size = Vector2(400, 320)
+
+[sub_resource type="Animation" id="Animation_dtqk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rrygy"]
+resource_name = "wall_bouncer"
+length = 0.55
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 11, 11, 4, 10, 10]
+}
+
+[sub_resource type="Animation" id="Animation_fioyu"]
+resource_name = "wall_bouncer_dead"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 10, 8, 3, 5, 7, 6, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_3x6io"]
+resource_name = "wall_bouncer"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 6, 7, 5, 3, 8, 4, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1g6jy"]
+_data = {
+"RESET": SubResource("Animation_dtqk5"),
+"wall_bouncer": SubResource("Animation_rrygy"),
+"wall_bouncer_dead": SubResource("Animation_fioyu"),
+"wall_bouncer_spawn": SubResource("Animation_3x6io")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8wvl"]
+animation = &"wall_bouncer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tv4ha"]
+animation = &"wall_bouncer_dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1lmg"]
+animation = &"wall_bouncer_spawn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l2rbe"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2thcb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_414xy"]
+advance_mode = 2
+advance_condition = &"dead"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j4ptm"]
+states/wall_bouncer/node = SubResource("AnimationNodeAnimation_o8wvl")
+states/wall_bouncer/position = Vector2(566, 100)
+states/wall_bouncer_dead/node = SubResource("AnimationNodeAnimation_tv4ha")
+states/wall_bouncer_dead/position = Vector2(566, 184)
+states/wall_bouncer_spawn/node = SubResource("AnimationNodeAnimation_m1lmg")
+states/wall_bouncer_spawn/position = Vector2(372, 100)
+transitions = ["Start", "wall_bouncer_spawn", SubResource("AnimationNodeStateMachineTransition_l2rbe"), "wall_bouncer_spawn", "wall_bouncer", SubResource("AnimationNodeStateMachineTransition_2thcb"), "wall_bouncer", "wall_bouncer_dead", SubResource("AnimationNodeStateMachineTransition_414xy")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3q8t"]
+size = Vector2(400, 320)
+
+[node name="wall_bouncer" type="CharacterBody2D"]
+visibility_layer = 2
+z_index = -1
+scale = Vector2(0.8, 0.8)
+collision_layer = 16
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_cfq2y")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.50339e-05, 5.36442e-06)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_hybyq")
+
+[node name="Area2D" type="Area2D" parent="." groups=["projectile"]]
+visibility_layer = 17
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1.90735e-05)
+shape = SubResource("RectangleShape2D_yrxiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("2_pk41p")
+hframes = 12
+
+[node name="kill_timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="speed" parent="." instance=ExtResource("3_otrvj")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1g6jy")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_j4ptm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/dead = false
+
+[node name="parry_area" parent="." instance=ExtResource("4_uiogh")]
+collision_mask = 32
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry_area"]
+position = Vector2(0, 1.90735e-05)
+shape = SubResource("RectangleShape2D_x3q8t")
+
+[node name="status_manager2" parent="." instance=ExtResource("5_3quti")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

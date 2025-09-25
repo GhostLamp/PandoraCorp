@@ -1,0 +1,761 @@
+[gd_scene load_steps=75 format=3 uid="uid://boayjfr6m6m7w"]
+
+[ext_resource type="Script" path="res://wearpons/shotgun.gd" id="1_1j1ra"]
+[ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_5rhxi"]
+[ext_resource type="PackedScene" uid="uid://ceua0aqoubv5i" path="res://bullets/Grenade.tscn" id="3_vdwby"]
+[ext_resource type="Texture2D" uid="uid://bfqcqaqg6bviu" path="res://pixel art/shotgun.png" id="4_o11qa"]
+[ext_resource type="PackedScene" uid="uid://casvp34hmo6be" path="res://actors/charge_level.tscn" id="5_a7dma"]
+[ext_resource type="PackedScene" uid="uid://d0vwhrxna5oq2" path="res://actors/max_charge.tscn" id="6_31ewl"]
+[ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="7_joyu0"]
+[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="8_i4ob3"]
+[ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="9_bve6n"]
+[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="10_hyjyx"]
+[ext_resource type="Texture2D" uid="uid://chhpnmlqiiba2" path="res://pixel art/shotgun_gauge (2).png" id="13_pm3db"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7x2p"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2912, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd0u3"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(1456, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4e82"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2184, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hue03"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2912, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6fjk"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(0, 2912, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah0g7"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(728, 2912, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx4vv"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(1456, 2912, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vet6t"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2184, 2912, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iyuv"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(0, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef82u"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2912, 2912, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgiu1"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(728, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2es32"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(1456, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5x7q"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2184, 0, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qycg7"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(0, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kusr2"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(728, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j04ly"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(1456, 728, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8not"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(0, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lbat"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(728, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6xkl"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(1456, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34uk3"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(2184, 1456, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_petkx"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(0, 2184, 728, 728)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeob4"]
+atlas = ExtResource("4_o11qa")
+region = Rect2(728, 2184, 728, 728)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vl1ac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7x2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yd0u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4e82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hue03")
+}],
+"loop": true,
+"name": &"alt_fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6fjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah0g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx4vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vet6t")
+}],
+"loop": true,
+"name": &"alt_fire_no_gas",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iyuv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef82u")
+}],
+"loop": true,
+"name": &"default_no_gas",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgiu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2es32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5x7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qycg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kusr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j04ly")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8not")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lbat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6xkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34uk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_petkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeob4")
+}],
+"loop": true,
+"name": &"shooting_no_gas",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7sbm"]
+
+[sub_resource type="Animation" id="Animation_svfa2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(93.4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_susd5"]
+resource_name = "alt_fire"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"alt_fire"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(87, 0), Vector2(95, 0), Vector2(103, 0), Vector2(111, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wym3c"]
+resource_name = "alt_fire_no_gas"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"alt_fire_no_gas"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(87, 0), Vector2(95, 0), Vector2(103, 0), Vector2(111, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6gawi"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(119, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_22rmw"]
+resource_name = "default_no_gas"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default_no_gas"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(119, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pf003"]
+resource_name = "shooting"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shooting"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(103, 1), Vector2(79, -8), Vector2(71, 0), Vector2(79, 0), Vector2(103, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_hx0ra"]
+resource_name = "shooting_no_gas"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shooting_no_gas"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(103, 1), Vector2(79, -8), Vector2(71, 0), Vector2(79, 0), Vector2(103, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50qeu"]
+_data = {
+"RESET": SubResource("Animation_svfa2"),
+"alt_fire": SubResource("Animation_susd5"),
+"alt_fire_no_gas": SubResource("Animation_wym3c"),
+"default": SubResource("Animation_6gawi"),
+"default_no_gas": SubResource("Animation_22rmw"),
+"shooting": SubResource("Animation_pf003"),
+"shooting_no_gas": SubResource("Animation_hx0ra")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iea6h"]
+animation = &"alt_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7e0ai"]
+animation = &"alt_fire_no_gas"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8dfun"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lv7jk"]
+animation = &"default_no_gas"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f3rqb"]
+animation = &"shooting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dchtr"]
+animation = &"shooting_no_gas"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p2rfj"]
+advance_mode = 2
+advance_condition = &"alt_fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6tia0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7bygk"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aeqqc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kninj"]
+advance_mode = 2
+advance_condition = &"no_gas"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bs0do"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b12yg"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jog08"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phlc4"]
+advance_mode = 2
+advance_condition = &"has_gas"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3mu74"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1q6q2"]
+states/End/position = Vector2(884, 192)
+states/Start/position = Vector2(10, 183)
+states/alt_fire/node = SubResource("AnimationNodeAnimation_iea6h")
+states/alt_fire/position = Vector2(131, 93.176)
+states/alt_fire_no_gas/node = SubResource("AnimationNodeAnimation_7e0ai")
+states/alt_fire_no_gas/position = Vector2(379, 93.176)
+states/default/node = SubResource("AnimationNodeAnimation_8dfun")
+states/default/position = Vector2(131, 183)
+states/default_no_gas/node = SubResource("AnimationNodeAnimation_lv7jk")
+states/default_no_gas/position = Vector2(379, 183)
+states/shooting/node = SubResource("AnimationNodeAnimation_f3rqb")
+states/shooting/position = Vector2(131, 279.176)
+states/shooting_no_gas/node = SubResource("AnimationNodeAnimation_dchtr")
+states/shooting_no_gas/position = Vector2(379, 279.176)
+transitions = ["default", "alt_fire", SubResource("AnimationNodeStateMachineTransition_p2rfj"), "alt_fire", "default", SubResource("AnimationNodeStateMachineTransition_6tia0"), "default", "shooting", SubResource("AnimationNodeStateMachineTransition_7bygk"), "shooting", "default", SubResource("AnimationNodeStateMachineTransition_aeqqc"), "default", "alt_fire_no_gas", SubResource("AnimationNodeStateMachineTransition_kninj"), "alt_fire_no_gas", "default_no_gas", SubResource("AnimationNodeStateMachineTransition_bs0do"), "default_no_gas", "shooting_no_gas", SubResource("AnimationNodeStateMachineTransition_b12yg"), "shooting_no_gas", "default_no_gas", SubResource("AnimationNodeStateMachineTransition_jog08"), "default_no_gas", "default", SubResource("AnimationNodeStateMachineTransition_phlc4"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_3mu74")]
+graph_offset = Vector2(-103, 53.176)
+
+[sub_resource type="Animation" id="Animation_gdhld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o2qhi"]
+resource_name = "charging"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0]
+}
+
+[sub_resource type="Animation" id="Animation_t8asx"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_josbd"]
+resource_name = "full"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mp13e"]
+_data = {
+"RESET": SubResource("Animation_gdhld"),
+"charging": SubResource("Animation_o2qhi"),
+"default": SubResource("Animation_t8asx"),
+"full": SubResource("Animation_josbd")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5t4d6"]
+animation = &"charging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8lkwm"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yua7f"]
+animation = &"full"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mshrq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gs4vd"]
+advance_mode = 2
+advance_condition = &"charging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cdli8"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6pmr1"]
+advance_mode = 2
+advance_condition = &"fully_chargerd"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j7tmg"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oqf6u"]
+states/Start/position = Vector2(195, 121)
+states/charging/node = SubResource("AnimationNodeAnimation_5t4d6")
+states/charging/position = Vector2(471, 76)
+states/default/node = SubResource("AnimationNodeAnimation_8lkwm")
+states/default/position = Vector2(349, 121)
+states/full/node = SubResource("AnimationNodeAnimation_yua7f")
+states/full/position = Vector2(471, 180)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_mshrq"), "default", "charging", SubResource("AnimationNodeStateMachineTransition_gs4vd"), "charging", "default", SubResource("AnimationNodeStateMachineTransition_cdli8"), "charging", "full", SubResource("AnimationNodeStateMachineTransition_6pmr1"), "full", "default", SubResource("AnimationNodeStateMachineTransition_j7tmg")]
+
+[node name="shotgun" type="CharacterBody2D" node_paths=PackedStringArray("barrel_origin", "gas_origin")]
+collision_mask = 9
+motion_mode = 1
+script = ExtResource("1_1j1ra")
+bullet = ExtResource("2_5rhxi")
+alt_fire = ExtResource("3_vdwby")
+bullet_count = 8
+arc = 10.0
+barrel_origin = NodePath("nuzzel")
+gas_origin = NodePath("gas_tank_origin")
+
+[node name="gunsprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(119, 0)
+sprite_frames = SubResource("SpriteFrames_vl1ac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m7sbm")
+disabled = true
+
+[node name="nuzzel" type="Marker2D" parent="."]
+position = Vector2(304, 0)
+gizmo_extents = 1.0
+
+[node name="gas_tank_origin" type="Marker2D" parent="."]
+position = Vector2(175, 0)
+
+[node name="charge_level" parent="." instance=ExtResource("5_a7dma")]
+
+[node name="max_charge" parent="." instance=ExtResource("6_31ewl")]
+
+[node name="ammo" parent="." instance=ExtResource("7_joyu0")]
+ammo = 4
+
+[node name="max_ammo" parent="." instance=ExtResource("8_i4ob3")]
+max_ammo = 4
+
+[node name="reload" parent="." instance=ExtResource("9_bve6n")]
+reload = 0
+
+[node name="max_reload" parent="." instance=ExtResource("10_hyjyx")]
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="reload_timer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="alt_charge" type="Timer" parent="."]
+one_shot = true
+
+[node name="alt_fire_timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="amin" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_50qeu")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_1q6q2")
+anim_player = NodePath("../amin")
+parameters/conditions/alt_fire = false
+parameters/conditions/has_gas = false
+parameters/conditions/no_gas = false
+parameters/conditions/shooting = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(93.4, 0)
+texture = ExtResource("13_pm3db")
+hframes = 4
+vframes = 4
+
+[node name="anim_gauge" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mp13e")
+}
+
+[node name="gauge_tree" type="AnimationTree" parent="."]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_oqf6u")
+anim_player = NodePath("../anim_gauge")
+parameters/conditions/charging = false
+parameters/conditions/fully_chargerd = false
+parameters/conditions/idle = false
+
+[connection signal="timeout" from="alt_charge" to="." method="_on_alt_charge_timeout"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SplitShooter" load_steps=3 format=3 uid="uid://bt4xggfqueu67"]
+
+[ext_resource type="Script" path="res://Items/script/SplitShooter.gd" id="1_voydk"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_jfd66"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_voydk")
+texture = ExtResource("2_jfd66")
+item_region = Rect2(192, 4, 76, 84)

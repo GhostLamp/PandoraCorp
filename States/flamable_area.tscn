@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://13vhve2al7ld"]
+
+[ext_resource type="Script" path="res://actors/flamable_area.gd" id="1_qgme5"]
+
+[node name="flamable_area" type="Area2D"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_qgme5")

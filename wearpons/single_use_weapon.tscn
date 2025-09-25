@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyi2v3ijs3jol"]
+
+[ext_resource type="Script" path="res://single_use_weapon.gd" id="1_xs0y3"]
+[ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_pojvn"]
+[ext_resource type="Texture2D" uid="uid://cvu7r1xuuf253" path="res://pixel art/table_and_chair.png" id="3_dk0bn"]
+[ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="4_c0xq4"]
+[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="5_gylvf"]
+[ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="6_ungya"]
+[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="7_c87dn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b31nv"]
+
+[sub_resource type="Animation" id="Animation_trw5o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5017"]
+resource_name = "trow"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 0), Vector2(-116, 0), Vector2(64, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ol70"]
+_data = {
+"RESET": SubResource("Animation_trw5o"),
+"trow": SubResource("Animation_n5017")
+}
+
+[node name="single_use_weapon" type="CharacterBody2D" node_paths=PackedStringArray("barrel_origin") groups=["pick_up_weapon"]]
+script = ExtResource("1_xs0y3")
+bullet = ExtResource("2_pojvn")
+barrel_origin = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b31nv")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_dk0bn")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(64, 0)
+
+[node name="ammo" parent="." instance=ExtResource("4_c0xq4")]
+position = Vector2(30.0027, 136.264)
+ammo = 1
+
+[node name="max_ammo" parent="." instance=ExtResource("5_gylvf")]
+max_ammo = 1
+
+[node name="reload" parent="." instance=ExtResource("6_ungya")]
+reload = 50
+
+[node name="max_reload" parent="." instance=ExtResource("7_c87dn")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ol70")
+}

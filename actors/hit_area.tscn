@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgrcmjr4ncv02"]
+
+[ext_resource type="Script" path="res://actors/hit_area.gd" id="1_tvmmo"]
+
+[node name="hit_area" type="Area2D" groups=["projectile"]]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("1_tvmmo")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

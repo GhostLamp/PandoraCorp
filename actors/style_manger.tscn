@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8mvclecndtut"]
+
+[ext_resource type="Script" path="res://style_manger.gd" id="1_gao6x"]
+
+[node name="StyleManger" type="Node"]
+script = ExtResource("1_gao6x")

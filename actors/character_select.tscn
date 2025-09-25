@@ -1,0 +1,1204 @@
+[gd_scene load_steps=45 format=4 uid="uid://rafrd2s5m0xu"]
+
+[ext_resource type="Script" path="res://actors/character_select.gd" id="1_rbo5x"]
+[ext_resource type="Texture2D" uid="uid://d1wg45qeef5ti" path="res://pixel art/teviiMainSprite.png" id="1_yhgkv"]
+[ext_resource type="Script" path="res://actors/character_select_button.gd" id="2_bdjpl"]
+[ext_resource type="TileSet" uid="uid://dtwfi3wxt0y64" path="res://roomGeneration/dtest/rooms/tileset2.tres" id="2_er4gv"]
+[ext_resource type="Texture2D" uid="uid://bau1x4umek5fe" path="res://pixel art/KboomMainSprite.png" id="2_l23dy"]
+[ext_resource type="FontFile" uid="uid://b6fsicrej43s4" path="res://bruh.ttf" id="3_nmk55"]
+[ext_resource type="PackedScene" uid="uid://bapvy71043313" path="res://actors/player.tscn" id="4_ak01r"]
+[ext_resource type="Texture2D" uid="uid://dvtiytcd3ghdy" path="res://actors/TeviiPics.png" id="4_ltom1"]
+[ext_resource type="Texture2D" uid="uid://cc8f1jecnesqx" path="res://item_slot.png" id="5_q3o81"]
+[ext_resource type="Shader" path="res://actors/palette_swap.gdshader" id="5_widja"]
+[ext_resource type="PackedScene" uid="uid://b6b47xs3351vu" path="res://actors/kboom.tscn" id="6_8ol4e"]
+[ext_resource type="Theme" uid="uid://cwy8hml084on5" path="res://defaltButton.tres" id="8_krcjt"]
+[ext_resource type="Texture2D" uid="uid://dqj5bpjxahreb" path="res://actors/KBoomPics.png" id="10_qh30r"]
+[ext_resource type="Texture2D" uid="uid://ut4sv0etowy2" path="res://pixel art/KboomSheet.png" id="14_uo8u3"]
+[ext_resource type="Texture2D" uid="uid://d2xcyxkipn821" path="res://TVTIME.png" id="15_srxku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3puio"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jiaqt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_16xv4"]
+texture = ExtResource("5_q3o81")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6j3y"]
+texture = ExtResource("5_q3o81")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+region_rect = Rect2(0, 0, 116, 116)
+modulate_color = Color(0.470076, 0.470076, 0.470076, 1)
+
+[sub_resource type="Theme" id="Theme_5nnb1"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("3_nmk55")
+Button/icons/icon = ExtResource("4_ltom1")
+Button/styles/disabled = SubResource("StyleBoxFlat_3puio")
+Button/styles/focus = SubResource("StyleBoxFlat_jiaqt")
+Button/styles/hover = SubResource("StyleBoxTexture_16xv4")
+Button/styles/normal = SubResource("StyleBoxTexture_16xv4")
+Button/styles/pressed = SubResource("StyleBoxTexture_n6j3y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sywfh"]
+resource_local_to_scene = true
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/original_13 = Color(0, 0, 0, 1)
+shader_parameter/replace_13 = null
+shader_parameter/original_14 = Color(0, 0, 0, 1)
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = Color(0, 0, 0, 1)
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1x4r"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(1, 0, 0, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.345098, 0, 0, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.580392, 0, 0, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.201816, 1.14311e-07, 7.21961e-08, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.000956455, 0.0085074, 0.0261778, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.728225, 0.229175, 0, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0188011, 0.0242163, 0.0503796, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.0807783, 0.100172, 0.166564, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.0158667, 0.0198172, 0.0474267, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.109901, 0.136716, 0.19246, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.073232, 0.092205, 0.133263, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.0214733, 0.0294167, 0.0510688, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.301105, 3.51956e-07, 9.62615e-08, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.0175722, 0.0242392, 0.0530888, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.00366229, 0.0058638, 0.00972511, 1)
+shader_parameter/original_15 = Color(0.0196078, 0.0235294, 0.0509804, 1)
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(1, 1, 1, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(0.332881, 0.332881, 0.332881, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yng1l"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.984314, 0.537255, 0.815686, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.854902, 0.396078, 0.686275, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.682353, 0.294118, 0.533333, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.611765, 0.247059, 0.443137, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.258824, 0.258824, 0.203922, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.556863, 0.564706, 0.552941, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.2, 0.203922, 0.192157, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.384314, 0.443137, 0.360784, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.309804, 0.321569, 0.290196, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.478431, 0.521569, 0.478431, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.317647, 0.384314, 0.301961, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.364706, 0.376471, 0.360784, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.25098, 0.254902, 0.192157, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.309804, 0.321569, 0.298039, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.240525, 0.25832, 0.237562, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.290196, 0.329412, 0.298039, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3fdf"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.180392, 0.658824, 0.133333, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.384314, 0.760784, 0.364706, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.592157, 0.8, 0.576471, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.105882, 0.509804, 0.0627451, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.227451, 0.239216, 0.223529, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.505882, 0.509804, 0.498039, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.054902, 0.0666667, 0.109804, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.247059, 0.239216, 0.235294, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.180392, 0.172549, 0.164706, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.443137, 0.454902, 0.423529, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.317647, 0.329412, 0.309804, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.298039, 0.298039, 0.282353, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.231373, 0.231373, 0.231373, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.176471, 0.180392, 0.168627, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.209809, 0.209807, 0.197714, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.180392, 0.172549, 0.164706, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvdfq"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.92549, 0.741176, 0.337255, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.847059, 0.662745, 0.25098, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.737255, 0.607843, 0.34902, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.603922, 0.498039, 0.258824, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.576471, 0.533333, 0.431373, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.835294, 0.713726, 0.541176, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0509804, 0.0627451, 0.101961, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.905882, 0.368627, 0.219608, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.580392, 0.207843, 0.0941176, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.729412, 0.615686, 0.439216, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.792157, 0.647059, 0.4, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.607843, 0.494118, 0.317647, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.576471, 0.533333, 0.431373, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.633868, 0.213155, 0.121555, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.4618, 0.369278, 0.224786, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.592157, 0.207843, 0.0980392, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27jgl"]
+resource_local_to_scene = true
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(1, 0.596078, 0.752941, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.352099, 0.734969, 0.990246, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.689442, 0.357937, 0.568319, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.0274488, 0.487835, 0.727271, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.482353, 0.705882, 0.952941, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(1, 0.596078, 0.85098, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.855709, 0.884288, 0.933591, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.917246, 0.929493, 0.96408, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.75593, 0.790454, 0.89011, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.917647, 0.929412, 0.964706, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.723853, 0.792361, 0.90854, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.608021, 0.703594, 0.839017, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.345098, 0.619608, 0.917647, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.474549, 0.529307, 0.711206, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.475837, 0.542286, 0.706258, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.48958, 0.567044, 0.713606, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(1, 1, 1, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(0.998382, 0.794472, 0.85707, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(0.200542, 0.637533, 0.857385, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1hn81"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.607843, 0, 1, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.364611, 0.00145018, 0.61265, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.528625, 0.00318626, 0.871876, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.253567, 0.000788478, 0.433719, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.00392157, 0.00784314, 0.0235294, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.87451, 0.886275, 0.909804, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0705882, 0.0666667, 0.156863, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.623529, 0.658824, 0.709804, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.0941176, 0.0901961, 0.207843, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.917647, 0.956863, 1, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.733333, 0.803922, 0.913725, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.607843, 0.701961, 0.839216, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.603922, 0, 0.972549, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.338449, 0.370479, 0.409511, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.333702, 0.444549, 0.606314, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.130359, 0.124682, 0.257134, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(0.254902, 0, 0.435294, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(0.254902, 0, 0.435294, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(0.254902, 0, 0.435294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u80k1"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(1, 1, 0.0156863, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.716266, 0.621279, 0.00504738, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.725559, 0.629426, 0.00513132, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.450516, 0.389583, 0.00183032, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.00392157, 0.00784314, 0.0235294, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.87451, 0.886275, 0.909804, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0705882, 0.0666667, 0.156863, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.0862745, 0.101961, 0.168627, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.0941176, 0.0901961, 0.207843, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.917647, 0.956863, 1, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.733333, 0.803922, 0.913725, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.607843, 0.701961, 0.839216, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(1, 1, 0.0156863, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.0245825, 0.0316789, 0.0679994, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.333702, 0.444549, 0.606314, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.130359, 0.124682, 0.257134, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(1, 1, 0.0156863, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(1, 1, 0.0156863, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(1, 1, 0.0156863, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwsao"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.360784, 0.368627, 0.643137, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0.360784, 0.368627, 0.643137, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.87451, 0.831373, 0.239216, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.807843, 0.65098, 0.141176, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(1, 1, 1, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.905882, 0.878431, 0.94902, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0470588, 0.0666667, 0.101961, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.847059, 0.133333, 0.329412, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.847059, 0.129412, 0.317647, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.890196, 0.807843, 0.988235, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.631373, 0.568627, 0.894118, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.356863, 0.356863, 0.635294, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.47451, 0.152941, 0.25098, 1)
+shader_parameter/original_13 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_13 = Color(0.47451, 0.129412, 0.219608, 1)
+shader_parameter/original_14 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_14 = Color(0.275827, 0.273888, 0.51349, 1)
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = Color(0.85098, 0.129412, 0.345098, 1)
+shader_parameter/original_16 = Color(0.388235, 0.780392, 0.301961, 1)
+shader_parameter/replace_16 = Color(0.0901961, 0.960784, 0.945098, 1)
+shader_parameter/original_17 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_17 = Color(0.690196, 0.231373, 0.752941, 1)
+shader_parameter/original_18 = Color(1, 0, 0, 1)
+shader_parameter/replace_18 = Color(0.141176, 0.823529, 0.317647, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5jd2"]
+resource_local_to_scene = true
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0, 0, 0, 1)
+shader_parameter/replace_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0, 0, 0, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0, 0, 0, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0, 0, 0, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0, 0, 0, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0, 0, 0, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0, 0, 0, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0, 0, 0, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0, 0, 0, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0, 0, 0, 1)
+shader_parameter/original_13 = Color(0.180392, 0.215686, 0.286275, 1)
+shader_parameter/replace_13 = null
+shader_parameter/original_14 = Color(0.160784, 0.164706, 0.313726, 1)
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = Color(0.0980392, 0.113725, 0.188235, 1)
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ii8me"]
+resource_local_to_scene = true
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/original_7 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_7 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/original_12 = null
+shader_parameter/replace_12 = null
+shader_parameter/original_13 = null
+shader_parameter/replace_13 = null
+shader_parameter/original_14 = null
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trw7m"]
+resource_local_to_scene = true
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.0962047, 0.0962048, 0.0962047, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.0177324, 0.0177324, 0.0177324, 1)
+shader_parameter/original_7 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_7 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.846067, 0.363392, 0.309696, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.233049, 0.0680034, 0.0515679, 1)
+shader_parameter/original_13 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_13 = Color(1, 0.85098, 0, 1)
+shader_parameter/original_14 = null
+shader_parameter/replace_14 = Color(0, 0, 0, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3hhu"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.356863, 0.505882, 0.407843, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.294118, 0.356863, 0.317647, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.329412, 0.196078, 0.34902, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.203922, 0.168627, 0.207843, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.807843, 0.392157, 0.823529, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.572549, 0.831373, 0.796078, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.521569, 0.701961, 0.67451, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.270588, 0.184314, 0.333333, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.694118, 0.294118, 0.733333, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.345098, 0.701961, 0.482353, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.878431, 0.745098, 0.286275, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.658824, 0.537255, 0.14902, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.203922, 0.396078, 0.270588, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0.196078, 0.733333, 0.384314, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.572549, 0.831373, 0.796078, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qw1xe"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.360784, 0.494118, 0.54902, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.137255, 0.294118, 0.364706, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.290196, 0.333333, 0.4, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.192157, 0.243137, 0.317647, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.258824, 0.384314, 0.878431, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.741176, 0.792157, 0.870588, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.537255, 0.596078, 0.690196, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.996078, 0.992157, 0.843137, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.0941176, 0.262745, 0.768627, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.498039, 0.67451, 0.741176, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.498039, 0.498039, 0.498039, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.764706, 0.752941, 0.713726, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.184314, 0.239216, 0.282353, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0.0823529, 0.4, 0.52549, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.228269, 0.544357, 0.602391, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_niari"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.643137, 0.870588, 0.847059, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.454902, 0.627451, 0.615686, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.239216, 0.305882, 0.4, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.156863, 0.231373, 0.329412, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.223529, 0.447059, 0.870588, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.741176, 0.654902, 0.52549, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.639216, 0.529412, 0.376471, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.2, 0.172549, 0.192157, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.0941176, 0.262745, 0.768627, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.752941, 0.905882, 0.890196, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.705882, 0.584314, 0.392157, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.568627, 0.403922, 0.164706, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.333333, 0.4, 0.388235, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0.290196, 0.737255, 0.694118, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.217885, 0.499758, 0.819208, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trp7y"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 0.0
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.017756, 0.149416, 0.189835, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.00206717, 0.0264212, 0.040292, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.0627451, 0.109804, 0.0196078, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.0196078, 0.0431373, 0.00784314, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.276092, 0.713282, 0, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.0571213, 0.172025, 0.257988, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.00901785, 0.0474616, 0.0864104, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.14902, 0.168627, 0.258824, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(1.20327e-08, 0.377944, 0.000703672, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.0976631, 0.384463, 0.468842, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.262621, 0.461995, 0.129533, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.139309, 0.260365, 0.0591556, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.000986537, 0.00691029, 0.00987233, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0.0313726, 1, 0.0313726, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.0313726, 1, 0.0313726, 1)
+shader_parameter/original_15 = Color(0, 0, 0, 1)
+shader_parameter/replace_15 = Color(0, 0, 0, 1)
+shader_parameter/original_16 = Color(0, 0, 0, 1)
+shader_parameter/replace_16 = Color(0, 0, 0, 1)
+shader_parameter/original_17 = Color(0, 0, 0, 1)
+shader_parameter/replace_17 = Color(0, 0, 0, 1)
+shader_parameter/original_18 = Color(0, 0, 0, 1)
+shader_parameter/replace_18 = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4u2d"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.0392157, 0.0392157, 0.0392157, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.0196078, 0.0196078, 0.0196078, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.0392157, 0.0392157, 0.0392157, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.027451, 0.027451, 0.027451, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.972549, 0.0156863, 0.0156863, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.0392157, 0.0392157, 0.0392157, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.0142752, 0.0142752, 0.0142752, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(1, 1, 1, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.578534, 0.00322166, 0.00397892, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.129412, 0.129412, 0.129412, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.0392157, 0.0392157, 0.0392157, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.0196078, 0.0196078, 0.0196078, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.0196078, 0.0196078, 0.0196078, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(1, 1, 1, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7whp"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.913725, 0.92549, 0.956863, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.756863, 0.796078, 0.882353, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.92549, 0.937255, 0.960784, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.772549, 0.796078, 0.870588, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.972549, 0, 0, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.921569, 0.92549, 0.941176, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.769937, 0.788847, 0.826747, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.921569, 0.92549, 0.941176, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.487756, 7.03912e-07, 4.81308e-08, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(1, 1, 1, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.772549, 0.811765, 0.894118, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.556863, 0.588235, 0.666667, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.627451, 0.658824, 0.737255, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0, 0.0156863, 0.0156863, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.421448, 0.488124, 0.640249, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkyie"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 0.03
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0.00784314, 0.776471, 0.882353, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0.00392157, 0.615686, 0.713726, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0.254902, 0.227451, 0.603922, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0.160784, 0.164706, 0.376471, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(1, 1, 1, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0.00784314, 0.760784, 0.862745, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0.027451, 0.619608, 0.713726, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0.14902, 0.168627, 0.258824, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.936949, 0.957127, 0.997751, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0.262745, 0.901961, 1, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0.258824, 0.247059, 0.545098, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0.160784, 0.160784, 0.384314, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0.0745098, 0.439216, 0.541176, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(0.133333, 0.568627, 0.654902, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(0.184314, 0.184314, 0.403922, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kt1s"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 0.03
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0, 0, 0, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0, 0, 0, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0, 0, 0, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0, 0, 0, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0, 0, 0, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0, 0, 0, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(0, 0, 0, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0, 0, 0, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0, 0, 0, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0, 0, 0, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0, 0, 0, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(1, 0.854902, 0.0313726, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = Color(1, 0.854902, 0.0313726, 1)
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = Color(1, 0.854902, 0.0313726, 1)
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4l60"]
+font = ExtResource("3_nmk55")
+font_size = 32
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4500j"]
+font = ExtResource("3_nmk55")
+font_size = 32
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1krm"]
+font = ExtResource("3_nmk55")
+font_size = 64
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqy3u"]
+shader = ExtResource("5_widja")
+shader_parameter/shader_color = Color(1, 1, 1, 1)
+shader_parameter/alpha = null
+shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
+shader_parameter/replace_0 = Color(0, 0, 0, 1)
+shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
+shader_parameter/replace_1 = Color(0, 0, 0, 1)
+shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
+shader_parameter/replace_2 = Color(0, 0, 0, 1)
+shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
+shader_parameter/replace_3 = Color(0, 0, 0, 1)
+shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
+shader_parameter/replace_4 = Color(0.972549, 0.0156863, 0.0156863, 1)
+shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
+shader_parameter/replace_5 = Color(0, 0, 0, 1)
+shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_6 = Color(0, 0, 0, 1)
+shader_parameter/original_7 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_7 = Color(1, 1, 1, 1)
+shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
+shader_parameter/replace_8 = Color(0, 0, 0, 1)
+shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
+shader_parameter/replace_9 = Color(0, 0, 0, 1)
+shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
+shader_parameter/replace_10 = Color(0, 0, 0, 1)
+shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
+shader_parameter/replace_11 = Color(0, 0, 0, 1)
+shader_parameter/original_12 = Color(0.266667, 0.168627, 0.141176, 1)
+shader_parameter/replace_12 = Color(0, 0, 0, 1)
+shader_parameter/original_13 = Color(0.45098, 0.243137, 0.223529, 1)
+shader_parameter/replace_13 = Color(1, 1, 1, 1)
+shader_parameter/original_14 = Color(0.298039, 0.329412, 0.478431, 1)
+shader_parameter/replace_14 = null
+shader_parameter/original_15 = null
+shader_parameter/replace_15 = null
+shader_parameter/original_16 = null
+shader_parameter/replace_16 = null
+shader_parameter/original_17 = null
+shader_parameter/replace_17 = null
+shader_parameter/original_18 = null
+shader_parameter/replace_18 = null
+
+[node name="characterSelect" type="Node2D"]
+rotation = -6.28319
+script = ExtResource("1_rbo5x")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD/////AwABAAEAAAD//wAAAwABAAEAAAD//wEAAwABAAEAAAD//wIAAwABAAEAAAD//wMAAwABAAEAAAD//wQAAwABAAEAAAD//wUAAwABAAEAAAD//wYAAwABAAEAAAD//wcAAwABAAEAAAD//wgAAwABAAEAAAD//wkAAwABAAEAAAD//woAAwABAAEAAAD//wsAAwABAAEAAAD//wwAAwABAAEAAAD//w0AAwABAAEAAAD//w4AAwABAAEAAAD//w8AAwABAAEAAAD//xAAAwABAAEAAAAAAP//AwABAAEAAAAAAAAAAwABAAEAAAAAAAEAAwABAAEAAAAAAAIAAwABAAEAAAAAAAMAAwABAAEAAAAAAAQAAwABAAEAAAAAAAUAAwABAAEAAAAAAAYAAwABAAEAAAAAAAcAAwABAAEAAAAAAAgAAwABAAEAAAAAAAkAAwABAAEAAAAAAAoAAwABAAEAAAAAAAsAAwABAAEAAAAAAAwAAwABAAEAAAAAAA0AAwABAAEAAAAAAA4AAwABAAEAAAAAAA8AAwABAAEAAAAAABAAAwABAAEAAAABAP//AwABAAEAAAABAAAAAwABAAEAAAABAAEAAwABAAEAAAABAAIAAwABAAEAAAABAAMAAwABAAEAAAABAAQAAwABAAEAAAABAAUAAwABAAEAAAABAAYAAwABAAEAAAABAAcAAwABAAEAAAABAAgAAwABAAEAAAABAAkAAwABAAEAAAABAAoAAwABAAEAAAABAAsAAwABAAEAAAABAAwAAwABAAEAAAABAA0AAwABAAEAAAABAA4AAwABAAEAAAABAA8AAwABAAEAAAABABAAAwABAAEAAAACAP//AwABAAEAAAACAAAAAwABAAEAAAACAAEAAwABAAEAAAACAAIAAwABAAEAAAACAAMAAwABAAEAAAACAAQAAwABAAEAAAACAAUAAwABAAEAAAACAAYAAwABAAEAAAACAAcAAwABAAEAAAACAAgAAwABAAEAAAACAAkAAwABAAEAAAACAAoAAwABAAEAAAACAAsAAwABAAEAAAACAAwAAwABAAEAAAACAA0AAwABAAEAAAACAA4AAwABAAEAAAACAA8AAwABAAEAAAACABAAAwABAAEAAAADAP//AwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAADAAIAAwABAAEAAAADAAMAAwABAAEAAAADAAQAAwABAAEAAAADAAUAAwABAAEAAAADAAYAAwABAAEAAAADAAcAAwABAAEAAAADAAgAAwABAAEAAAADAAkAAwABAAEAAAADAAoAAwABAAEAAAADAAsAAwABAAEAAAADAAwAAwABAAEAAAADAA0AAwABAAEAAAADAA4AAwABAAEAAAADAA8AAwABAAEAAAADABAAAwABAAEAAAAEAP//AwABAAEAAAAEAAAAAwABAAEAAAAEAAEAAwABAAEAAAAEAAIAAwABAAEAAAAEAAMAAwABAAEAAAAEAAQAAwABAAEAAAAEAAUAAwABAAEAAAAEAAYAAwABAAEAAAAEAAcAAwABAAEAAAAEAAgAAwABAAEAAAAEAAkAAwABAAEAAAAEAAoAAwABAAEAAAAEAAsAAwABAAEAAAAEAAwAAwABAAEAAAAEAA0AAwABAAEAAAAEAA4AAwABAAEAAAAEAA8AAwABAAEAAAAEABAAAwABAAEAAAAFAP//AwABAAEAAAAFAAAAAwABAAEAAAAFAAEAAwABAAEAAAAFAAIAAwABAAEAAAAFAAMAAwABAAEAAAAFAAQAAwABAAEAAAAFAAUAAwABAAEAAAAFAAYAAwABAAEAAAAFAAcAAwABAAEAAAAFAAgAAwABAAEAAAAFAAkAAwABAAEAAAAFAAoAAwABAAEAAAAFAAsAAwABAAEAAAAFAAwAAwABAAEAAAAFAA0AAwABAAEAAAAFAA4AAwABAAEAAAAFAA8AAwABAAEAAAAFABAAAwABAAEAAAAGAP//AwABAAEAAAAGAAAAAwABAAEAAAAGAAEAAwABAAEAAAAGAAIAAwABAAEAAAAGAAMAAwABAAEAAAAGAAQAAwABAAEAAAAGAAUAAwABAAEAAAAGAAYAAwABAAEAAAAGAAcAAwABAAEAAAAGAAgAAwABAAEAAAAGAAkAAwABAAEAAAAGAAoAAwABAAEAAAAGAAsAAwABAAEAAAAGAAwAAwABAAEAAAAGAA0AAwABAAEAAAAGAA4AAwABAAEAAAAGAA8AAwABAAEAAAAGABAAAwABAAEAAAAHAP//AwABAAEAAAAHAAAAAwABAAEAAAAHAAEAAwABAAEAAAAHAAIAAwABAAEAAAAHAAMAAwABAAEAAAAHAAQAAwABAAEAAAAHAAUAAwABAAEAAAAHAAYAAwABAAEAAAAHAAcAAwABAAEAAAAHAAgAAwABAAEAAAAHAAkAAwABAAEAAAAHAAoAAwABAAEAAAAHAAsAAwABAAEAAAAHAAwAAwABAAEAAAAHAA0AAwABAAEAAAAHAA4AAwABAAEAAAAHAA8AAwABAAEAAAAHABAAAwABAAEAAAAIAP//AwABAAEAAAAIAAAAAwABAAEAAAAIAAEAAwABAAEAAAAIAAIAAwABAAEAAAAIAAMAAwABAAEAAAAIAAQAAwABAAEAAAAIAAUAAwABAAEAAAAIAAYAAwABAAEAAAAIAAcAAwABAAEAAAAIAAgAAwABAAEAAAAIAAkAAwABAAEAAAAIAAoAAwABAAEAAAAIAAsAAwABAAEAAAAIAAwAAwABAAEAAAAIAA0AAwABAAEAAAAIAA4AAwABAAEAAAAIAA8AAwABAAEAAAAIABAAAwABAAEAAAAJAP//AwABAAEAAAAJAAAAAwABAAEAAAAJAAEAAwABAAEAAAAJAAIAAwABAAEAAAAJAAMAAwABAAEAAAAJAAQAAwABAAEAAAAJAAUAAwABAAEAAAAJAAYAAwABAAEAAAAJAAcAAwABAAEAAAAJAAgAAwABAAEAAAAJAAkAAwABAAEAAAAJAAoAAwABAAEAAAAJAAsAAwABAAEAAAAJAAwAAwABAAEAAAAJAA0AAwABAAEAAAAJAA4AAwABAAEAAAAJAA8AAwABAAEAAAAJABAAAwABAAEAAAAKAP//AwABAAEAAAAKAAAAAwABAAEAAAAKAAEAAwABAAEAAAAKAAIAAwABAAEAAAAKAAMAAwABAAEAAAAKAAQAAwABAAEAAAAKAAUAAwABAAEAAAAKAAYAAwABAAEAAAAKAAcAAwABAAEAAAAKAAgAAwABAAEAAAAKAAkAAwABAAEAAAAKAAoAAwABAAEAAAAKAAsAAwABAAEAAAAKAAwAAwABAAEAAAAKAA0AAwABAAEAAAAKAA4AAwABAAEAAAAKAA8AAwABAAEAAAAKABAAAwABAAEAAAALAP//AwABAAEAAAALAAAAAwABAAEAAAALAAEAAwABAAEAAAALAAIAAwABAAEAAAALAAMAAwABAAEAAAALAAQAAwABAAEAAAALAAUAAwABAAEAAAALAAYAAwABAAEAAAALAAcAAwABAAEAAAALAAgAAwABAAEAAAALAAkAAwABAAEAAAALAAoAAwABAAEAAAALAAsAAwABAAEAAAALAAwAAwABAAEAAAALAA0AAwABAAEAAAALAA4AAwABAAEAAAALAA8AAwABAAEAAAALABAAAwABAAEAAAAMAP//AwABAAEAAAAMAAAAAwABAAEAAAAMAAEAAwABAAEAAAAMAAIAAwABAAEAAAAMAAMAAwABAAEAAAAMAAQAAwABAAEAAAAMAAUAAwABAAEAAAAMAAYAAwABAAEAAAAMAAcAAwABAAEAAAAMAAgAAwABAAEAAAAMAAkAAwABAAEAAAAMAAoAAwABAAEAAAAMAAsAAwABAAEAAAAMAAwAAwABAAEAAAAMAA0AAwABAAEAAAAMAA4AAwABAAEAAAAMAA8AAwABAAEAAAAMABAAAwABAAEAAAANAP//AwABAAEAAAANAAAAAwABAAEAAAANAAEAAwABAAEAAAANAAIAAwABAAEAAAANAAMAAwABAAEAAAANAAQAAwABAAEAAAANAAUAAwABAAEAAAANAAYAAwABAAEAAAANAAcAAwABAAEAAAANAAgAAwABAAEAAAANAAkAAwABAAEAAAANAAoAAwABAAEAAAANAAsAAwABAAEAAAANAAwAAwABAAEAAAANAA0AAwABAAEAAAANAA4AAwABAAEAAAANAA8AAwABAAEAAAANABAAAwABAAEAAAAOAP//AwABAAEAAAAOAAAAAwABAAEAAAAOAAEAAwABAAEAAAAOAAIAAwABAAEAAAAOAAMAAwABAAEAAAAOAAQAAwABAAEAAAAOAAUAAwABAAEAAAAOAAYAAwABAAEAAAAOAAcAAwABAAEAAAAOAAgAAwABAAEAAAAOAAkAAwABAAEAAAAOAAoAAwABAAEAAAAOAAsAAwABAAEAAAAOAAwAAwABAAEAAAAOAA0AAwABAAEAAAAOAA4AAwABAAEAAAAOAA8AAwABAAEAAAAOABAAAwABAAEAAAAPAP//AwABAAEAAAAPAAAAAwABAAEAAAAPAAEAAwABAAEAAAAPAAIAAwABAAEAAAAPAAMAAwABAAEAAAAPAAQAAwABAAEAAAAPAAUAAwABAAEAAAAPAAYAAwABAAEAAAAPAAcAAwABAAEAAAAPAAgAAwABAAEAAAAPAAkAAwABAAEAAAAPAAoAAwABAAEAAAAPAAsAAwABAAEAAAAPAAwAAwABAAEAAAAPAA0AAwABAAEAAAAPAA4AAwABAAEAAAAPAA8AAwABAAEAAAAPABAAAwABAAEAAAAQAP//AwABAAEAAAAQAAAAAwABAAEAAAAQAAEAAwABAAEAAAAQAAIAAwABAAEAAAAQAAMAAwABAAEAAAAQAAQAAwABAAEAAAAQAAUAAwABAAEAAAAQAAYAAwABAAEAAAAQAAcAAwABAAEAAAAQAAgAAwABAAEAAAAQAAkAAwABAAEAAAAQAAoAAwABAAEAAAAQAAsAAwABAAEAAAAQAAwAAwABAAEAAAAQAA0AAwABAAEAAAAQAA4AAwABAAEAAAAQAA8AAwABAAEAAAAQABAAAwABAAEAAAARAP//AwABAAEAAAARAAAAAwABAAEAAAARAAEAAwABAAEAAAARAAIAAwABAAEAAAARAAMAAwABAAEAAAARAAQAAwABAAEAAAARAAUAAwABAAEAAAARAAYAAwABAAEAAAARAAcAAwABAAEAAAARAAgAAwABAAEAAAARAAkAAwABAAEAAAARAAoAAwABAAEAAAARAAsAAwABAAEAAAARAAwAAwABAAEAAAARAA0AAwABAAEAAAARAA4AAwABAAEAAAARAA8AAwABAAEAAAARABAAAwABAAEAAAASAP//AwABAAEAAAASAAAAAwABAAEAAAASAAEAAwABAAEAAAASAAIAAwABAAEAAAASAAMAAwABAAEAAAASAAQAAwABAAEAAAASAAUAAwABAAEAAAASAAYAAwABAAEAAAASAAcAAwABAAEAAAASAAgAAwABAAEAAAASAAkAAwABAAEAAAASAAoAAwABAAEAAAASAAsAAwABAAEAAAASAAwAAwABAAEAAAASAA0AAwABAAEAAAASAA4AAwABAAEAAAASAA8AAwABAAEAAAASABAAAwABAAEAAAATAP//AwABAAEAAAATAAAAAwABAAEAAAATAAEAAwABAAEAAAATAAIAAwABAAEAAAATAAMAAwABAAEAAAATAAQAAwABAAEAAAATAAUAAwABAAEAAAATAAYAAwABAAEAAAATAAcAAwABAAEAAAATAAgAAwABAAEAAAATAAkAAwABAAEAAAATAAoAAwABAAEAAAATAAsAAwABAAEAAAATAAwAAwABAAEAAAATAA0AAwABAAEAAAATAA4AAwABAAEAAAATAA8AAwABAAEAAAATABAAAwABAAEAAAAUAP//AwABAAEAAAAUAAAAAwABAAEAAAAUAAEAAwABAAEAAAAUAAIAAwABAAEAAAAUAAMAAwABAAEAAAAUAAQAAwABAAEAAAAUAAUAAwABAAEAAAAUAAYAAwABAAEAAAAUAAcAAwABAAEAAAAUAAgAAwABAAEAAAAUAAkAAwABAAEAAAAUAAoAAwABAAEAAAAUAAsAAwABAAEAAAAUAAwAAwABAAEAAAAUAA0AAwABAAEAAAAUAA4AAwABAAEAAAAUAA8AAwABAAEAAAAUABAAAwABAAEAAAAVAP//AwABAAEAAAAVAAAAAwABAAEAAAAVAAEAAwABAAEAAAAVAAIAAwABAAEAAAAVAAMAAwABAAEAAAAVAAQAAwABAAEAAAAVAAUAAwABAAEAAAAVAAYAAwABAAEAAAAVAAcAAwABAAEAAAAVAAgAAwABAAEAAAAVAAkAAwABAAEAAAAVAAoAAwABAAEAAAAVAAsAAwABAAEAAAAVAAwAAwABAAEAAAAVAA0AAwABAAEAAAAVAA4AAwABAAEAAAAVAA8AAwABAAEAAAAVABAAAwABAAEAAAAWAP//AwABAAEAAAAWAAAAAwABAAEAAAAWAAEAAwABAAEAAAAWAAIAAwABAAEAAAAWAAMAAwABAAEAAAAWAAQAAwABAAEAAAAWAAUAAwABAAEAAAAWAAYAAwABAAEAAAAWAAcAAwABAAEAAAAWAAgAAwABAAEAAAAWAAkAAwABAAEAAAAWAAoAAwABAAEAAAAWAAsAAwABAAEAAAAWAAwAAwABAAEAAAAWAA0AAwABAAEAAAAWAA4AAwABAAEAAAAWAA8AAwABAAEAAAAWABAAAwABAAEAAAAXAP//AwABAAEAAAAXAAAAAwABAAEAAAAXAAEAAwABAAEAAAAXAAIAAwABAAEAAAAXAAMAAwABAAEAAAAXAAQAAwABAAEAAAAXAAUAAwABAAEAAAAXAAYAAwABAAEAAAAXAAcAAwABAAEAAAAXAAgAAwABAAEAAAAXAAkAAwABAAEAAAAXAAoAAwABAAEAAAAXAAsAAwABAAEAAAAXAAwAAwABAAEAAAAXAA0AAwABAAEAAAAXAA4AAwABAAEAAAAXAA8AAwABAAEAAAAXABAAAwABAAEAAAAYAP//AwABAAEAAAAYAAAAAwABAAEAAAAYAAEAAwABAAEAAAAYAAIAAwABAAEAAAAYAAMAAwABAAEAAAAYAAQAAwABAAEAAAAYAAUAAwABAAEAAAAYAAYAAwABAAEAAAAYAAcAAwABAAEAAAAYAAgAAwABAAEAAAAYAAkAAwABAAEAAAAYAAoAAwABAAEAAAAYAAsAAwABAAEAAAAYAAwAAwABAAEAAAAYAA0AAwABAAEAAAAYAA4AAwABAAEAAAAYAA8AAwABAAEAAAAYABAAAwABAAEAAAAZAP//AwABAAEAAAAZAAAAAwABAAEAAAAZAAEAAwABAAEAAAAZAAIAAwABAAEAAAAZAAMAAwABAAEAAAAZAAQAAwABAAEAAAAZAAUAAwABAAEAAAAZAAYAAwABAAEAAAAZAAcAAwABAAEAAAAZAAgAAwABAAEAAAAZAAkAAwABAAEAAAAZAAoAAwABAAEAAAAZAAsAAwABAAEAAAAZAAwAAwABAAEAAAAZAA0AAwABAAEAAAAZAA4AAwABAAEAAAAZAA8AAwABAAEAAAAZABAAAwABAAEAAAAaAP//AwABAAEAAAAaAAAAAwABAAEAAAAaAAEAAwABAAEAAAAaAAIAAwABAAEAAAAaAAMAAwABAAEAAAAaAAQAAwABAAEAAAAaAAUAAwABAAEAAAAaAAYAAwABAAEAAAAaAAcAAwABAAEAAAAaAAgAAwABAAEAAAAaAAkAAwABAAEAAAAaAAoAAwABAAEAAAAaAAsAAwABAAEAAAAaAAwAAwABAAEAAAAaAA0AAwABAAEAAAAaAA4AAwABAAEAAAAaAA8AAwABAAEAAAAaABAAAwABAAEAAAAbAP//AwABAAEAAAAbAAAAAwABAAEAAAAbAAEAAwABAAEAAAAbAAIAAwABAAEAAAAbAAMAAwABAAEAAAAbAAQAAwABAAEAAAAbAAUAAwABAAEAAAAbAAYAAwABAAEAAAAbAAcAAwABAAEAAAAbAAgAAwABAAEAAAAbAAkAAwABAAEAAAAbAAoAAwABAAEAAAAbAAsAAwABAAEAAAAbAAwAAwABAAEAAAAbAA0AAwABAAEAAAAbAA4AAwABAAEAAAAbAA8AAwABAAEAAAAbABAAAwABAAEAAAAcAP//AwABAAEAAAAcAAAAAwABAAEAAAAcAAEAAwABAAEAAAAcAAIAAwABAAEAAAAcAAMAAwABAAEAAAAcAAQAAwABAAEAAAAcAAUAAwABAAEAAAAcAAYAAwABAAEAAAAcAAcAAwABAAEAAAAcAAgAAwABAAEAAAAcAAkAAwABAAEAAAAcAAoAAwABAAEAAAAcAAsAAwABAAEAAAAcAAwAAwABAAEAAAAcAA0AAwABAAEAAAAcAA4AAwABAAEAAAAcAA8AAwABAAEAAAAcABAAAwABAAEAAAAdAP//AwABAAEAAAAdAAAAAwABAAEAAAAdAAEAAwABAAEAAAAdAAIAAwABAAEAAAAdAAMAAwABAAEAAAAdAAQAAwABAAEAAAAdAAUAAwABAAEAAAAdAAYAAwABAAEAAAAdAAcAAwABAAEAAAAdAAgAAwABAAEAAAAdAAkAAwABAAEAAAAdAAoAAwABAAEAAAAdAAsAAwABAAEAAAAdAAwAAwABAAEAAAAdAA0AAwABAAEAAAAdAA4AAwABAAEAAAAdAA8AAwABAAEAAAAdABAAAwABAAEAAAAeAP//AwABAAEAAAAeAAAAAwABAAEAAAAeAAEAAwABAAEAAAAeAAIAAwABAAEAAAAeAAMAAwABAAEAAAAeAAQAAwABAAEAAAAeAAUAAwABAAEAAAAeAAYAAwABAAEAAAAeAAcAAwABAAEAAAAeAAgAAwABAAEAAAAeAAkAAwABAAEAAAAeAAoAAwABAAEAAAAeAAsAAwABAAEAAAAeAAwAAwABAAEAAAAeAA0AAwABAAEAAAAeAA4AAwABAAEAAAAeAA8AAwABAAEAAAAeABAAAwABAAEAAAD//xEAAwABAAEAAAAAABEAAwABAAEAAAABABEAAwABAAEAAAACABEAAwABAAEAAAADABEAAwABAAEAAAAEABEAAwABAAEAAAAFABEAAwABAAEAAAAGABEAAwABAAEAAAAHABEAAwABAAEAAAAIABEAAwABAAEAAAAJABEAAwABAAEAAAAKABEAAwABAAEAAAALABEAAwABAAEAAAAMABEAAwABAAEAAAANABEAAwABAAEAAAAOABEAAwABAAEAAAAPABEAAwABAAEAAAAQABEAAwABAAEAAAARABEAAwABAAEAAAASABEAAwABAAEAAAATABEAAwABAAEAAAAUABEAAwABAAEAAAAVABEAAwABAAEAAAAWABEAAwABAAEAAAAXABEAAwABAAEAAAAYABEAAwABAAEAAAAZABEAAwABAAEAAAAaABEAAwABAAEAAAAbABEAAwABAAEAAAAcABEAAwABAAEAAAAdABEAAwABAAEAAAAeABEAAwABAAEAAAAfAP//AwABAAEAAAAfAAAAAwABAAEAAAAfAAEAAwABAAEAAAAfAAIAAwABAAEAAAAfAAMAAwABAAEAAAAfAAQAAwABAAEAAAAfAAUAAwABAAEAAAAfAAYAAwABAAEAAAAfAAcAAwABAAEAAAAfAAgAAwABAAEAAAAfAAkAAwABAAEAAAAfAAoAAwABAAEAAAAfAAsAAwABAAEAAAAfAAwAAwABAAEAAAAfAA0AAwABAAEAAAAfAA4AAwABAAEAAAAfAA8AAwABAAEAAAAfABAAAwABAAEAAAAfABEAAwABAAEAAADJ/wAABQABAAEAAADJ/wEABQABAAEAAADJ/wIABQABAAEAAADJ/wMABQABAAEAAADJ/wQABQABAAEAAADJ/wUABQABAAEAAADJ/wYABQABAAEAAADJ/wcABQABAAEAAADJ/wgABQABAAEAAADJ/wkABQABAAEAAADJ/woABQABAAEAAADJ/wsABQABAAEAAADJ/wwABQABAAEAAADJ/w0ABQABAAEAAADJ/w4ABQABAAEAAADJ/w8ABQABAAEAAADJ/xAABQABAAEAAADJ/xEABQABAAEAAADJ/xIABQABAAEAAADJ/xMABQABAAEAAADJ/xQABQABAAEAAADJ/xUABQABAAEAAADJ/xYABQABAAEAAADJ/xcABQABAAEAAADJ/xgABQABAAEAAADJ/xkABQABAAEAAADJ/xoABQABAAEAAADJ/xsABQABAAEAAADJ/xwABQABAAEAAADJ/x0ABQABAAEAAADJ/x4ABQABAAEAAADJ/x8ABQABAAEAAADJ/yAABQABAAEAAADJ/yEABQABAAEAAADJ/yIABQABAAEAAADJ/yMABQABAAEAAADJ/yQABQABAAEAAADJ/yUABQABAAEAAADJ/yYABQABAAEAAADJ/ycABQABAAEAAADK/wAABQABAAEAAADK/wEABQABAAEAAADK/wIABQABAAEAAADK/wMABQABAAEAAADK/wQABQABAAEAAADK/wUABQABAAEAAADK/wYABQABAAEAAADK/wcABQABAAEAAADK/wgABQABAAEAAADK/wkABQABAAEAAADK/woABQABAAEAAADK/wsABQABAAEAAADK/wwABQABAAEAAADK/w0ABQABAAEAAADK/w4ABQABAAEAAADK/w8ABQABAAEAAADK/xAABQABAAEAAADK/xEABQABAAEAAADK/xIABQABAAEAAADK/xMABQABAAEAAADK/xQABQABAAEAAADK/xUABQABAAEAAADK/xYABQABAAEAAADK/xcABQABAAEAAADK/xgABQABAAEAAADK/xkABQABAAEAAADK/xoABQABAAEAAADK/xsABQABAAEAAADK/xwABQABAAEAAADK/x0ABQABAAEAAADK/x4ABQABAAEAAADK/x8ABQABAAEAAADK/yAABQABAAEAAADK/yEABQABAAEAAADK/yIABQABAAEAAADK/yMABQABAAEAAADK/yQABQABAAEAAADK/yUABQABAAEAAADK/yYABQABAAEAAADK/ycABQABAAEAAADL/wAABQABAAEAAADL/wEABQABAAEAAADL/wIABQABAAEAAADL/wMABQABAAEAAADL/wQABQABAAEAAADL/wUABQABAAEAAADL/wYABQABAAEAAADL/wcABQABAAEAAADL/wgABQABAAEAAADL/wkABQABAAEAAADL/woABQABAAEAAADL/wsABQABAAEAAADL/wwABQABAAEAAADL/w0ABQABAAEAAADL/w4ABQABAAEAAADL/w8ABQABAAEAAADL/xAABQABAAEAAADL/xEABQABAAEAAADL/xIABQABAAEAAADL/xMABQABAAEAAADL/xQABQABAAEAAADL/xUABQABAAEAAADL/xYABQABAAEAAADL/xcABQABAAEAAADL/xgABQABAAEAAADL/xkABQABAAEAAADL/xoABQABAAEAAADL/xsABQABAAEAAADL/xwABQABAAEAAADL/x0ABQABAAEAAADL/x4ABQABAAEAAADL/x8ABQABAAEAAADL/yAABQABAAEAAADL/yEABQABAAEAAADL/yIABQABAAEAAADL/yMABQABAAEAAADL/yQABQABAAEAAADL/yUABQABAAEAAADL/yYABQABAAEAAADL/ycABQABAAEAAADM/wAABQABAAEAAADM/wEABQABAAEAAADM/wIABQABAAEAAADM/wMABQABAAEAAADM/wQABQABAAEAAADM/wUABQABAAEAAADM/wYABQABAAEAAADM/wcABQABAAEAAADM/wgABQABAAEAAADM/wkABQABAAEAAADM/woABQABAAEAAADM/wsABQABAAEAAADM/wwABQABAAEAAADM/w0ABQABAAEAAADM/w4ABQABAAEAAADM/w8ABQABAAEAAADM/xAABQABAAEAAADM/xEABQABAAEAAADM/xIABQABAAEAAADM/xMABQABAAEAAADM/xQABQABAAEAAADM/xUABQABAAEAAADM/xYABQABAAEAAADM/xcABQABAAEAAADM/xgABQABAAEAAADM/xkABQABAAEAAADM/xoABQABAAEAAADM/xsABQABAAEAAADM/xwABQABAAEAAADM/x0ABQABAAEAAADM/x4ABQABAAEAAADM/x8ABQABAAEAAADM/yAABQABAAEAAADM/yEABQABAAEAAADM/yIABQABAAEAAADM/yMABQABAAEAAADM/yQABQABAAEAAADM/yUABQABAAEAAADM/yYABQABAAEAAADM/ycABQABAAEAAADN/wAABQABAAEAAADN/wEABQABAAEAAADN/wIABQABAAEAAADN/wMABQABAAEAAADN/wQABQABAAEAAADN/wUABQABAAEAAADN/wYABQABAAEAAADN/wcABQABAAEAAADN/wgABQABAAEAAADN/wkABQABAAEAAADN/woABQABAAEAAADN/wsABQABAAEAAADN/wwABQABAAEAAADN/w0ABQABAAEAAADN/w4ABQABAAEAAADN/w8ABQABAAEAAADN/xAABQABAAEAAADN/xEABQABAAEAAADN/xIABQABAAEAAADN/xMABQABAAEAAADN/xQABQABAAEAAADN/xUABQABAAEAAADN/xYABQABAAEAAADN/xcABQABAAEAAADN/xgABQABAAEAAADN/xkABQABAAEAAADN/xoABQABAAEAAADN/xsABQABAAEAAADN/xwABQABAAEAAADN/x0ABQABAAEAAADN/x4ABQABAAEAAADN/x8ABQABAAEAAADN/yAABQABAAEAAADN/yEABQABAAEAAADN/yIABQABAAEAAADN/yMABQABAAEAAADN/yQABQABAAEAAADN/yUABQABAAEAAADN/yYABQABAAEAAADN/ycABQABAAEAAADO/wAABQABAAEAAADO/wEABQABAAEAAADO/wIABQABAAEAAADO/wMABQABAAEAAADO/wQABQABAAEAAADO/wUABQABAAEAAADO/wYABQABAAEAAADO/wcABQABAAEAAADO/wgABQABAAEAAADO/wkABQABAAEAAADO/woABQABAAEAAADO/wsABQABAAEAAADO/wwABQABAAEAAADO/w0ABQABAAEAAADO/w4ABQABAAEAAADO/w8ABQABAAEAAADO/xAABQABAAEAAADO/xEABQABAAEAAADO/xIABQABAAEAAADO/xMABQABAAEAAADO/xQABQABAAEAAADO/xUABQABAAEAAADO/xYABQABAAEAAADO/xcABQABAAEAAADO/xgABQABAAEAAADO/xkABQABAAEAAADO/xoABQABAAEAAADO/xsABQABAAEAAADO/xwABQABAAEAAADO/x0ABQABAAEAAADO/x4ABQABAAEAAADO/x8ABQABAAEAAADO/yAABQABAAEAAADO/yEABQABAAEAAADO/yIABQABAAEAAADO/yMABQABAAEAAADO/yQABQABAAEAAADO/yUABQABAAEAAADO/yYABQABAAEAAADO/ycABQABAAEAAADP/wAABQABAAEAAADP/wEABQABAAEAAADP/wIABQABAAEAAADP/wMABQABAAEAAADP/wQABQABAAEAAADP/wUABQABAAEAAADP/wYABQABAAEAAADP/wcABQABAAEAAADP/wgABQABAAEAAADP/wkABQABAAEAAADP/woABQABAAEAAADP/wsABQABAAEAAADP/wwABQABAAEAAADP/w0ABQABAAEAAADP/w4ABQABAAEAAADP/w8ABQABAAEAAADP/xAABQABAAEAAADP/xEABQABAAEAAADP/xIABQABAAEAAADP/xMABQABAAEAAADP/xQABQABAAEAAADP/xUABQABAAEAAADP/xYABQABAAEAAADP/xcABQABAAEAAADP/xgABQABAAEAAADP/xkABQABAAEAAADP/xoABQABAAEAAADP/xsABQABAAEAAADP/xwABQABAAEAAADP/x0ABQABAAEAAADP/x4ABQABAAEAAADP/x8ABQABAAEAAADP/yAABQABAAEAAADP/yEABQABAAEAAADP/yIABQABAAEAAADP/yMABQABAAEAAADP/yQABQABAAEAAADP/yUABQABAAEAAADP/yYABQABAAEAAADP/ycABQABAAEAAADQ/wAABQABAAEAAADQ/wEABQABAAEAAADQ/wIABQABAAEAAADQ/wMABQABAAEAAADQ/wQABQABAAEAAADQ/wUABQABAAEAAADQ/wYABQABAAEAAADQ/wcABQABAAEAAADQ/wgABQABAAEAAADQ/wkABQABAAEAAADQ/woABQABAAEAAADQ/wsABQABAAEAAADQ/wwABQABAAEAAADQ/w0ABQABAAEAAADQ/w4ABQABAAEAAADQ/w8ABQABAAEAAADQ/xAABQABAAEAAADQ/xEABQABAAEAAADQ/xIABQABAAEAAADQ/xMABQABAAEAAADQ/xQABQABAAEAAADQ/xUABQABAAEAAADQ/xYABQABAAEAAADQ/xcABQABAAEAAADQ/xgABQABAAEAAADQ/xkABQABAAEAAADQ/xoABQABAAEAAADQ/xsABQABAAEAAADQ/xwABQABAAEAAADQ/x0ABQABAAEAAADQ/x4ABQABAAEAAADQ/x8ABQABAAEAAADQ/yAABQABAAEAAADQ/yEABQABAAEAAADQ/yIABQABAAEAAADQ/yMABQABAAEAAADQ/yQABQABAAEAAADQ/yUABQABAAEAAADQ/yYABQABAAEAAADQ/ycABQABAAEAAADR/wAABQABAAEAAADR/wEABQABAAEAAADR/wIABQABAAEAAADR/wMABQABAAEAAADR/wQABQABAAEAAADR/wUABQABAAEAAADR/wYABQABAAEAAADR/wcABQABAAEAAADR/wgABQABAAEAAADR/wkABQABAAEAAADR/woABQABAAEAAADR/wsABQABAAEAAADR/wwABQABAAEAAADR/w0ABQABAAEAAADR/w4ABQABAAEAAADR/w8ABQABAAEAAADR/xAABQABAAEAAADR/xEABQABAAEAAADR/xIABQABAAEAAADR/xMABQABAAEAAADR/xQABQABAAEAAADR/xUABQABAAEAAADR/xYABQABAAEAAADR/xcABQABAAEAAADR/xgABQABAAEAAADR/xkABQABAAEAAADR/xoABQABAAEAAADR/xsABQABAAEAAADR/xwABQABAAEAAADR/x0ABQABAAEAAADR/x4ABQABAAEAAADR/x8ABQABAAEAAADR/yAABQABAAEAAADR/yEABQABAAEAAADR/yIABQABAAEAAADR/yMABQABAAEAAADR/yQABQABAAEAAADR/yUABQABAAEAAADR/yYABQABAAEAAADR/ycABQABAAEAAADS/wAABQABAAEAAADS/wEABQABAAEAAADS/wIABQABAAEAAADS/wMABQABAAEAAADS/wQABQABAAEAAADS/wUABQABAAEAAADS/wYABQABAAEAAADS/wcABQABAAEAAADS/wgABQABAAEAAADS/wkABQABAAEAAADS/woABQABAAEAAADS/wsABQABAAEAAADS/wwABQABAAEAAADS/w0ABQABAAEAAADS/w4ABQABAAEAAADS/w8ABQABAAEAAADS/xAABQABAAEAAADS/xEABQABAAEAAADS/xIABQABAAEAAADS/xMABQABAAEAAADS/xQABQABAAEAAADS/xUABQABAAEAAADS/xYABQABAAEAAADS/xcABQABAAEAAADS/xgABQABAAEAAADS/xkABQABAAEAAADS/xoABQABAAEAAADS/xsABQABAAEAAADS/xwABQABAAEAAADS/x0ABQABAAEAAADS/x4ABQABAAEAAADS/x8ABQABAAEAAADS/yAABQABAAEAAADS/yEABQABAAEAAADS/yIABQABAAEAAADS/yMABQABAAEAAADS/yQABQABAAEAAADS/yUABQABAAEAAADS/yYABQABAAEAAADS/ycABQABAAEAAADT/wAABQABAAEAAADT/wEABQABAAEAAADT/wIABQABAAEAAADT/wMABQABAAEAAADT/wQABQABAAEAAADT/wUABQABAAEAAADT/wYABQABAAEAAADT/wcABQABAAEAAADT/wgABQABAAEAAADT/wkABQABAAEAAADT/woABQABAAEAAADT/wsABQABAAEAAADT/wwABQABAAEAAADT/w0ABQABAAEAAADT/w4ABQABAAEAAADT/w8ABQABAAEAAADT/xAABQABAAEAAADT/xEABQABAAEAAADT/xIABQABAAEAAADT/xMABQABAAEAAADT/xQABQABAAEAAADT/xUABQABAAEAAADT/xYABQABAAEAAADT/xcABQABAAEAAADT/xgABQABAAEAAADT/xkABQABAAEAAADT/xoABQABAAEAAADT/xsABQABAAEAAADT/xwABQABAAEAAADT/x0ABQABAAEAAADT/x4ABQABAAEAAADT/x8ABQABAAEAAADT/yAABQABAAEAAADT/yEABQABAAEAAADT/yIABQABAAEAAADT/yMABQABAAEAAADT/yQABQABAAEAAADT/yUABQABAAEAAADT/yYABQABAAEAAADT/ycABQABAAEAAADU/wAABQABAAEAAADU/wEABQABAAEAAADU/wIABQABAAEAAADU/wMABQABAAEAAADU/wQABQABAAEAAADU/wUABQABAAEAAADU/wYABQABAAEAAADU/wcABQABAAEAAADU/wgABQABAAEAAADU/wkABQABAAEAAADU/woABQABAAEAAADU/wsABQABAAEAAADU/wwABQABAAEAAADU/w0ABQABAAEAAADU/w4ABQABAAEAAADU/w8ABQABAAEAAADU/xAABQABAAEAAADU/xEABQABAAEAAADU/xIABQABAAEAAADU/xMABQABAAEAAADU/xQABQABAAEAAADU/xUABQABAAEAAADU/xYABQABAAEAAADU/xcABQABAAEAAADU/xgABQABAAEAAADU/xkABQABAAEAAADU/xoABQABAAEAAADU/xsABQABAAEAAADU/xwABQABAAEAAADU/x0ABQABAAEAAADU/x4ABQABAAEAAADU/x8ABQABAAEAAADU/yAABQABAAEAAADU/yEABQABAAEAAADU/yIABQABAAEAAADU/yMABQABAAEAAADU/yQABQABAAEAAADU/yUABQABAAEAAADU/yYABQABAAEAAADU/ycABQABAAEAAADV/wAABQABAAEAAADV/wEABQABAAEAAADV/wIABQABAAEAAADV/wMABQABAAEAAADV/wQABQABAAEAAADV/wUABQABAAEAAADV/wYABQABAAEAAADV/wcABQABAAEAAADV/wgABQABAAEAAADV/wkABQABAAEAAADV/woABQABAAEAAADV/wsABQABAAEAAADV/wwABQABAAEAAADV/w0ABQABAAEAAADV/w4ABQABAAEAAADV/w8ABQABAAEAAADV/xAABQABAAEAAADV/xEABQABAAEAAADV/xIABQABAAEAAADV/xMABQABAAEAAADV/xQABQABAAEAAADV/xUABQABAAEAAADV/xYABQABAAEAAADV/xcABQABAAEAAADV/xgABQABAAEAAADV/xkABQABAAEAAADV/xoABQABAAEAAADV/xsABQABAAEAAADV/xwABQABAAEAAADV/x0ABQABAAEAAADV/x4ABQABAAEAAADV/x8ABQABAAEAAADV/yAABQABAAEAAADV/yEABQABAAEAAADV/yIABQABAAEAAADV/yMABQABAAEAAADV/yQABQABAAEAAADV/yUABQABAAEAAADV/yYABQABAAEAAADV/ycABQABAAEAAADW/wAABQABAAEAAADW/wEABQABAAEAAADW/wIABQABAAEAAADW/wMABQABAAEAAADW/wQABQABAAEAAADW/wUABQABAAEAAADW/wYABQABAAEAAADW/wcABQABAAEAAADW/wgABQABAAEAAADW/wkABQABAAEAAADW/woABQABAAEAAADW/wsABQABAAEAAADW/wwABQABAAEAAADW/w0ABQABAAEAAADW/w4ABQABAAEAAADW/w8ABQABAAEAAADW/xAABQABAAEAAADW/xEABQABAAEAAADW/xIABQABAAEAAADW/xMABQABAAEAAADW/xQABQABAAEAAADW/xUABQABAAEAAADW/xYABQABAAEAAADW/xcABQABAAEAAADW/xgABQABAAEAAADW/xkABQABAAEAAADW/xoABQABAAEAAADW/xsABQABAAEAAADW/xwABQABAAEAAADW/x0ABQABAAEAAADW/x4ABQABAAEAAADW/x8ABQABAAEAAADW/yAABQABAAEAAADW/yEABQABAAEAAADW/yIABQABAAEAAADW/yMABQABAAEAAADW/yQABQABAAEAAADW/yUABQABAAEAAADW/yYABQABAAEAAADW/ycABQABAAEAAADX/wAABQABAAEAAADX/wEABQABAAEAAADX/wIABQABAAEAAADX/wMABQABAAEAAADX/wQABQABAAEAAADX/wUABQABAAEAAADX/wYABQABAAEAAADX/wcABQABAAEAAADX/wgABQABAAEAAADX/wkABQABAAEAAADX/woABQABAAEAAADX/wsABQABAAEAAADX/wwABQABAAEAAADX/w0ABQABAAEAAADX/w4ABQABAAEAAADX/w8ABQABAAEAAADX/xAABQABAAEAAADX/xEABQABAAEAAADX/xIABQABAAEAAADX/xMABQABAAEAAADX/xQABQABAAEAAADX/xUABQABAAEAAADX/xYABQABAAEAAADX/xcABQABAAEAAADX/xgABQABAAEAAADX/xkABQABAAEAAADX/xoABQABAAEAAADX/xsABQABAAEAAADX/xwABQABAAEAAADX/x0ABQABAAEAAADX/x4ABQABAAEAAADX/x8ABQABAAEAAADX/yAABQABAAEAAADX/yEABQABAAEAAADX/yIABQABAAEAAADX/yMABQABAAEAAADX/yQABQABAAEAAADX/yUABQABAAEAAADX/yYABQABAAEAAADX/ycABQABAAEAAADY/wAABQABAAEAAADY/wEABQABAAEAAADY/wIABQABAAEAAADY/wMABQABAAEAAADY/wQABQABAAEAAADY/wUABQABAAEAAADY/wYABQABAAEAAADY/wcABQABAAEAAADY/wgABQABAAEAAADY/wkABQABAAEAAADY/woABQABAAEAAADY/wsABQABAAEAAADY/wwABQABAAEAAADY/w0ABQABAAEAAADY/w4ABQABAAEAAADY/w8ABQABAAEAAADY/xAABQABAAEAAADY/xEABQABAAEAAADY/xIABQABAAEAAADY/xMABQABAAEAAADY/xQABQABAAEAAADY/xUABQABAAEAAADY/xYABQABAAEAAADY/xcABQABAAEAAADY/xgABQABAAEAAADY/xkABQABAAEAAADY/xoABQABAAEAAADY/xsABQABAAEAAADY/xwABQABAAEAAADY/x0ABQABAAEAAADY/x4ABQABAAEAAADY/x8ABQABAAEAAADY/yAABQABAAEAAADY/yEABQABAAEAAADY/yIABQABAAEAAADY/yMABQABAAEAAADY/yQABQABAAEAAADY/yUABQABAAEAAADY/yYABQABAAEAAADY/ycABQABAAEAAADZ/wAABQABAAEAAADZ/wEABQABAAEAAADZ/wIABQABAAEAAADZ/wMABQABAAEAAADZ/wQABQABAAEAAADZ/wUABQABAAEAAADZ/wYABQABAAEAAADZ/wcABQABAAEAAADZ/wgABQABAAEAAADZ/wkABQABAAEAAADZ/woABQABAAEAAADZ/wsABQABAAEAAADZ/wwABQABAAEAAADZ/w0ABQABAAEAAADZ/w4ABQABAAEAAADZ/w8ABQABAAEAAADZ/xAABQABAAEAAADZ/xEABQABAAEAAADZ/xIABQABAAEAAADZ/xMABQABAAEAAADZ/xQABQABAAEAAADZ/xUABQABAAEAAADZ/xYABQABAAEAAADZ/xcABQABAAEAAADZ/xgABQABAAEAAADZ/xkABQABAAEAAADZ/xoABQABAAEAAADZ/xsABQABAAEAAADZ/xwABQABAAEAAADZ/x0ABQABAAEAAADZ/x4ABQABAAEAAADZ/x8ABQABAAEAAADZ/yAABQABAAEAAADZ/yEABQABAAEAAADZ/yIABQABAAEAAADZ/yMABQABAAEAAADZ/yQABQABAAEAAADZ/yUABQABAAEAAADZ/yYABQABAAEAAADZ/ycABQABAAEAAADa/wAABQABAAEAAADa/wEABQABAAEAAADa/wIABQABAAEAAADa/wMABQABAAEAAADa/wQABQABAAEAAADa/wUABQABAAEAAADa/wYABQABAAEAAADa/wcABQABAAEAAADa/wgABQABAAEAAADa/wkABQABAAEAAADa/woABQABAAEAAADa/wsABQABAAEAAADa/wwABQABAAEAAADa/w0ABQABAAEAAADa/w4ABQABAAEAAADa/w8ABQABAAEAAADa/xAABQABAAEAAADa/xEABQABAAEAAADa/xIABQABAAEAAADa/xMABQABAAEAAADa/xQABQABAAEAAADa/xUABQABAAEAAADa/xYABQABAAEAAADa/xcABQABAAEAAADa/xgABQABAAEAAADa/xkABQABAAEAAADa/xoABQABAAEAAADa/xsABQABAAEAAADa/xwABQABAAEAAADa/x0ABQABAAEAAADa/x4ABQABAAEAAADa/x8ABQABAAEAAADa/yAABQABAAEAAADa/yEABQABAAEAAADa/yIABQABAAEAAADa/yMABQABAAEAAADa/yQABQABAAEAAADa/yUABQABAAEAAADa/yYABQABAAEAAADa/ycABQABAAEAAADb/wAABQABAAEAAADb/wEABQABAAEAAADb/wIABQABAAEAAADb/wMABQABAAEAAADb/wQABQABAAEAAADb/wUABQABAAEAAADb/wYABQABAAEAAADb/wcABQABAAEAAADb/wgABQABAAEAAADb/wkABQABAAEAAADb/woABQABAAEAAADb/wsABQABAAEAAADb/wwABQABAAEAAADb/w0ABQABAAEAAADb/w4ABQABAAEAAADb/w8ABQABAAEAAADb/xAABQABAAEAAADb/xEABQABAAEAAADb/xIABQABAAEAAADb/xMABQABAAEAAADb/xQABQABAAEAAADb/xUABQABAAEAAADb/xYABQABAAEAAADb/xcABQABAAEAAADb/xgABQABAAEAAADb/xkABQABAAEAAADb/xoABQABAAEAAADb/xsABQABAAEAAADb/xwABQABAAEAAADb/x0ABQABAAEAAADb/x4ABQABAAEAAADb/x8ABQABAAEAAADb/yAABQABAAEAAADb/yEABQABAAEAAADb/yIABQABAAEAAADb/yMABQABAAEAAADb/yQABQABAAEAAADb/yUABQABAAEAAADb/yYABQABAAEAAADb/ycABQABAAEAAADc/wAABQABAAEAAADc/wEABQABAAEAAADc/wIABQABAAEAAADc/wMABQABAAEAAADc/wQABQABAAEAAADc/wUABQABAAEAAADc/wYABQABAAEAAADc/wcABQABAAEAAADc/wgABQABAAEAAADc/wkABQABAAEAAADc/woABQABAAEAAADc/wsABQABAAEAAADc/wwABQABAAEAAADc/w0ABQABAAEAAADc/w4ABQABAAEAAADc/w8ABQABAAEAAADc/xAABQABAAEAAADc/xEABQABAAEAAADc/xIABQABAAEAAADc/xMABQABAAEAAADc/xQABQABAAEAAADc/xUABQABAAEAAADc/xYABQABAAEAAADc/xcABQABAAEAAADc/xgABQABAAEAAADc/xkABQABAAEAAADc/xoABQABAAEAAADc/xsABQABAAEAAADc/xwABQABAAEAAADc/x0ABQABAAEAAADc/x4ABQABAAEAAADc/x8ABQABAAEAAADc/yAABQABAAEAAADc/yEABQABAAEAAADc/yIABQABAAEAAADc/yMABQABAAEAAADc/yQABQABAAEAAADc/yUABQABAAEAAADc/yYABQABAAEAAADc/ycABQABAAEAAADd/wAABQABAAEAAADd/wEABQABAAEAAADd/wIABQABAAEAAADd/wMABQABAAEAAADd/wQABQABAAEAAADd/wUABQABAAEAAADd/wYABQABAAEAAADd/wcABQABAAEAAADd/wgABQABAAEAAADd/wkABQABAAEAAADd/woABQABAAEAAADd/wsABQABAAEAAADd/wwABQABAAEAAADd/w0ABQABAAEAAADd/w4ABQABAAEAAADd/w8ABQABAAEAAADd/xAABQABAAEAAADd/xEABQABAAEAAADd/xIABQABAAEAAADd/xMABQABAAEAAADd/xQABQABAAEAAADd/xUABQABAAEAAADd/xYABQABAAEAAADd/xcABQABAAEAAADd/xgABQABAAEAAADd/xkABQABAAEAAADd/xoABQABAAEAAADd/xsABQABAAEAAADd/xwABQABAAEAAADd/x0ABQABAAEAAADd/x4ABQABAAEAAADd/x8ABQABAAEAAADd/yAABQABAAEAAADd/yEABQABAAEAAADd/yIABQABAAEAAADd/yMABQABAAEAAADd/yQABQABAAEAAADd/yUABQABAAEAAADd/yYABQABAAEAAADd/ycABQABAAEAAADe/wAABQABAAEAAADe/wEABQABAAEAAADe/wIABQABAAEAAADe/wMABQABAAEAAADe/wQABQABAAEAAADe/wUABQABAAEAAADe/wYABQABAAEAAADe/wcABQABAAEAAADe/wgABQABAAEAAADe/wkABQABAAEAAADe/woABQABAAEAAADe/wsABQABAAEAAADe/wwABQABAAEAAADe/w0ABQABAAEAAADe/w4ABQABAAEAAADe/w8ABQABAAEAAADe/xAABQABAAEAAADe/xEABQABAAEAAADe/xIABQABAAEAAADe/xMABQABAAEAAADe/xQABQABAAEAAADe/xUABQABAAEAAADe/xYABQABAAEAAADe/xcABQABAAEAAADe/xgABQABAAEAAADe/xkABQABAAEAAADe/xoABQABAAEAAADe/xsABQABAAEAAADe/xwABQABAAEAAADe/x0ABQABAAEAAADe/x4ABQABAAEAAADe/x8ABQABAAEAAADe/yAABQABAAEAAADe/yEABQABAAEAAADe/yIABQABAAEAAADe/yMABQABAAEAAADe/yQABQABAAEAAADe/yUABQABAAEAAADe/yYABQABAAEAAADe/ycABQABAAEAAADf/wAABQABAAEAAADf/wEABQABAAEAAADf/wIABQABAAEAAADf/wMABQABAAEAAADf/wQABQABAAEAAADf/wUABQABAAEAAADf/wYABQABAAEAAADf/wcABQABAAEAAADf/wgABQABAAEAAADf/wkABQABAAEAAADf/woABQABAAEAAADf/wsABQABAAEAAADf/wwABQABAAEAAADf/w0ABQABAAEAAADf/w4ABQABAAEAAADf/w8ABQABAAEAAADf/xAABQABAAEAAADf/xEABQABAAEAAADf/xIABQABAAEAAADf/xMABQABAAEAAADf/xQABQABAAEAAADf/xUABQABAAEAAADf/xYABQABAAEAAADf/xcABQABAAEAAADf/xgABQABAAEAAADf/xkABQABAAEAAADf/xoABQABAAEAAADf/xsABQABAAEAAADf/xwABQABAAEAAADf/x0ABQABAAEAAADf/x4ABQABAAEAAADf/x8ABQABAAEAAADf/yAABQABAAEAAADf/yEABQABAAEAAADf/yIABQABAAEAAADf/yMABQABAAEAAADf/yQABQABAAEAAADf/yUABQABAAEAAADf/yYABQABAAEAAADf/ycABQABAAEAAADg/wAABQABAAEAAADg/wEABQABAAEAAADg/wIABQABAAEAAADg/wMABQABAAEAAADg/wQABQABAAEAAADg/wUABQABAAEAAADg/wYABQABAAEAAADg/wcABQABAAEAAADg/wgABQABAAEAAADg/wkABQABAAEAAADg/woABQABAAEAAADg/wsABQABAAEAAADg/wwABQABAAEAAADg/w0ABQABAAEAAADg/w4ABQABAAEAAADg/w8ABQABAAEAAADg/xAABQABAAEAAADg/xEABQABAAEAAADg/xIABQABAAEAAADg/xMABQABAAEAAADg/xQABQABAAEAAADg/xUABQABAAEAAADg/xYABQABAAEAAADg/xcABQABAAEAAADg/xgABQABAAEAAADg/xkABQABAAEAAADg/xoABQABAAEAAADg/xsABQABAAEAAADg/xwABQABAAEAAADg/x0ABQABAAEAAADg/x4ABQABAAEAAADg/x8ABQABAAEAAADg/yAABQABAAEAAADg/yEABQABAAEAAADg/yIABQABAAEAAADg/yMABQABAAEAAADg/yQABQABAAEAAADg/yUABQABAAEAAADg/yYABQABAAEAAADg/ycABQABAAEAAADh/wAABQABAAEAAADh/wEABQABAAEAAADh/wIABQABAAEAAADh/wMABQABAAEAAADh/wQABQABAAEAAADh/wUABQABAAEAAADh/wYABQABAAEAAADh/wcABQABAAEAAADh/wgABQABAAEAAADh/wkABQABAAEAAADh/woABQABAAEAAADh/wsABQABAAEAAADh/wwABQABAAEAAADh/w0ABQABAAEAAADh/w4ABQABAAEAAADh/w8ABQABAAEAAADh/xAABQABAAEAAADh/xEABQABAAEAAADh/xIABQABAAEAAADh/xMABQABAAEAAADh/xQABQABAAEAAADh/xUABQABAAEAAADh/xYABQABAAEAAADh/xcABQABAAEAAADh/xgABQABAAEAAADh/xkABQABAAEAAADh/xoABQABAAEAAADh/xsABQABAAEAAADh/xwABQABAAEAAADh/x0ABQABAAEAAADh/x4ABQABAAEAAADh/x8ABQABAAEAAADh/yAABQABAAEAAADh/yEABQABAAEAAADh/yIABQABAAEAAADh/yMABQABAAEAAADh/yQABQABAAEAAADh/yUABQABAAEAAADh/yYABQABAAEAAADh/ycABQABAAEAAADi/wAABQABAAEAAADi/wEABQABAAEAAADi/wIABQABAAEAAADi/wMABQABAAEAAADi/wQABQABAAEAAADi/wUABQABAAEAAADi/wYABQABAAEAAADi/wcABQABAAEAAADi/wgABQABAAEAAADi/wkABQABAAEAAADi/woABQABAAEAAADi/wsABQABAAEAAADi/wwABQABAAEAAADi/w0ABQABAAEAAADi/w4ABQABAAEAAADi/w8ABQABAAEAAADi/xAABQABAAEAAADi/xEABQABAAEAAADi/xIABQABAAEAAADi/xMABQABAAEAAADi/xQABQABAAEAAADi/xUABQABAAEAAADi/xYABQABAAEAAADi/xcABQABAAEAAADi/xgABQABAAEAAADi/xkABQABAAEAAADi/xoABQABAAEAAADi/xsABQABAAEAAADi/xwABQABAAEAAADi/x0ABQABAAEAAADi/x4ABQABAAEAAADi/x8ABQABAAEAAADi/yAABQABAAEAAADi/yEABQABAAEAAADi/yIABQABAAEAAADi/yMABQABAAEAAADi/yQABQABAAEAAADi/yUABQABAAEAAADi/yYABQABAAEAAADi/ycABQABAAEAAADj/wAABQABAAEAAADj/wEABQABAAEAAADj/wIABQABAAEAAADj/wMABQABAAEAAADj/wQABQABAAEAAADj/wUABQABAAEAAADj/wYABQABAAEAAADj/wcABQABAAEAAADj/wgABQABAAEAAADj/wkABQABAAEAAADj/woABQABAAEAAADj/wsABQABAAEAAADj/wwABQABAAEAAADj/w0ABQABAAEAAADj/w4ABQABAAEAAADj/w8ABQABAAEAAADj/xAABQABAAEAAADj/xEABQABAAEAAADj/xIABQABAAEAAADj/xMABQABAAEAAADj/xQABQABAAEAAADj/xUABQABAAEAAADj/xYABQABAAEAAADj/xcABQABAAEAAADj/xgABQABAAEAAADj/xkABQABAAEAAADj/xoABQABAAEAAADj/xsABQABAAEAAADj/xwABQABAAEAAADj/x0ABQABAAEAAADj/x4ABQABAAEAAADj/x8ABQABAAEAAADj/yAABQABAAEAAADj/yEABQABAAEAAADj/yIABQABAAEAAADj/yMABQABAAEAAADj/yQABQABAAEAAADj/yUABQABAAEAAADj/yYABQABAAEAAADj/ycABQABAAEAAADk/wAABQABAAEAAADk/wEABQABAAEAAADk/wIABQABAAEAAADk/wMABQABAAEAAADk/wQABQABAAEAAADk/wUABQABAAEAAADk/wYABQABAAEAAADk/wcABQABAAEAAADk/wgABQABAAEAAADk/wkABQABAAEAAADk/woABQABAAEAAADk/wsABQABAAEAAADk/wwABQABAAEAAADk/w0ABQABAAEAAADk/w4ABQABAAEAAADk/w8ABQABAAEAAADk/xAABQABAAEAAADk/xEABQABAAEAAADk/xIABQABAAEAAADk/xMABQABAAEAAADk/xQABQABAAEAAADk/xUABQABAAEAAADk/xYABQABAAEAAADk/xcABQABAAEAAADk/xgABQABAAEAAADk/xkABQABAAEAAADk/xoABQABAAEAAADk/xsABQABAAEAAADk/xwABQABAAEAAADk/x0ABQABAAEAAADk/x4ABQABAAEAAADk/x8ABQABAAEAAADk/yAABQABAAEAAADk/yEABQABAAEAAADk/yIABQABAAEAAADk/yMABQABAAEAAADk/yQABQABAAEAAADk/yUABQABAAEAAADk/yYABQABAAEAAADk/ycABQABAAEAAADl/wAABQABAAEAAADl/wEABQABAAEAAADl/wIABQABAAEAAADl/wMABQABAAEAAADl/wQABQABAAEAAADl/wUABQABAAEAAADl/wYABQABAAEAAADl/wcABQABAAEAAADl/wgABQABAAEAAADl/wkABQABAAEAAADl/woABQABAAEAAADl/wsABQABAAEAAADl/wwABQABAAEAAADl/w0ABQABAAEAAADl/w4ABQABAAEAAADl/w8ABQABAAEAAADl/xAABQABAAEAAADl/xEABQABAAEAAADl/xIABQABAAEAAADl/xMABQABAAEAAADl/xQABQABAAEAAADl/xUABQABAAEAAADl/xYABQABAAEAAADl/xcABQABAAEAAADl/xgABQABAAEAAADl/xkABQABAAEAAADl/xoABQABAAEAAADl/xsABQABAAEAAADl/xwABQABAAEAAADl/x0ABQABAAEAAADl/x4ABQABAAEAAADl/x8ABQABAAEAAADl/yAABQABAAEAAADl/yEABQABAAEAAADl/yIABQABAAEAAADl/yMABQABAAEAAADl/yQABQABAAEAAADl/yUABQABAAEAAADl/yYABQABAAEAAADl/ycABQABAAEAAADm/wAABQABAAEAAADm/wEABQABAAEAAADm/wIABQABAAEAAADm/wMABQABAAEAAADm/wQABQABAAEAAADm/wUABQABAAEAAADm/wYABQABAAEAAADm/wcABQABAAEAAADm/wgABQABAAEAAADm/wkABQABAAEAAADm/woABQABAAEAAADm/wsABQABAAEAAADm/wwABQABAAEAAADm/w0ABQABAAEAAADm/w4ABQABAAEAAADm/w8ABQABAAEAAADm/xAABQABAAEAAADm/xEABQABAAEAAADm/xIABQABAAEAAADm/xMABQABAAEAAADm/xQABQABAAEAAADm/xUABQABAAEAAADm/xYABQABAAEAAADm/xcABQABAAEAAADm/xgABQABAAEAAADm/xkABQABAAEAAADm/xoABQABAAEAAADm/xsABQABAAEAAADm/xwABQABAAEAAADm/x0ABQABAAEAAADm/x4ABQABAAEAAADm/x8ABQABAAEAAADm/yAABQABAAEAAADm/yEABQABAAEAAADm/yIABQABAAEAAADm/yMABQABAAEAAADm/yQABQABAAEAAADm/yUABQABAAEAAADm/yYABQABAAEAAADm/ycABQABAAEAAADn/wAABQABAAEAAADn/wEABQABAAEAAADn/wIABQABAAEAAADn/wMABQABAAEAAADn/wQABQABAAEAAADn/wUABQABAAEAAADn/wYABQABAAEAAADn/wcABQABAAEAAADn/wgABQABAAEAAADn/wkABQABAAEAAADn/woABQABAAEAAADn/wsABQABAAEAAADn/wwABQABAAEAAADn/w0ABQABAAEAAADn/w4ABQABAAEAAADn/w8ABQABAAEAAADn/xAABQABAAEAAADn/xEABQABAAEAAADn/xIABQABAAEAAADn/xMABQABAAEAAADn/xQABQABAAEAAADn/xUABQABAAEAAADn/xYABQABAAEAAADn/xcABQABAAEAAADn/xgABQABAAEAAADn/xkABQABAAEAAADn/xoABQABAAEAAADn/xsABQABAAEAAADn/xwABQABAAEAAADn/x0ABQABAAEAAADn/x4ABQABAAEAAADn/x8ABQABAAEAAADn/yAABQABAAEAAADn/yEABQABAAEAAADn/yIABQABAAEAAADn/yMABQABAAEAAADn/yQABQABAAEAAADn/yUABQABAAEAAADn/yYABQABAAEAAADn/ycABQABAAEAAADo/wAABQABAAEAAADo/wEABQABAAEAAADo/wIABQABAAEAAADo/wMABQABAAEAAADo/wQABQABAAEAAADo/wUABQABAAEAAADo/wYABQABAAEAAADo/wcABQABAAEAAADo/wgABQABAAEAAADo/wkABQABAAEAAADo/woABQABAAEAAADo/wsABQABAAEAAADo/wwABQABAAEAAADo/w0ABQABAAEAAADo/w4ABQABAAEAAADo/w8ABQABAAEAAADo/xAABQABAAEAAADo/xEABQABAAEAAADo/xIABQABAAEAAADo/xMABQABAAEAAADo/xQABQABAAEAAADo/xUABQABAAEAAADo/xYABQABAAEAAADo/xcABQABAAEAAADo/xgABQABAAEAAADo/xkABQABAAEAAADo/xoABQABAAEAAADo/xsABQABAAEAAADo/xwABQABAAEAAADo/x0ABQABAAEAAADo/x4ABQABAAEAAADo/x8ABQABAAEAAADo/yAABQABAAEAAADo/yEABQABAAEAAADo/yIABQABAAEAAADo/yMABQABAAEAAADo/yQABQABAAEAAADo/yUABQABAAEAAADo/yYABQABAAEAAADo/ycABQABAAEAAADp/wAABQABAAEAAADp/wEABQABAAEAAADp/wIABQABAAEAAADp/wMABQABAAEAAADp/wQABQABAAEAAADp/wUABQABAAEAAADp/wYABQABAAEAAADp/wcABQABAAEAAADp/wgABQABAAEAAADp/wkABQABAAEAAADp/woABQABAAEAAADp/wsABQABAAEAAADp/wwABQABAAEAAADp/w0ABQABAAEAAADp/w4ABQABAAEAAADp/w8ABQABAAEAAADp/xAABQABAAEAAADp/xEABQABAAEAAADp/xIABQABAAEAAADp/xMABQABAAEAAADp/xQABQABAAEAAADp/xUABQABAAEAAADp/xYABQABAAEAAADp/xcABQABAAEAAADp/xgABQABAAEAAADp/xkABQABAAEAAADp/xoABQABAAEAAADp/xsABQABAAEAAADp/xwABQABAAEAAADp/x0ABQABAAEAAADp/x4ABQABAAEAAADp/x8ABQABAAEAAADp/yAABQABAAEAAADp/yEABQABAAEAAADp/yIABQABAAEAAADp/yMABQABAAEAAADp/yQABQABAAEAAADp/yUABQABAAEAAADp/yYABQABAAEAAADp/ycABQABAAEAAADq/wAABQABAAEAAADq/wEABQABAAEAAADq/wIABQABAAEAAADq/wMABQABAAEAAADq/wQABQABAAEAAADq/wUABQABAAEAAADq/wYABQABAAEAAADq/wcABQABAAEAAADq/wgABQABAAEAAADq/wkABQABAAEAAADq/woABQABAAEAAADq/wsABQABAAEAAADq/wwABQABAAEAAADq/w0ABQABAAEAAADq/w4ABQABAAEAAADq/w8ABQABAAEAAADq/xAABQABAAEAAADq/xEABQABAAEAAADq/xIABQABAAEAAADq/xMABQABAAEAAADq/xQABQABAAEAAADq/xUABQABAAEAAADq/xYABQABAAEAAADq/xcABQABAAEAAADq/xgABQABAAEAAADq/xkABQABAAEAAADq/xoABQABAAEAAADq/xsABQABAAEAAADq/xwABQABAAEAAADq/x0ABQABAAEAAADq/x4ABQABAAEAAADq/x8ABQABAAEAAADq/yAABQABAAEAAADq/yEABQABAAEAAADq/yIABQABAAEAAADq/yMABQABAAEAAADq/yQABQABAAEAAADq/yUABQABAAEAAADq/yYABQABAAEAAADq/ycABQABAAEAAADr/wAABQABAAEAAADr/wEABQABAAEAAADr/wIABQABAAEAAADr/wMABQABAAEAAADr/wQABQABAAEAAADr/wUABQABAAEAAADr/wYABQABAAEAAADr/wcABQABAAEAAADr/wgABQABAAEAAADr/wkABQABAAEAAADr/woABQABAAEAAADr/wsABQABAAEAAADr/wwABQABAAEAAADr/w0ABQABAAEAAADr/w4ABQABAAEAAADr/w8ABQABAAEAAADr/xAABQABAAEAAADr/xEABQABAAEAAADr/xIABQABAAEAAADr/xMABQABAAEAAADr/xQABQABAAEAAADr/xUABQABAAEAAADr/xYABQABAAEAAADr/xcABQABAAEAAADr/xgABQABAAEAAADr/xkABQABAAEAAADr/xoABQABAAEAAADr/xsABQABAAEAAADr/xwABQABAAEAAADr/x0ABQABAAEAAADr/x4ABQABAAEAAADr/x8ABQABAAEAAADr/yAABQABAAEAAADr/yEABQABAAEAAADr/yIABQABAAEAAADr/yMABQABAAEAAADr/yQABQABAAEAAADr/yUABQABAAEAAADr/yYABQABAAEAAADr/ycABQABAAEAAADs/wAABQABAAEAAADs/wEABQABAAEAAADs/wIABQABAAEAAADs/wMABQABAAEAAADs/wQABQABAAEAAADs/wUABQABAAEAAADs/wYABQABAAEAAADs/wcABQABAAEAAADs/wgABQABAAEAAADs/wkABQABAAEAAADs/woABQABAAEAAADs/wsABQABAAEAAADs/wwABQABAAEAAADs/w0ABQABAAEAAADs/w4ABQABAAEAAADs/w8ABQABAAEAAADs/xAABQABAAEAAADs/xEABQABAAEAAADs/xIABQABAAEAAADs/xMABQABAAEAAADs/xQABQABAAEAAADs/xUABQABAAEAAADs/xYABQABAAEAAADs/xcABQABAAEAAADs/xgABQABAAEAAADs/xkABQABAAEAAADs/xoABQABAAEAAADs/xsABQABAAEAAADs/xwABQABAAEAAADs/x0ABQABAAEAAADs/x4ABQABAAEAAADs/x8ABQABAAEAAADs/yAABQABAAEAAADs/yEABQABAAEAAADs/yIABQABAAEAAADs/yMABQABAAEAAADs/yQABQABAAEAAADs/yUABQABAAEAAADs/yYABQABAAEAAADs/ycABQABAAEAAADt/wAABQABAAEAAADt/wEABQABAAEAAADt/wIABQABAAEAAADt/wMABQABAAEAAADt/wQABQABAAEAAADt/wUABQABAAEAAADt/wYABQABAAEAAADt/wcABQABAAEAAADt/wgABQABAAEAAADt/wkABQABAAEAAADt/woABQABAAEAAADt/wsABQABAAEAAADt/wwABQABAAEAAADt/w0ABQABAAEAAADt/w4ABQABAAEAAADt/w8ABQABAAEAAADt/xAABQABAAEAAADt/xEABQABAAEAAADt/xIABQABAAEAAADt/xMABQABAAEAAADt/xQABQABAAEAAADt/xUABQABAAEAAADt/xYABQABAAEAAADt/xcABQABAAEAAADt/xgABQABAAEAAADt/xkABQABAAEAAADt/xoABQABAAEAAADt/xsABQABAAEAAADt/xwABQABAAEAAADt/x0ABQABAAEAAADt/x4ABQABAAEAAADt/x8ABQABAAEAAADt/yAABQABAAEAAADt/yEABQABAAEAAADt/yIABQABAAEAAADt/yMABQABAAEAAADt/yQABQABAAEAAADt/yUABQABAAEAAADt/yYABQABAAEAAADt/ycABQABAAEAAADu/wAABQABAAEAAADu/wEABQABAAEAAADu/wIABQABAAEAAADu/wMABQABAAEAAADu/wQABQABAAEAAADu/wUABQABAAEAAADu/wYABQABAAEAAADu/wcABQABAAEAAADu/wgABQABAAEAAADu/wkABQABAAEAAADu/woABQABAAEAAADu/wsABQABAAEAAADu/wwABQABAAEAAADu/w0ABQABAAEAAADu/w4ABQABAAEAAADu/w8ABQABAAEAAADu/xAABQABAAEAAADu/xEABQABAAEAAADu/xIABQABAAEAAADu/xMABQABAAEAAADu/xQABQABAAEAAADu/xUABQABAAEAAADu/xYABQABAAEAAADu/xcABQABAAEAAADu/xgABQABAAEAAADu/xkABQABAAEAAADu/xoABQABAAEAAADu/xsABQABAAEAAADu/xwABQABAAEAAADu/x0ABQABAAEAAADu/x4ABQABAAEAAADu/x8ABQABAAEAAADu/yAABQABAAEAAADu/yEABQABAAEAAADu/yIABQABAAEAAADu/yMABQABAAEAAADu/yQABQABAAEAAADu/yUABQABAAEAAADu/yYABQABAAEAAADu/ycABQABAAEAAADv/wAABQABAAEAAADv/wEABQABAAEAAADv/wIABQABAAEAAADv/wMABQABAAEAAADv/wQABQABAAEAAADv/wUABQABAAEAAADv/wYABQABAAEAAADv/wcABQABAAEAAADv/wgABQABAAEAAADv/wkABQABAAEAAADv/woABQABAAEAAADv/wsABQABAAEAAADv/wwABQABAAEAAADv/w0ABQABAAEAAADv/w4ABQABAAEAAADv/w8ABQABAAEAAADv/xAABQABAAEAAADv/xEABQABAAEAAADv/xIABQABAAEAAADv/xMABQABAAEAAADv/xQABQABAAEAAADv/xUABQABAAEAAADv/xYABQABAAEAAADv/xcABQABAAEAAADv/xgABQABAAEAAADv/xkABQABAAEAAADv/xoABQABAAEAAADv/xsABQABAAEAAADv/xwABQABAAEAAADv/x0ABQABAAEAAADv/x4ABQABAAEAAADv/x8ABQABAAEAAADv/yAABQABAAEAAADv/yEABQABAAEAAADv/yIABQABAAEAAADv/yMABQABAAEAAADv/yQABQABAAEAAADv/yUABQABAAEAAADv/yYABQABAAEAAADv/ycABQABAAEAAADw/wAABQABAAEAAADw/wEABQABAAEAAADw/wIABQABAAEAAADw/wMABQABAAEAAADw/wQABQABAAEAAADw/wUABQABAAEAAADw/wYABQABAAEAAADw/wcABQABAAEAAADw/wgABQABAAEAAADw/wkABQABAAEAAADw/woABQABAAEAAADw/wsABQABAAEAAADw/wwABQABAAEAAADw/w0ABQABAAEAAADw/w4ABQABAAEAAADw/w8ABQABAAEAAADw/xAABQABAAEAAADw/xEABQABAAEAAADw/xIABQABAAEAAADw/xMABQABAAEAAADw/xQABQABAAEAAADw/xUABQABAAEAAADw/xYABQABAAEAAADw/xcABQABAAEAAADw/xgABQABAAEAAADw/xkABQABAAEAAADw/xoABQABAAEAAADw/xsABQABAAEAAADw/xwABQABAAEAAADw/x0ABQABAAEAAADw/x4ABQABAAEAAADw/x8ABQABAAEAAADw/yAABQABAAEAAADw/yEABQABAAEAAADw/yIABQABAAEAAADw/yMABQABAAEAAADw/yQABQABAAEAAADw/yUABQABAAEAAADw/yYABQABAAEAAADw/ycABQABAAEAAADx/wAABQABAAEAAADx/wEABQABAAEAAADx/wIABQABAAEAAADx/wMABQABAAEAAADx/wQABQABAAEAAADx/wUABQABAAEAAADx/wYABQABAAEAAADx/wcABQABAAEAAADx/wgABQABAAEAAADx/wkABQABAAEAAADx/woABQABAAEAAADx/wsABQABAAEAAADx/wwABQABAAEAAADx/w0ABQABAAEAAADx/w4ABQABAAEAAADx/w8ABQABAAEAAADx/xAABQABAAEAAADx/xEABQABAAEAAADx/xIABQABAAEAAADx/xMABQABAAEAAADx/xQABQABAAEAAADx/xUABQABAAEAAADx/xYABQABAAEAAADx/xcABQABAAEAAADx/xgABQABAAEAAADx/xkABQABAAEAAADx/xoABQABAAEAAADx/xsABQABAAEAAADx/xwABQABAAEAAADx/x0ABQABAAEAAADx/x4ABQABAAEAAADx/x8ABQABAAEAAADx/yAABQABAAEAAADx/yEABQABAAEAAADx/yIABQABAAEAAADx/yMABQABAAEAAADx/yQABQABAAEAAADx/yUABQABAAEAAADx/yYABQABAAEAAADx/ycABQABAAEAAADy/wAABQABAAEAAADy/wEABQABAAEAAADy/wIABQABAAEAAADy/wMABQABAAEAAADy/wQABQABAAEAAADy/wUABQABAAEAAADy/wYABQABAAEAAADy/wcABQABAAEAAADy/wgABQABAAEAAADy/wkABQABAAEAAADy/woABQABAAEAAADy/wsABQABAAEAAADy/wwABQABAAEAAADy/w0ABQABAAEAAADy/w4ABQABAAEAAADy/w8ABQABAAEAAADy/xAABQABAAEAAADy/xEABQABAAEAAADy/xIABQABAAEAAADy/xMABQABAAEAAADy/xQABQABAAEAAADy/xUABQABAAEAAADy/xYABQABAAEAAADy/xcABQABAAEAAADy/xgABQABAAEAAADy/xkABQABAAEAAADy/xoABQABAAEAAADy/xsABQABAAEAAADy/xwABQABAAEAAADy/x0ABQABAAEAAADy/x4ABQABAAEAAADy/x8ABQABAAEAAADy/yAABQABAAEAAADy/yEABQABAAEAAADy/yIABQABAAEAAADy/yMABQABAAEAAADy/yQABQABAAEAAADy/yUABQABAAEAAADy/yYABQABAAEAAADy/ycABQABAAEAAADz/wAABQABAAEAAADz/wEABQABAAEAAADz/wIABQABAAEAAADz/wMABQABAAEAAADz/wQABQABAAEAAADz/wUABQABAAEAAADz/wYABQABAAEAAADz/wcABQABAAEAAADz/wgABQABAAEAAADz/wkABQABAAEAAADz/woABQABAAEAAADz/wsABQABAAEAAADz/wwABQABAAEAAADz/w0ABQABAAEAAADz/w4ABQABAAEAAADz/w8ABQABAAEAAADz/xAABQABAAEAAADz/xEABQABAAEAAADz/xIABQABAAEAAADz/xMABQABAAEAAADz/xQABQABAAEAAADz/xUABQABAAEAAADz/xYABQABAAEAAADz/xcABQABAAEAAADz/xgABQABAAEAAADz/xkABQABAAEAAADz/xoABQABAAEAAADz/xsABQABAAEAAADz/xwABQABAAEAAADz/x0ABQABAAEAAADz/x4ABQABAAEAAADz/x8ABQABAAEAAADz/yAABQABAAEAAADz/yEABQABAAEAAADz/yIABQABAAEAAADz/yMABQABAAEAAADz/yQABQABAAEAAADz/yUABQABAAEAAADz/yYABQABAAEAAADz/ycABQABAAEAAAD0/wAABQABAAEAAAD0/wEABQABAAEAAAD0/wIABQABAAEAAAD0/wMABQABAAEAAAD0/wQABQABAAEAAAD0/wUABQABAAEAAAD0/wYABQABAAEAAAD0/wcABQABAAEAAAD0/wgABQABAAEAAAD0/wkABQABAAEAAAD0/woABQABAAEAAAD0/wsABQABAAEAAAD0/wwABQABAAEAAAD0/w0ABQABAAEAAAD0/w4ABQABAAEAAAD0/w8ABQABAAEAAAD0/xAABQABAAEAAAD0/xEABQABAAEAAAD0/xIABQABAAEAAAD0/xMABQABAAEAAAD0/xQABQABAAEAAAD0/xUABQABAAEAAAD0/xYABQABAAEAAAD0/xcABQABAAEAAAD0/xgABQABAAEAAAD0/xkABQABAAEAAAD0/xoABQABAAEAAAD0/xsABQABAAEAAAD0/xwABQABAAEAAAD0/x0ABQABAAEAAAD0/x4ABQABAAEAAAD0/x8ABQABAAEAAAD0/yAABQABAAEAAAD0/yEABQABAAEAAAD0/yIABQABAAEAAAD0/yMABQABAAEAAAD0/yQABQABAAEAAAD0/yUABQABAAEAAAD0/yYABQABAAEAAAD0/ycABQABAAEAAAD1/wAABQABAAEAAAD1/wEABQABAAEAAAD1/wIABQABAAEAAAD1/wMABQABAAEAAAD1/wQABQABAAEAAAD1/wUABQABAAEAAAD1/wYABQABAAEAAAD1/wcABQABAAEAAAD1/wgABQABAAEAAAD1/wkABQABAAEAAAD1/woABQABAAEAAAD1/wsABQABAAEAAAD1/wwABQABAAEAAAD1/w0ABQABAAEAAAD1/w4ABQABAAEAAAD1/w8ABQABAAEAAAD1/xAABQABAAEAAAD1/xEABQABAAEAAAD1/xIABQABAAEAAAD1/xMABQABAAEAAAD1/xQABQABAAEAAAD1/xUABQABAAEAAAD1/xYABQABAAEAAAD1/xcABQABAAEAAAD1/xgABQABAAEAAAD1/xkABQABAAEAAAD1/xoABQABAAEAAAD1/xsABQABAAEAAAD1/xwABQABAAEAAAD1/x0ABQABAAEAAAD1/x4ABQABAAEAAAD1/x8ABQABAAEAAAD1/yAABQABAAEAAAD1/yEABQABAAEAAAD1/yIABQABAAEAAAD1/yMABQABAAEAAAD1/yQABQABAAEAAAD1/yUABQABAAEAAAD1/yYABQABAAEAAAD1/ycABQABAAEAAAD2/wAABQABAAEAAAD2/wEABQABAAEAAAD2/wIABQABAAEAAAD2/wMABQABAAEAAAD2/wQABQABAAEAAAD2/wUABQABAAEAAAD2/wYABQABAAEAAAD2/wcABQABAAEAAAD2/wgABQABAAEAAAD2/wkABQABAAEAAAD2/woABQABAAEAAAD2/wsABQABAAEAAAD2/wwABQABAAEAAAD2/w0ABQABAAEAAAD2/w4ABQABAAEAAAD2/w8ABQABAAEAAAD2/xAABQABAAEAAAD2/xEABQABAAEAAAD2/xIABQABAAEAAAD2/xMABQABAAEAAAD2/xQABQABAAEAAAD2/xUABQABAAEAAAD2/xYABQABAAEAAAD2/xcABQABAAEAAAD2/xgABQABAAEAAAD2/xkABQABAAEAAAD2/xoABQABAAEAAAD2/xsABQABAAEAAAD2/xwABQABAAEAAAD2/x0ABQABAAEAAAD2/x4ABQABAAEAAAD2/x8ABQABAAEAAAD2/yAABQABAAEAAAD2/yEABQABAAEAAAD2/yIABQABAAEAAAD2/yMABQABAAEAAAD2/yQABQABAAEAAAD2/yUABQABAAEAAAD2/yYABQABAAEAAAD2/ycABQABAAEAAAD3/wAABQABAAEAAAD3/wEABQABAAEAAAD3/wIABQABAAEAAAD3/wMABQABAAEAAAD3/wQABQABAAEAAAD3/wUABQABAAEAAAD3/wYABQABAAEAAAD3/wcABQABAAEAAAD3/wgABQABAAEAAAD3/wkABQABAAEAAAD3/woABQABAAEAAAD3/wsABQABAAEAAAD3/wwABQABAAEAAAD3/w0ABQABAAEAAAD3/w4ABQABAAEAAAD3/w8ABQABAAEAAAD3/xAABQABAAEAAAD3/xEABQABAAEAAAD3/xIABQABAAEAAAD3/xMABQABAAEAAAD3/xQABQABAAEAAAD3/xUABQABAAEAAAD3/xYABQABAAEAAAD3/xcABQABAAEAAAD3/xgABQABAAEAAAD3/xkABQABAAEAAAD3/xoABQABAAEAAAD3/xsABQABAAEAAAD3/xwABQABAAEAAAD3/x0ABQABAAEAAAD3/x4ABQABAAEAAAD3/x8ABQABAAEAAAD3/yAABQABAAEAAAD3/yEABQABAAEAAAD3/yIABQABAAEAAAD3/yMABQABAAEAAAD3/yQABQABAAEAAAD3/yUABQABAAEAAAD3/yYABQABAAEAAAD3/ycABQABAAEAAAD4/wAABQABAAEAAAD4/wEABQABAAEAAAD4/wIABQABAAEAAAD4/wMABQABAAEAAAD4/wQABQABAAEAAAD4/wUABQABAAEAAAD4/wYABQABAAEAAAD4/wcABQABAAEAAAD4/wgABQABAAEAAAD4/wkABQABAAEAAAD4/woABQABAAEAAAD4/wsABQABAAEAAAD4/wwABQABAAEAAAD4/w0ABQABAAEAAAD4/w4ABQABAAEAAAD4/w8ABQABAAEAAAD4/xAABQABAAEAAAD4/xEABQABAAEAAAD4/xIABQABAAEAAAD4/xMABQABAAEAAAD4/xQABQABAAEAAAD4/xUABQABAAEAAAD4/xYABQABAAEAAAD4/xcABQABAAEAAAD4/xgABQABAAEAAAD4/xkABQABAAEAAAD4/xoABQABAAEAAAD4/xsABQABAAEAAAD4/xwABQABAAEAAAD4/x0ABQABAAEAAAD4/x4ABQABAAEAAAD4/x8ABQABAAEAAAD4/yAABQABAAEAAAD4/yEABQABAAEAAAD4/yIABQABAAEAAAD4/yMABQABAAEAAAD4/yQABQABAAEAAAD4/yUABQABAAEAAAD4/yYABQABAAEAAAD4/ycABQABAAEAAAD5/wAABQABAAEAAAD5/wEABQABAAEAAAD5/wIABQABAAEAAAD5/wMABQABAAEAAAD5/wQABQABAAEAAAD5/wUABQABAAEAAAD5/wYABQABAAEAAAD5/wcABQABAAEAAAD5/wgABQABAAEAAAD5/wkABQABAAEAAAD5/woABQABAAEAAAD5/wsABQABAAEAAAD5/wwABQABAAEAAAD5/w0ABQABAAEAAAD5/w4ABQABAAEAAAD5/w8ABQABAAEAAAD5/xAABQABAAEAAAD5/xEABQABAAEAAAD5/xIABQABAAEAAAD5/xMABQABAAEAAAD5/xQABQABAAEAAAD5/xUABQABAAEAAAD5/xYABQABAAEAAAD5/xcABQABAAEAAAD5/xgABQABAAEAAAD5/xkABQABAAEAAAD5/xoABQABAAEAAAD5/xsABQABAAEAAAD5/xwABQABAAEAAAD5/x0ABQABAAEAAAD5/x4ABQABAAEAAAD5/x8ABQABAAEAAAD5/yAABQABAAEAAAD5/yEABQABAAEAAAD5/yIABQABAAEAAAD5/yMABQABAAEAAAD5/yQABQABAAEAAAD5/yUABQABAAEAAAD5/yYABQABAAEAAAD5/ycABQABAAEAAAD6/wAABQABAAEAAAD6/wEABQABAAEAAAD6/wIABQABAAEAAAD6/wMABQABAAEAAAD6/wQABQABAAEAAAD6/wUABQABAAEAAAD6/wYABQABAAEAAAD6/wcABQABAAEAAAD6/wgABQABAAEAAAD6/wkABQABAAEAAAD6/woABQABAAEAAAD6/wsABQABAAEAAAD6/wwABQABAAEAAAD6/w0ABQABAAEAAAD6/w4ABQABAAEAAAD6/w8ABQABAAEAAAD6/xAABQABAAEAAAD6/xEABQABAAEAAAD6/xIABQABAAEAAAD6/xMABQABAAEAAAD6/xQABQABAAEAAAD6/xUABQABAAEAAAD6/xYABQABAAEAAAD6/xcABQABAAEAAAD6/xgABQABAAEAAAD6/xkABQABAAEAAAD6/xoABQABAAEAAAD6/xsABQABAAEAAAD6/xwABQABAAEAAAD6/x0ABQABAAEAAAD6/x4ABQABAAEAAAD6/x8ABQABAAEAAAD6/yAABQABAAEAAAD6/yEABQABAAEAAAD6/yIABQABAAEAAAD6/yMABQABAAEAAAD6/yQABQABAAEAAAD6/yUABQABAAEAAAD6/yYABQABAAEAAAD6/ycABQABAAEAAAD7/wAABQABAAEAAAD7/wEABQABAAEAAAD7/wIABQABAAEAAAD7/wMABQABAAEAAAD7/wQABQABAAEAAAD7/wUABQABAAEAAAD7/wYABQABAAEAAAD7/wcABQABAAEAAAD7/wgABQABAAEAAAD7/wkABQABAAEAAAD7/woABQABAAEAAAD7/wsABQABAAEAAAD7/wwABQABAAEAAAD7/w0ABQABAAEAAAD7/w4ABQABAAEAAAD7/w8ABQABAAEAAAD7/xAABQABAAEAAAD7/xEABQABAAEAAAD7/xIABQABAAEAAAD7/xMABQABAAEAAAD7/xQABQABAAEAAAD7/xUABQABAAEAAAD7/xYABQABAAEAAAD7/xcABQABAAEAAAD7/xgABQABAAEAAAD7/xkABQABAAEAAAD7/xoABQABAAEAAAD7/xsABQABAAEAAAD7/xwABQABAAEAAAD7/x0ABQABAAEAAAD7/x4ABQABAAEAAAD7/x8ABQABAAEAAAD7/yAABQABAAEAAAD7/yEABQABAAEAAAD7/yIABQABAAEAAAD7/yMABQABAAEAAAD7/yQABQABAAEAAAD7/yUABQABAAEAAAD7/yYABQABAAEAAAD7/ycABQABAAEAAAD8/wAABQABAAEAAAD8/wEABQABAAEAAAD8/wIABQABAAEAAAD8/wMABQABAAEAAAD8/wQABQABAAEAAAD8/wUABQABAAEAAAD8/wYABQABAAEAAAD8/wcABQABAAEAAAD8/wgABQABAAEAAAD8/wkABQABAAEAAAD8/woABQABAAEAAAD8/wsABQABAAEAAAD8/wwABQABAAEAAAD8/w0ABQABAAEAAAD8/w4ABQABAAEAAAD8/w8ABQABAAEAAAD8/xAABQABAAEAAAD8/xEABQABAAEAAAD8/xIABQABAAEAAAD8/xMABQABAAEAAAD8/xQABQABAAEAAAD8/xUABQABAAEAAAD8/xYABQABAAEAAAD8/xcABQABAAEAAAD8/xgABQABAAEAAAD8/xkABQABAAEAAAD8/xoABQABAAEAAAD8/xsABQABAAEAAAD8/xwABQABAAEAAAD8/x0ABQABAAEAAAD8/x4ABQABAAEAAAD8/x8ABQABAAEAAAD8/yAABQABAAEAAAD8/yEABQABAAEAAAD8/yIABQABAAEAAAD8/yMABQABAAEAAAD8/yQABQABAAEAAAD8/yUABQABAAEAAAD8/yYABQABAAEAAAD8/ycABQABAAEAAAD9/wAABQABAAEAAAD9/wEABQABAAEAAAD9/wIABQABAAEAAAD9/wMABQABAAEAAAD9/wQABQABAAEAAAD9/wUABQABAAEAAAD9/wYABQABAAEAAAD9/wcABQABAAEAAAD9/wgABQABAAEAAAD9/wkABQABAAEAAAD9/woABQABAAEAAAD9/wsABQABAAEAAAD9/wwABQABAAEAAAD9/w0ABQABAAEAAAD9/w4ABQABAAEAAAD9/w8ABQABAAEAAAD9/xAABQABAAEAAAD9/xEABQABAAEAAAD9/xIABQABAAEAAAD9/xMABQABAAEAAAD9/xQABQABAAEAAAD9/xUABQABAAEAAAD9/xYABQABAAEAAAD9/xcABQABAAEAAAD9/xgABQABAAEAAAD9/xkABQABAAEAAAD9/xoABQABAAEAAAD9/xsABQABAAEAAAD9/xwABQABAAEAAAD9/x0ABQABAAEAAAD9/x4ABQABAAEAAAD9/x8ABQABAAEAAAD9/yAABQABAAEAAAD9/yEABQABAAEAAAD9/yIABQABAAEAAAD9/yMABQABAAEAAAD9/yQABQABAAEAAAD9/yUABQABAAEAAAD9/yYABQABAAEAAAD9/ycABQABAAEAAAD+/wAAAwABAAEAAAD+/wEAAwABAAEAAAD+/wIAAwABAAEAAAD+/wMAAwABAAEAAAD+/wQAAwABAAEAAAD+/wUAAwABAAEAAAD+/wYAAwABAAEAAAD+/wcAAwABAAEAAAD+/wgAAwABAAEAAAD+/wkAAwABAAEAAAD+/woAAwABAAEAAAD+/wsAAwABAAEAAAD+/wwAAwABAAEAAAD+/w0AAwABAAEAAAD+/w4AAwABAAEAAAD+/w8AAwABAAEAAAD+/xAAAwABAAEAAAD+/xEAAwABAAEAAAD+/xIABQABAAEAAAD+/xMABQABAAEAAAD+/xQABQABAAEAAAD+/xUABQABAAEAAAD+/xYABQABAAEAAAD+/xcABQABAAEAAAD+/xgABQABAAEAAAD+/xkABQABAAEAAAD+/xoABQABAAEAAAD+/xsABQABAAEAAAD+/xwABQABAAEAAAD+/x0ABQABAAEAAAD+/x4ABQABAAEAAAD+/x8ABQABAAEAAAD+/yAABQABAAEAAAD+/yEABQABAAEAAAD+/yIABQABAAEAAAD+/yMABQABAAEAAAD+/yQABQABAAEAAAD+/yUABQABAAEAAAD+/yYABQABAAEAAAD+/ycABQABAAEAAAD+////AwABAAEAAAA=")
+tile_set = ExtResource("2_er4gv")
+
+[node name="teviiselect" type="Button" parent="." node_paths=PackedStringArray("sprite")]
+offset_left = 945.0
+offset_top = 847.0
+offset_right = 1173.0
+offset_bottom = 1151.0
+theme = SubResource("Theme_5nnb1")
+toggle_mode = true
+text = "< palette >"
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("2_bdjpl")
+player = ExtResource("4_ak01r")
+pallets = Array[ShaderMaterial]([SubResource("ShaderMaterial_sywfh"), SubResource("ShaderMaterial_u1x4r"), SubResource("ShaderMaterial_yng1l"), SubResource("ShaderMaterial_j3fdf"), SubResource("ShaderMaterial_uvdfq"), SubResource("ShaderMaterial_27jgl"), SubResource("ShaderMaterial_1hn81"), SubResource("ShaderMaterial_u80k1"), SubResource("ShaderMaterial_xwsao"), SubResource("ShaderMaterial_d5jd2")])
+names = Array[String](["tevii zero", "pandoras minion", "sakura", "double digits", "popcorn", "pride", "bite me", "disasembly required", "t.v. time!", "neon"])
+authors = Array[String](["", "", "u/fitbitofficialreal", "u/fitbitofficialreal", "u/fitbitofficialreal", "", "u/mikejosh", "u/mikejosh", "u/crylemite_ely", ""])
+sprite = NodePath("../TeviiMain")
+
+[node name="kboomselect" type="Button" parent="." node_paths=PackedStringArray("sprite")]
+offset_left = 1172.0
+offset_top = 847.0
+offset_right = 1391.0
+offset_bottom = 1151.0
+theme = SubResource("Theme_5nnb1")
+theme_override_icons/icon = ExtResource("10_qh30r")
+toggle_mode = true
+text = "< palette >"
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("2_bdjpl")
+player = ExtResource("6_8ol4e")
+pallets = Array[ShaderMaterial]([SubResource("ShaderMaterial_ii8me"), SubResource("ShaderMaterial_trw7m"), SubResource("ShaderMaterial_w3hhu"), SubResource("ShaderMaterial_qw1xe"), SubResource("ShaderMaterial_niari"), SubResource("ShaderMaterial_trp7y"), SubResource("ShaderMaterial_m4u2d"), SubResource("ShaderMaterial_w7whp"), SubResource("ShaderMaterial_xkyie"), SubResource("ShaderMaterial_5kt1s")])
+names = Array[String](["k.boom", "gambler", "pistachio", "chill", "platinum", "mobster", "black spy", "white spy", "ancient legend", "neon"])
+authors = Array[String](["", "", "u/fitbitofficialreal", "u/fitbitofficialreal", "u/fitbitofficialreal", "", "u/mikejosh", "u/mikejosh", "u/crylemite_ely", ""])
+sprite = NodePath("../KBoomMain")
+
+[node name="next" type="Button" parent="."]
+offset_left = 1592.0
+offset_top = 1004.01
+offset_right = 1912.0
+offset_bottom = 1044.01
+theme = ExtResource("8_krcjt")
+disabled = true
+text = "  play  "
+
+[node name="pallate_author" type="Label" parent="."]
+visible = false
+offset_left = 35.9956
+offset_top = 980.0
+offset_right = 203.996
+offset_bottom = 1020.0
+text = "author"
+label_settings = SubResource("LabelSettings_h4l60")
+
+[node name="character_name" type="Label" parent="."]
+visible = false
+offset_left = 43.9993
+offset_top = 152.0
+offset_right = 155.999
+offset_bottom = 192.0
+text = "name"
+label_settings = SubResource("LabelSettings_4500j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_trw7m")
+position = Vector2(-1898, 780.993)
+texture = ExtResource("2_l23dy")
+
+[node name="TeviiMainSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_27jgl")
+position = Vector2(-1843.01, 1986.99)
+texture = ExtResource("1_yhgkv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_trp7y")
+position = Vector2(-2653, 745.988)
+texture = ExtResource("2_l23dy")
+
+[node name="TeviiMainSprite2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sywfh")
+position = Vector2(-2591.01, 2010.99)
+texture = ExtResource("1_yhgkv")
+
+[node name="TeviiMain" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_sywfh")
+position = Vector2(347, 633)
+texture = ExtResource("1_yhgkv")
+
+[node name="KBoomMain" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ii8me")
+position = Vector2(394.005, 622.995)
+texture = ExtResource("2_l23dy")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_w3hhu")
+position = Vector2(-1112, 796.998)
+texture = ExtResource("2_l23dy")
+
+[node name="TeviiMainSprite3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u1x4r")
+position = Vector2(-1082.01, 1969)
+texture = ExtResource("1_yhgkv")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -2784.0
+offset_top = 215.988
+offset_right = -2448.0
+offset_bottom = 378.988
+text = "sherif
+k.boom"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+offset_left = -2058.0
+offset_top = 261.991
+offset_right = -1666.0
+offset_bottom = 436.991
+text = "gambler"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+offset_left = -1275.0
+offset_top = 247.994
+offset_right = -883.001
+offset_bottom = 410.994
+text = "mobster"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+offset_left = -2858.01
+offset_top = 1435.99
+offset_right = -2330.01
+offset_bottom = 1598.99
+text = "tevii zero"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+offset_left = -2079.01
+offset_top = 1307.99
+offset_right = -1551.01
+offset_bottom = 1553.99
+text = "the worst
+trans flag
+ever done"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="Label6" type="Label" parent="."]
+visible = false
+offset_left = -1311.01
+offset_top = 1392.99
+offset_right = -919.006
+offset_bottom = 1555.99
+text = "sick and
+twisted"
+label_settings = SubResource("LabelSettings_m1krm")
+
+[node name="KboomSheet" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tqy3u")
+position = Vector2(-69.0162, 3619)
+texture = ExtResource("14_uo8u3")
+
+[node name="Tvtime" type="Sprite2D" parent="."]
+position = Vector2(-3602.01, 1563.98)
+scale = Vector2(5.36038, 5.69832)
+texture = ExtResource("15_srxku")
+
+[connection signal="pressed" from="next" to="." method="_on_next_pressed"]

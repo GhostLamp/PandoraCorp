@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0kmeaejfcnlo"]
+
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="1_2wha1"]
+[ext_resource type="Script" path="res://shadow.gd" id="1_ijsau"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="2_kc82g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85g8q"]
+shader = ExtResource("2_kc82g")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxbn2"]
+radius = 0.270438
+height = 0.540876
+
+[node name="shadow" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 8
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_ijsau")
+needs_update = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_85g8q")
+position = Vector2(0.270399, 128.26)
+scale = Vector2(1, -0.5)
+texture = ExtResource("1_2wha1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.270401, 2.26027)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uxbn2")
+disabled = true

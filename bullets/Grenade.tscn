@@ -1,0 +1,161 @@
+[gd_scene load_steps=21 format=3 uid="uid://ceua0aqoubv5i"]
+
+[ext_resource type="Script" path="res://bullets/Grenade.gd" id="1_igo1s"]
+[ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="2_fix0b"]
+[ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="3_dwwdw"]
+[ext_resource type="Script" path="res://actors/body.gd" id="4_47yq8"]
+[ext_resource type="PackedScene" uid="uid://dars5mmvvhu6t" path="res://actors/trail.tscn" id="5_gviqp"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="6_5bjmm"]
+[ext_resource type="Texture2D" uid="uid://bfqcqaqg6bviu" path="res://pixel art/shotgun.png" id="7_e3mcg"]
+[ext_resource type="AudioStream" uid="uid://c2jarkoqqjsrm" path="res://audio/gas_hit.wav" id="8_7jx4n"]
+[ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="9_rc6yu"]
+[ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="10_owsn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q1k3"]
+
+[sub_resource type="Curve" id="Curve_vlh52"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6op6s"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7i86m"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_6dcfy"]
+resource_name = "spinout"
+length = 0.7
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8p5l"]
+_data = {
+"spinout": SubResource("Animation_6dcfy")
+}
+
+[sub_resource type="Animation" id="Animation_xqqpq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_eyeb3"]
+resource_name = "amin"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nw2p"]
+_data = {
+"RESET": SubResource("Animation_xqqpq"),
+"amin": SubResource("Animation_eyeb3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blmap"]
+size = Vector2(96, 20)
+
+[node name="grenade" type="CharacterBody2D"]
+visibility_layer = 2
+z_index = 1
+collision_layer = 0
+collision_mask = 24
+motion_mode = 1
+wall_min_slide_angle = 3.14159
+script = ExtResource("1_igo1s")
+explosion = ExtResource("2_fix0b")
+
+[node name="shadow" parent="." instance=ExtResource("3_dwwdw")]
+scale = Vector2(0.5, 0.5)
+wall_min_slide_angle = 0.0
+
+[node name="body" type="CharacterBody2D" parent="."]
+collision_layer = 4096
+collision_mask = 4096
+script = ExtResource("4_47yq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+shape = SubResource("RectangleShape2D_5q1k3")
+
+[node name="trail" parent="body" instance=ExtResource("5_gviqp")]
+points = PackedVector2Array(0, 0)
+width_curve = SubResource("Curve_vlh52")
+default_color = Color(1, 1, 0, 1)
+
+[node name="hit_area" parent="body" instance=ExtResource("10_owsn0")]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="body/hit_area"]
+position = Vector2(0, 2)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_6op6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_7i86m")
+
+[node name="kill_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="speed" parent="." instance=ExtResource("6_5bjmm")]
+speed = 2500.0
+
+[node name="spinner" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v8p5l")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_e3mcg")
+hframes = 5
+vframes = 5
+frame = 4
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2nw2p")
+}
+autoplay = "amin"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7jx4n")
+
+[node name="parry_area" parent="." instance=ExtResource("9_rc6yu")]
+collision_mask = 32
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry_area"]
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_6op6s")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 72)
+shape = SubResource("RectangleShape2D_blmap")
+
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

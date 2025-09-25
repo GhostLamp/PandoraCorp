@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g57ejr7n7epa"]
+
+[ext_resource type="Script" path="res://States/parry_area.gd" id="1_j3f4x"]
+
+[node name="parry_area" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_j3f4x")

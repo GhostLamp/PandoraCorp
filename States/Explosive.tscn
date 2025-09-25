@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://brlwp8kfr2trq"]
+
+[ext_resource type="Script" path="res://States/explosive.gd" id="1_8j4uv"]
+[ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="2_70ssh"]
+
+[node name="Explosive" type="Node2D"]
+script = ExtResource("1_8j4uv")
+explosion = ExtResource("2_70ssh")
