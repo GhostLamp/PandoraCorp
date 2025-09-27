@@ -47,36 +47,41 @@
 [ext_resource type="PackedScene" uid="uid://1toe42bysdwu" path="res://actors/adrenaline.tscn" id="44_s3of0"]
 [ext_resource type="PackedScene" uid="uid://c8mvclecndtut" path="res://actors/style_manger.tscn" id="45_lnepe"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_av2bq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bivcc"]
+radius = 64.0
+height = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4f34"]
+resource_local_to_scene = true
 shader = ExtResource("11_ipbe6")
 shader_parameter/shader_color = Color(1, 0, 0, 1)
 shader_parameter/alpha = 1.0
-shader_parameter/original_0 = Color(0.721569, 0.435294, 0.313726, 1)
-shader_parameter/replace_0 = Color(0.721569, 0.435294, 0.313726, 1)
-shader_parameter/original_1 = Color(0.431373, 0.286275, 0.243137, 1)
-shader_parameter/replace_1 = Color(0.431373, 0.286275, 0.243137, 1)
-shader_parameter/original_2 = Color(0.172549, 0.172549, 0.219608, 1)
-shader_parameter/replace_2 = Color(0.172549, 0.172549, 0.219608, 1)
-shader_parameter/original_3 = Color(0.113725, 0.113725, 0.145098, 1)
-shader_parameter/replace_3 = Color(0.113725, 0.113725, 0.145098, 1)
-shader_parameter/original_4 = Color(1, 0.85098, 0, 1)
-shader_parameter/replace_4 = Color(1, 0.85098, 0, 1)
-shader_parameter/original_5 = Color(0.752941, 0.796078, 0.862745, 1)
-shader_parameter/replace_5 = Color(0.752941, 0.796078, 0.862745, 1)
-shader_parameter/original_6 = Color(0.545098, 0.607843, 0.705882, 1)
-shader_parameter/replace_6 = Color(0.545098, 0.607843, 0.705882, 1)
-shader_parameter/original_7 = Color(0.172549, 0.172549, 0.219608, 1)
-shader_parameter/replace_7 = Color(0.172549, 0.172549, 0.219608, 1)
-shader_parameter/original_8 = Color(0.996078, 0.682353, 0.203922, 1)
-shader_parameter/replace_8 = Color(0.996078, 0.682353, 0.203922, 1)
-shader_parameter/original_9 = Color(0.882353, 0.556863, 0.415686, 1)
-shader_parameter/replace_9 = Color(0.882353, 0.556863, 0.415686, 1)
-shader_parameter/original_10 = Color(0.67451, 0.254902, 0.211765, 1)
-shader_parameter/replace_10 = Color(0.67451, 0.254902, 0.211765, 1)
-shader_parameter/original_11 = Color(0.560784, 0.211765, 0.176471, 1)
-shader_parameter/replace_11 = Color(0.560784, 0.211765, 0.176471, 1)
-shader_parameter/original_12 = null
-shader_parameter/replace_12 = null
+shader_parameter/original_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/replace_0 = Color(0.172549, 0.909804, 0.960784, 1)
+shader_parameter/original_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/replace_1 = Color(0, 0.6, 0.858824, 1)
+shader_parameter/original_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/replace_2 = Color(0.12549, 0.690196, 0.733333, 1)
+shader_parameter/original_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/replace_3 = Color(0.0705882, 0.305882, 0.537255, 1)
+shader_parameter/original_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/replace_4 = Color(0.0431373, 0.188235, 0.333333, 1)
+shader_parameter/original_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/replace_5 = Color(0.545098, 0.607843, 0.705882, 1)
+shader_parameter/original_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/replace_6 = Color(0.0509804, 0.0627451, 0.105882, 1)
+shader_parameter/original_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/replace_7 = Color(0.227451, 0.266667, 0.4, 1)
+shader_parameter/original_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/replace_8 = Color(0.14902, 0.168627, 0.266667, 1)
+shader_parameter/original_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/replace_9 = Color(0.352941, 0.411765, 0.533333, 1)
+shader_parameter/original_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/replace_10 = Color(0.321569, 0.372549, 0.482353, 1)
+shader_parameter/original_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/replace_11 = Color(0.270588, 0.313726, 0.407843, 1)
+shader_parameter/original_12 = Color(0.0392157, 0.172549, 0.301961, 1)
+shader_parameter/replace_12 = Color(0.0392157, 0.172549, 0.301961, 1)
 shader_parameter/original_13 = null
 shader_parameter/replace_13 = null
 shader_parameter/original_14 = null
@@ -913,7 +918,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 1, 1, 1)]
+"values": [Color(1, 0.85098, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -930,6 +935,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ebkic"]
 resource_name = "damaged"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1052,14 +1058,10 @@ outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bivcc"]
-radius = 64.0
-height = 128.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32rbb"]
-size = Vector2(96, 20)
+size = Vector2(96, 17)
 
-[sub_resource type="LabelSettings" id="LabelSettings_k2b3j"]
+[sub_resource type="LabelSettings" id="LabelSettings_hqypm"]
 font_size = 128
 
 [node name="player" type="CharacterBody2D"]
@@ -1077,30 +1079,25 @@ char_color = Color(1, 0.85098, 0, 1)
 maxFuel = 0.0
 metadata/_edit_horizontal_guides_ = [32.0]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_bivcc")
+one_way_collision_margin = 0.0
+
 [node name="shadow" parent="." instance=ExtResource("7_dscu6")]
-position = Vector2(0, -136)
+position = Vector2(0, -40)
 wall_min_slide_angle = 0.0
 
 [node name="body" type="CharacterBody2D" parent="."]
-position = Vector2(0, -144)
 collision_layer = 320
 collision_mask = 320
 script = ExtResource("8_totln")
 
-[node name="special_maneger" type="Node2D" parent="body"]
-script = ExtResource("9_pmj64")
-needs_update = true
-
-[node name="SheriffStar" parent="body/special_maneger" instance=ExtResource("10_7b3hf")]
-
-[node name="GoldenEye" parent="body/special_maneger" instance=ExtResource("11_k0j4d")]
-adrenaline_cost = 40.0
-
 [node name="animation_manager" type="Node2D" parent="body"]
 
 [node name="tevii_sprite" type="Sprite2D" parent="body/animation_manager"]
-material = SubResource("ShaderMaterial_av2bq")
-position = Vector2(0, -32)
+material = SubResource("ShaderMaterial_f4f34")
+position = Vector2(0, -76)
 texture = ExtResource("12_xe05q")
 hframes = 8
 vframes = 5
@@ -1141,26 +1138,32 @@ libraries = {
 "": SubResource("AnimationLibrary_47d23")
 }
 
+[node name="special_maneger" type="Node2D" parent="body"]
+script = ExtResource("9_pmj64")
+
+[node name="SheriffStar" parent="body/special_maneger" instance=ExtResource("10_7b3hf")]
+
+[node name="GoldenEye" parent="body/special_maneger" instance=ExtResource("11_k0j4d")]
+visible = false
+
 [node name="Area2D" type="Area2D" parent="body"]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
-position = Vector2(0, 64)
 shape = SubResource("CircleShape2D_pe5vd")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
-position = Vector2(0, 48)
 shape = SubResource("CapsuleShape2D_k4yud")
 
 [node name="gun_maneger" type="Node2D" parent="body" groups=["gun_manager"]]
-position = Vector2(0, 16)
+position = Vector2(-80, 0)
 script = ExtResource("13_qkhlh")
 
 [node name="gun" parent="body/gun_maneger" instance=ExtResource("14_xo2f4")]
 visible = false
-position = Vector2(0, 7.62939e-06)
+position = Vector2(80, 16)
 
 [node name="shotgun" parent="body/gun_maneger" instance=ExtResource("15_tklf8")]
 visible = false
@@ -1170,8 +1173,12 @@ position = Vector2(0, 2)
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="body"]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="HUD" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("timer_label", "timer_lost", "combo_label")]
 scale = Vector2(0.5, 0.5)
@@ -1190,8 +1197,7 @@ text = "00: 00 : 0
 label_settings = SubResource("LabelSettings_b77nb")
 
 [node name="timer_lost" type="Label" parent="CanvasLayer/HUD"]
-visible = false
-modulate = Color(1, 0, 0, 1)
+modulate = Color(1, 0, 0, 0)
 offset_left = 1712.0
 offset_top = 192.0
 offset_right = 2128.0
@@ -1257,6 +1263,7 @@ offset_left = 3296.0
 offset_top = 320.0
 offset_right = 3800.0
 offset_bottom = 816.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.372549)
 
 [node name="StyleContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
@@ -1342,48 +1349,50 @@ offset_left = 232.0
 offset_top = 128.0
 offset_right = 456.0
 offset_bottom = 168.0
-text = "corre pro
-   spawn"
+text = "rum back
+to spawn"
 label_settings = SubResource("LabelSettings_a6pf4")
 
 [node name="SpcSpriteHolder" type="Node2D" parent="CanvasLayer"]
-position = Vector2(0, -72)
+position = Vector2(0, -24)
 scale = Vector2(0.5, 0.5)
 
 [node name="slot" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(172, 1204)
+position = Vector2(188, 1204)
 texture = ExtResource("34_feufq")
 
 [node name="slot2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(172, 1444)
+position = Vector2(188, 1444)
 texture = ExtResource("35_u83h2")
 
 [node name="slot3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(172, 1684)
+position = Vector2(188, 1684)
 texture = ExtResource("36_yyp8t")
 
 [node name="item" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(172, 1204)
+position = Vector2(188, 1204)
 scale = Vector2(2, 2)
 texture = ExtResource("37_vrd3m")
 region_enabled = true
 region_rect = Rect2(556, 192, 84, 76)
 
 [node name="item2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(172, 1444)
+position = Vector2(188, 1444)
 scale = Vector2(2, 2)
 texture = ExtResource("37_vrd3m")
 region_enabled = true
 region_rect = Rect2(464, 188, 80, 84)
 
 [node name="item3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(180, 1680)
+visible = false
+position = Vector2(188, 1684)
 scale = Vector2(2, 2)
 texture = ExtResource("37_vrd3m")
 region_enabled = true
+region_rect = Rect2(96, 188, 84, 84)
 
 [node name="GUI" type="Node2D" parent="CanvasLayer"]
-position = Vector2(0, -72)
+position = Vector2(0, -24)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("38_66orm")
 
@@ -1424,11 +1433,6 @@ adrenaline = 50
 
 [node name="StyleManger" parent="." instance=ExtResource("45_lnepe")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -80)
-shape = SubResource("CapsuleShape2D_bivcc")
-one_way_collision_margin = 0.0
-
 [node name="dash_cooldown" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
@@ -1446,7 +1450,7 @@ collision_layer = 256
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 10)
+position = Vector2(0, 105)
 shape = SubResource("RectangleShape2D_32rbb")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -1461,7 +1465,7 @@ offset_right = 91.0
 offset_bottom = 79.0
 pivot_offset = Vector2(77, 87)
 text = "-->"
-label_settings = SubResource("LabelSettings_k2b3j")
+label_settings = SubResource("LabelSettings_hqypm")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="body/Area2D" to="." method="_on_area_2d_body_entered"]

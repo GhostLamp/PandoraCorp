@@ -30,10 +30,8 @@ func drain(delta):
 			time_drain -= delta*time_lost
 			time -= delta*time_lost
 
-func damaged():
-	time_drain += time_lost
-	print(time_lost)
-	time_lost *= 1.5
+func damaged(damage):
+	time_drain += damage
 	wait_time.start()
 	emit_signal("time_changed")
 

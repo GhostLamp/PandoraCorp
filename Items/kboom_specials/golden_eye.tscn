@@ -13,6 +13,7 @@ effect = ExtResource("3_vx76k")
 item_region = Rect2(464, 188, 80, 84)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_gbyl8")
 region_enabled = true
 region_rect = Rect2(464, 188, 80, 84)

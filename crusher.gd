@@ -21,7 +21,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		get_tree().current_scene.player.stylish("crushed")
 	
 	if body is Player:
-		body.damaged()
+		body.damaged(15)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

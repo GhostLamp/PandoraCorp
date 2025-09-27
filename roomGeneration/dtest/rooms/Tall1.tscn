@@ -29,10 +29,8 @@ scenes/6/scene = ExtResource("8_am8bb")
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetScenesCollectionSource_1ev1a")
 
-[node name="Tall1" type="Node2D" node_paths=PackedStringArray("camera_lock", "enemy_manager")]
+[node name="Tall1" type="Node2D"]
 script = ExtResource("1_s5sly")
-camera_lock = NodePath("camera_lock")
-enemy_manager = NodePath("enemy_maneger")
 
 [node name="camera_lock" type="Area2D" parent="." node_paths=PackedStringArray("border")]
 script = ExtResource("7_1iowm")

@@ -1,8 +1,14 @@
 extends Node2D
 class_name Room
 
-@export var camera_lock:CameraLock
-@export var enemy_manager:EnemyManeger
+@onready var interact_map: TileMapLayer = $interact_map
+@onready var tiles: TileMapLayer = $tiles
+@onready var navigation_tiles: TileMapLayer = $navigationTiles
+
+
+
+@export var camera_lock: CameraLock 
+@export var enemy_manager: EnemyManeger 
 
 
 var chest:PackedScene = preload("res://objects/chest.tscn")

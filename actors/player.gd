@@ -54,6 +54,9 @@ var friction = 8000
 var dash_duration:float = 0
 var fuel:float = 0
 var spawn_position
+
+var safe_position_timer:float = 1
+var safe_positions:Array[Vector2] = [Vector2(0,0),Vector2(0,0),Vector2(0,0)]
  
 @export var items: Array[BaseItemStrat] = []
 @export var active_item:Array[ActivePickup] = []
@@ -100,6 +103,41 @@ func sort_interection_areas(area1, area2):
 	return area1_to_player < area2_to_player
 
 
+func check_tile(delta):
+	var posColi = currentRoom.tiles.to_local(coli.global_position)
+	var coordsColi = currentRoom.tiles.local_to_map(posColi)
+	var dataColi: TileData = currentRoom.tiles.get_cell_tile_data(coordsColi)
+	
+	var pos = currentRoom.tiles.to_local(global_position)
+	var coords = currentRoom.tiles.local_to_map(pos)
+	var data: TileData = currentRoom.tiles.get_cell_tile_data(coords)
+	
+	if !data or !dataColi:
+		return
+	
+	if data.get_custom_data("solid") or dataColi.get_custom_data("solid"):
+		jump(-1000)
+		return
+	
+	if data.get_custom_data("unsafe") and dataColi.get_custom_data("unsafe"):
+		damaged(10)
+		respawn()
+		return
+	
+	set_collision_layer_value(8,true)
+	set_collision_mask_value(8,true)
+	set_safe_position(delta)
+
+func set_safe_position(delta):
+	safe_position_timer -= delta
+	if safe_position_timer <= 0:
+		safe_position_timer = 1
+		safe_positions.append(position)
+		safe_positions.pop_front()
+
+func respawn():
+	position = safe_positions[ safe_positions.size()-1 ]
+
 func interact():
 	tevii_tree["parameters/front/conditions/swing"] = true
 	tevii_tree["parameters/back/conditions/swing"] = true
@@ -120,6 +158,8 @@ func ground_movement(delta):
 	
 	else:
 		velocity = velocity.move_toward(Vector2(0,0), friction*delta)
+	
+	check_tile(delta)
 
 
 func dash(delta):
@@ -130,6 +170,7 @@ func dash(delta):
 		else:
 			velocity = current_speed*direction
 	
+	check_tile(delta)
 	create_after_image()
 
 func airborn(delta):
@@ -159,7 +200,7 @@ func slam():
 	create_after_image()
 
 
-func damaged():
+func damaged(damage):
 	damaged_anim.play("damaged")
 	HitstopEfect.hitstop_efect_short()
 	HitstopManeger.hitstop_medium()
@@ -177,7 +218,7 @@ func damaged():
 		return
 	
 	
-	timer.damaged()
+	timer.damaged(damage)
 	invulnerability()
 	
 
@@ -203,16 +244,14 @@ func _process(delta):
 	if coli.is_on_floor() and player_state != state.SLAMMING:
 		if Input.is_action_just_pressed("ui_down"):
 			stylish("test")
-		if Input.is_action_just_pressed("ui_accept") and dash_cooldown.is_stopped() and adrenaline_stat.adrenaline >= 5 and player_state != state.DASHING:
+		if Input.is_action_just_pressed("ui_accept") and adrenaline_stat.adrenaline >= 10 and player_state != state.DASHING:
 			player_state = state.DASHING
 			dashing_time.start()
 			dash_duration = 0.3
-			adrenaline_stat.adrenaline -= 5
+			adrenaline_stat.adrenaline -= 10
 			
-			if (current_speed-speed_stat.speed) <= 0:
-				current_speed += speed_stat.speed*1.5
-			else:
-				current_speed += speed_stat.speed*1.5/(current_speed-speed_stat.speed)
+			current_speed = speed_stat.speed*2.5
+			
 			
 			tevii_tree["parameters/conditions/dash"] = true
 			tevii_tree["parameters/conditions/Look_front"] = false
@@ -227,8 +266,7 @@ func _process(delta):
 		player_state = state.AIRBORN
 	
 	
-	set_collision_layer_value(8,true)
-	set_collision_mask_value(8,true)
+	
 	if player_state == state.GROUNDED:
 		ground_movement(delta)
 		flipping(delta, mouse)
@@ -250,9 +288,6 @@ func _process(delta):
 	adrenaline_bar.value = adrenaline_stat.adrenaline
 	coli.velocity.y += gravity *delta *60
 	
-	move_and_slide()
-	animate()
-	
 	if interaction.size() > 0:
 		interaction.sort_custom(sort_interection_areas)
 	
@@ -260,6 +295,11 @@ func _process(delta):
 		if interaction.size() > 0:
 			interaction[0].interact(self)
 	
+	
+	move_and_slide()
+	animate()
+
+
 
 
 
@@ -279,7 +319,7 @@ func jump(vel):
 func _on_dashing_time_timeout():
 	if player_state == state.DASHING:
 		player_state = state.GROUNDED
-	dash_cooldown.start()
+
 
 func animate():
 	var mouse = (get_global_mouse_position() - global_position)

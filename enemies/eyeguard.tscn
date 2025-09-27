@@ -1,12 +1,17 @@
-[gd_scene load_steps=36 format=3 uid="uid://cg6xonvvpj6fr"]
+[gd_scene load_steps=41 format=3 uid="uid://cg6xonvvpj6fr"]
 
 [ext_resource type="Script" path="res://enemies/eyeguard.gd" id="1_w8x4m"]
 [ext_resource type="PackedScene" uid="uid://dtqshcltkvliw" path="res://enemy_bullet.tscn" id="2_3470f"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_xngco"]
+[ext_resource type="Script" path="res://enemies/state_machine.gd" id="3_h16uu"]
 [ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="3_r2tdk"]
+[ext_resource type="Script" path="res://enemies/state_chasing.gd" id="4_gx2ys"]
 [ext_resource type="Script" path="res://actors/enemy_body.gd" id="4_met2q"]
 [ext_resource type="PackedScene" uid="uid://dorcbsanudkgh" path="res://States/burning.tscn" id="5_elaay"]
+[ext_resource type="Script" path="res://enemies/state_charging_bullet.gd" id="5_ldidp"]
 [ext_resource type="Texture2D" uid="uid://b6kgfx4egq7e2" path="res://pixel art/eyeguard.png" id="5_rsvlm"]
+[ext_resource type="Script" path="res://enemies/state_airborn.gd" id="6_uppgl"]
+[ext_resource type="Script" path="res://enemies/state_shotting_bullet.gd" id="7_aumtq"]
 [ext_resource type="PackedScene" uid="uid://caa8xnoi5y7ln" path="res://actors/health.tscn" id="7_qhjfc"]
 [ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="8_1rwcd"]
 [ext_resource type="Shader" path="res://actors/damage.gdshader" id="9_qd3xi"]
@@ -292,9 +297,28 @@ arc = 10.0
 barrel_origin = NodePath("nuzzelHolder/nuzzel")
 cost = 2.0
 
+[node name="stateMachine" type="Node" parent="."]
+script = ExtResource("3_h16uu")
+
+[node name="chasing" type="Node" parent="stateMachine"]
+script = ExtResource("4_gx2ys")
+stateName = "chasing"
+
+[node name="charging" type="Node" parent="stateMachine"]
+script = ExtResource("5_ldidp")
+stateName = "charging"
+
+[node name="airborn" type="Node" parent="stateMachine"]
+script = ExtResource("6_uppgl")
+stateName = "airborn"
+
+[node name="attacking" type="Node" parent="stateMachine"]
+script = ExtResource("7_aumtq")
+stateName = "attacking"
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(1680, 0)
-collision_mask = 64
+collision_mask = 65
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 80.0

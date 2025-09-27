@@ -1,15 +1,21 @@
-[gd_scene load_steps=55 format=3 uid="uid://cvr6l6f0i3pxl"]
+[gd_scene load_steps=52 format=3 uid="uid://cvr6l6f0i3pxl"]
 
 [ext_resource type="Script" path="res://enemies/spoober.gd" id="1_8skbn"]
 [ext_resource type="Texture2D" uid="uid://c7ivg1mbs3osx" path="res://pixel art/spoober_sheet.png" id="2_kmf54"]
 [ext_resource type="PackedScene" uid="uid://jnsw36bgre1n" path="res://actors/ghost.tscn" id="2_qhdi0"]
+[ext_resource type="Script" path="res://enemies/state_machine.gd" id="3_36yyu"]
 [ext_resource type="PackedScene" uid="uid://caa8xnoi5y7ln" path="res://actors/health.tscn" id="3_a5u88"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="3_n5n5t"]
 [ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="3_nuu5d"]
+[ext_resource type="Script" path="res://enemies/state_chasing.gd" id="4_2uyac"]
 [ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="4_bwj06"]
 [ext_resource type="Script" path="res://actors/enemy_body.gd" id="4_uc8o4"]
+[ext_resource type="Script" path="res://enemies/state_charging_melee.gd" id="5_f1nqp"]
 [ext_resource type="Shader" path="res://actors/damage.gdshader" id="6_avawq"]
+[ext_resource type="Script" path="res://enemies/state_airborn.gd" id="6_j8nu5"]
+[ext_resource type="Script" path="res://enemies/state_dashing_attack.gd" id="7_qpk4p"]
 [ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="8_kqqg1"]
+[ext_resource type="Script" path="res://enemies/state_stunned.gd" id="8_o402d"]
 [ext_resource type="PackedScene" uid="uid://dorcbsanudkgh" path="res://States/burning.tscn" id="9_badtp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7k5o8"]
@@ -355,52 +361,22 @@ animation = &"bonk"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8lflb"]
 animation = &"charging"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_754dr"]
-animation = &"dead"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jg7i0"]
 animation = &"default"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gd3jp"]
-animation = &"hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3c51j"]
 animation = &"slowdown"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k0v8o"]
-advance_mode = 2
-advance_condition = &"dead"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ao3me"]
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dhkoa"]
-advance_mode = 2
-advance_condition = &"hit"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_287ml"]
 advance_mode = 2
 advance_condition = &"is_agro"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kdgl4"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2o2b"]
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d6mgo"]
-advance_mode = 2
-advance_condition = &"dead"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hsvr8"]
-advance_mode = 2
-advance_condition = &"dead"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3nfw8"]
-advance_mode = 2
-advance_condition = &"dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p315x"]
 advance_mode = 2
@@ -409,10 +385,6 @@ advance_condition = &"Default"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_anspw"]
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f7rqe"]
-advance_mode = 2
-advance_condition = &"dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_encb0"]
 priority = 2
@@ -439,20 +411,16 @@ advance_condition = &"Bonk"
 states/End/position = Vector2(916, 177)
 states/Start/position = Vector2(215, 150)
 states/bite/node = SubResource("AnimationNodeAnimation_wk7c2")
-states/bite/position = Vector2(698, 330)
+states/bite/position = Vector2(825, 332)
 states/bonk/node = SubResource("AnimationNodeAnimation_gkehc")
 states/bonk/position = Vector2(825, 150)
 states/charging/node = SubResource("AnimationNodeAnimation_8lflb")
 states/charging/position = Vector2(495, 231)
-states/dead/node = SubResource("AnimationNodeAnimation_754dr")
-states/dead/position = Vector2(698, 46)
 states/default/node = SubResource("AnimationNodeAnimation_jg7i0")
 states/default/position = Vector2(315, 144)
-states/hit/node = SubResource("AnimationNodeAnimation_gd3jp")
-states/hit/position = Vector2(397, 46)
 states/slowdown/node = SubResource("AnimationNodeAnimation_3c51j")
-states/slowdown/position = Vector2(274, 330)
-transitions = ["default", "dead", SubResource("AnimationNodeStateMachineTransition_k0v8o"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_ao3me"), "default", "hit", SubResource("AnimationNodeStateMachineTransition_dhkoa"), "default", "charging", SubResource("AnimationNodeStateMachineTransition_287ml"), "hit", "default", SubResource("AnimationNodeStateMachineTransition_kdgl4"), "charging", "bite", SubResource("AnimationNodeStateMachineTransition_f2o2b"), "hit", "dead", SubResource("AnimationNodeStateMachineTransition_d6mgo"), "charging", "dead", SubResource("AnimationNodeStateMachineTransition_hsvr8"), "bite", "dead", SubResource("AnimationNodeStateMachineTransition_3nfw8"), "bite", "slowdown", SubResource("AnimationNodeStateMachineTransition_p315x"), "slowdown", "default", SubResource("AnimationNodeStateMachineTransition_anspw"), "bonk", "dead", SubResource("AnimationNodeStateMachineTransition_f7rqe"), "bonk", "default", SubResource("AnimationNodeStateMachineTransition_encb0"), "bite", "bonk", SubResource("AnimationNodeStateMachineTransition_dkxsx"), "charging", "default", SubResource("AnimationNodeStateMachineTransition_bcoy3"), "default", "bonk", SubResource("AnimationNodeStateMachineTransition_dpyvn"), "charging", "bonk", SubResource("AnimationNodeStateMachineTransition_05mx3")]
+states/slowdown/position = Vector2(315, 332)
+transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_ao3me"), "default", "charging", SubResource("AnimationNodeStateMachineTransition_287ml"), "charging", "bite", SubResource("AnimationNodeStateMachineTransition_f2o2b"), "bite", "slowdown", SubResource("AnimationNodeStateMachineTransition_p315x"), "slowdown", "default", SubResource("AnimationNodeStateMachineTransition_anspw"), "bonk", "default", SubResource("AnimationNodeStateMachineTransition_encb0"), "bite", "bonk", SubResource("AnimationNodeStateMachineTransition_dkxsx"), "charging", "default", SubResource("AnimationNodeStateMachineTransition_bcoy3"), "default", "bonk", SubResource("AnimationNodeStateMachineTransition_dpyvn"), "charging", "bonk", SubResource("AnimationNodeStateMachineTransition_05mx3")]
 graph_offset = Vector2(8, 15.761)
 
 [node name="spoober" type="CharacterBody2D" groups=["enemie"]]
@@ -465,10 +433,34 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_8skbn")
 ghost = ExtResource("2_qhdi0")
 char_color = Color(1, 0, 0, 1)
+damage = 10.0
+
+[node name="stateMachine" type="Node" parent="."]
+script = ExtResource("3_36yyu")
+
+[node name="chasing" type="Node" parent="stateMachine"]
+script = ExtResource("4_2uyac")
+stateName = "chasing"
+
+[node name="charging" type="Node" parent="stateMachine"]
+script = ExtResource("5_f1nqp")
+stateName = "charging"
+
+[node name="airborn" type="Node" parent="stateMachine"]
+script = ExtResource("6_j8nu5")
+stateName = "airborn"
+
+[node name="attacking" type="Node" parent="stateMachine"]
+script = ExtResource("7_qpk4p")
+stateName = "attacking"
+
+[node name="stunned" type="Node" parent="stateMachine"]
+script = ExtResource("8_o402d")
+stateName = "stunned"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(656, 0)
-collision_mask = 64
+collision_mask = 69
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 80.0
@@ -558,8 +550,6 @@ tree_root = SubResource("AnimationNodeStateMachine_6rdyk")
 anim_player = NodePath("../anim")
 parameters/conditions/Bonk = false
 parameters/conditions/Default = false
-parameters/conditions/dead = false
-parameters/conditions/hit = false
 parameters/conditions/is_agro = false
 
 [node name="charge_timer" type="Timer" parent="."]

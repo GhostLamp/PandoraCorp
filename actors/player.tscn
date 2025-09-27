@@ -1058,7 +1058,7 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32rbb"]
-size = Vector2(96, 20)
+size = Vector2(96, 17)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hqypm"]
 font_size = 128
@@ -1079,16 +1079,15 @@ maxFuel = 0.0
 metadata/_edit_horizontal_guides_ = [32.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -80)
+position = Vector2(0, 16)
 shape = SubResource("CapsuleShape2D_bivcc")
 one_way_collision_margin = 0.0
 
 [node name="shadow" parent="." instance=ExtResource("2_ytfir")]
-position = Vector2(0, -136)
+position = Vector2(0, -40)
 wall_min_slide_angle = 0.0
 
 [node name="body" type="CharacterBody2D" parent="."]
-position = Vector2(0, -144)
 collision_layer = 320
 collision_mask = 320
 script = ExtResource("2_tqqrk")
@@ -1097,7 +1096,7 @@ script = ExtResource("2_tqqrk")
 
 [node name="tevii_sprite" type="Sprite2D" parent="body/animation_manager"]
 material = SubResource("ShaderMaterial_f4f34")
-position = Vector2(0, -32)
+position = Vector2(0, -76)
 texture = ExtResource("14_t8sws")
 hframes = 8
 vframes = 5
@@ -1142,7 +1141,6 @@ libraries = {
 script = ExtResource("9_nunak")
 
 [node name="reboot" parent="body/special_maneger" instance=ExtResource("21_602b1")]
-position = Vector2(0, 16)
 adrenaline_cost = 20.0
 item_region = Rect2(188, 188, 84, 84)
 
@@ -1155,21 +1153,17 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
-position = Vector2(0, 64)
 shape = SubResource("CircleShape2D_pe5vd")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
-position = Vector2(0, 48)
 shape = SubResource("CapsuleShape2D_k4yud")
 
 [node name="gun_maneger" type="Node2D" parent="body" groups=["gun_manager"]]
-position = Vector2(0, 16)
 script = ExtResource("7_o30gl")
 
 [node name="gun" parent="body/gun_maneger" instance=ExtResource("4_anxkw")]
 visible = false
-position = Vector2(0, 7.62939e-06)
 
 [node name="shotgun" parent="body/gun_maneger" instance=ExtResource("9_lbo1o")]
 visible = false
@@ -1360,7 +1354,7 @@ to spawn"
 label_settings = SubResource("LabelSettings_a6pf4")
 
 [node name="SpcSpriteHolder" type="Node2D" parent="CanvasLayer"]
-position = Vector2(0, -72)
+position = Vector2(0, -24)
 scale = Vector2(0.5, 0.5)
 
 [node name="slot" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
@@ -1398,15 +1392,15 @@ region_enabled = true
 region_rect = Rect2(96, 188, 84, 84)
 
 [node name="GUI" type="Node2D" parent="CanvasLayer"]
-position = Vector2(0, -72)
+position = Vector2(0, -24)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("8_5ldrd")
 
 [node name="reload_bar" type="TextureProgressBar" parent="CanvasLayer/GUI"]
-offset_left = 1184.0
-offset_top = 2096.0
-offset_right = 1320.0
-offset_bottom = 2248.0
+offset_left = 1152.0
+offset_top = 2016.0
+offset_right = 1288.0
+offset_bottom = 2168.0
 max_value = 50.0
 value = 25.0
 fill_mode = 4
@@ -1414,10 +1408,10 @@ texture_under = ExtResource("6_ptyih")
 texture_progress = ExtResource("7_73pg7")
 
 [node name="ammo_display" type="Label" parent="CanvasLayer/GUI"]
-offset_left = 912.0
-offset_top = 2112.0
-offset_right = 956.0
-offset_bottom = 2138.0
+offset_left = 880.0
+offset_top = 2032.0
+offset_right = 924.0
+offset_bottom = 2058.0
 scale = Vector2(6, 6)
 text = "bruh
 "
@@ -1443,7 +1437,7 @@ wait_time = 0.6
 one_shot = true
 
 [node name="dashing_time" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.3
 one_shot = true
 
 [node name="ghost_timer" type="Timer" parent="."]
@@ -1455,7 +1449,7 @@ collision_layer = 256
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 10)
+position = Vector2(0, 104.5)
 shape = SubResource("RectangleShape2D_32rbb")
 
 [node name="Node2D" type="Node2D" parent="."]

@@ -28,7 +28,7 @@ func _process(delta):
 		if parried == false:
 			if colision_info.get_collider().has_method("handle_damage"):
 				var collider = colision_info.get_collider()
-				collider.handle_damage()
+				collider.handle_damage(damage)
 				global_position = colision_info.get_position()
 				
 				var effects = status_manager.get_children()
