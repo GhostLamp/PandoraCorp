@@ -8,7 +8,7 @@ func state_process(_delta):
 	for i in parent.bullet_count:
 		var new_bullet = parent.bullet.instantiate()
 		new_bullet.position = parent.barrel_origin.global_position if parent.barrel_origin else parent.global_position
-		new_bullet.damage = 1
+		new_bullet.damage = parent.damage
 		if parent.bullet_count == 1:
 			new_bullet.rotation = parent.barrel_origin.global_rotation
 		else:

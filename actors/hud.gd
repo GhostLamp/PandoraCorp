@@ -24,7 +24,7 @@ func update_combo():
 
 func _on_wait_time_timeout() -> void:
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(timer_lost, "position", Vector2(1712,96) , 0.2)
+	tween.tween_property(timer_lost, "position", Vector2(96,231) , 0.2)
 	tween.tween_property(timer_lost ,"modulate" ,Color.TRANSPARENT , 0.1)
 	timer_lost.text = timer.time_drain_left()
 
@@ -34,5 +34,5 @@ func _on_timer_time_changed() -> void:
 	timer_lost.modulate = Color.RED
 	timer_lost.modulate.a = 0
 	tween.tween_property(timer_lost ,"modulate" ,Color.RED , 0.1)
-	timer_lost.position.y = 176
+	timer_lost.position.y = 231
 	timer_lost.text = timer.time_drain_left()

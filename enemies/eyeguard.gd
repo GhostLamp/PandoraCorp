@@ -21,6 +21,9 @@ extends Enemy
 func _process(delta):
 	collision.position = pos.position
 	
+	if !spawned:
+		return
+	check_tile(delta)
 	if knock_down.is_stopped():
 		state_machine.state_process(delta)
 	

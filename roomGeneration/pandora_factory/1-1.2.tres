@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Dungeon" load_steps=13 format=3 uid="uid://cjbbbh85wpwiw"]
+
+[ext_resource type="Script" path="res://roomGeneration/RoomType.gd" id="1_q6h1u"]
+[ext_resource type="Script" path="res://roomGeneration/Dungeon.gd" id="2_4jxg0"]
+[ext_resource type="PackedScene" uid="uid://byrddwh7yhos7" path="res://roomGeneration/pandora_factory/rooms/Base1.tscn" id="2_u7x6x"]
+[ext_resource type="PackedScene" uid="uid://5dqn27aoanfr" path="res://roomGeneration/pandora_factory/rooms/Base2.tscn" id="3_dsalv"]
+[ext_resource type="PackedScene" uid="uid://b6ck7ens7uln0" path="res://roomGeneration/pandora_factory/rooms/Base3.tscn" id="4_ysufg"]
+[ext_resource type="PackedScene" uid="uid://bn4hc38tttwyy" path="res://roomGeneration/pandora_factory/rooms/Base4.tscn" id="5_kp4tn"]
+[ext_resource type="PackedScene" uid="uid://oi42vgjorkki" path="res://roomGeneration/pandora_factory/rooms/Base5.tscn" id="6_g83cc"]
+[ext_resource type="PackedScene" uid="uid://cquc22wa0dswy" path="res://roomGeneration/pandora_factory/rooms/spawn.tscn" id="7_70wyq"]
+[ext_resource type="PackedScene" uid="uid://cow2soy5vx81" path="res://roomGeneration/pandora_factory/rooms/crusherMini1.tscn" id="8_cbxbb"]
+
+[sub_resource type="Resource" id="Resource_oenpa"]
+script = ExtResource("1_q6h1u")
+room_shape = Vector2(1, 1)
+position = Vector2i(0, 0)
+roomName = ""
+roomMap = Array[PackedScene]([ExtResource("2_u7x6x"), ExtResource("3_dsalv"), ExtResource("4_ysufg"), ExtResource("5_kp4tn"), ExtResource("6_g83cc")])
+
+[sub_resource type="Resource" id="Resource_p85d7"]
+script = ExtResource("1_q6h1u")
+room_shape = Vector2(2, 1)
+position = Vector2i(0, 0)
+roomName = ""
+roomMap = Array[PackedScene]([ExtResource("8_cbxbb")])
+
+[sub_resource type="Resource" id="Resource_tmsm2"]
+script = ExtResource("1_q6h1u")
+room_shape = Vector2(1, 1)
+position = Vector2i(0, 0)
+roomName = "spawn"
+roomMap = Array[PackedScene]([ExtResource("7_70wyq")])
+
+[resource]
+script = ExtResource("2_4jxg0")
+dungeon_size = Vector2i(2, 2)
+room_radius = 15
+room_types = Array[ExtResource("1_q6h1u")]([SubResource("Resource_oenpa"), SubResource("Resource_p85d7"), SubResource("Resource_tmsm2")])
+erase_spots = Array[Vector2i]([])

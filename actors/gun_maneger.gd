@@ -1,13 +1,13 @@
-class_name GunManager
 extends Node2D
+class_name PlayerGunManager
 
 var current_weapon_index = 0
 
-@onready var current_weapon = $gun
+@onready var current_weapon:Gun = $gun
 @onready var player: Player = $"../.."
 
 
-
+var inactive:bool = false
 var weapons: Array = []
 var weapon_count 
 
@@ -36,9 +36,9 @@ func weapon_boost(weapon):
 	for item:BaseItemStrat in player.items:
 		item.weapon_boost(weapon)
 
-func reload_boost():
+func reload_boost(ammo,max_ammo):
 	for item:BaseItemStrat in player.items:
-		item.on_reload(player)
+		item.on_reload(player,ammo,max_ammo)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("switch_weapons"):
@@ -64,13 +64,14 @@ func remove_weapon():
 	switch_weapons(weapons[current_weapon_index])
 
 func switch_weapons(weapon):
-	if weapon == current_weapon:
-		return
 	if current_weapon:
 		current_weapon.hide()
 		current_weapon.set_process_unhandled_input(false)
 		current_weapon.set_process(false)
 		current_weapon.shooting = false
+	
+	if inactive:
+		return
 	
 	weapon.show()
 	weapon.set_process_unhandled_input(true)

@@ -5,7 +5,10 @@ var current_state:State
 var states:Array[State]
 
 func _ready() -> void:
-	parent = get_parent()
+	if get_parent()is Enemy:
+		parent = get_parent()
+	else:
+		player = get_parent()
 	
 	for child in get_children():
 		if child is State:

@@ -5,49 +5,49 @@ extends Node
 		"score" : 0,
 		"adrenaline": 5,
 		"name" : "hit",
-		"color":null
+		"color":Color.GRAY
 	},
 	"enemy_killed":{
 		"score" : 120,
 		"adrenaline": 10,
 		"name" : "kill",
-		"color":null
+		"color":Color.GRAY
 	},
 	"parried":{
 		"score" : 40,
 		"adrenaline": 20,
 		"name" : "parry",
-		"color":null
+		"color":Color.GOLD
 	},
 	"one_shot":{
 		"score" : 80,
 		"adrenaline": 10,
-		"name" : "one shot",
-		"color":null
+		"name" : "overkill",
+		"color":Color.RED
 	},
 	"multikill":{
 		"score" : 200,
 		"adrenaline": 10,
 		"name" : "multi kill",
-		"color":null
+		"color":Color.RED
 	},
 	"double_kill":{
 		"score" : 150,
 		"adrenaline": 10,
 		"name" : "double kill",
-		"color":null
+		"color":Color.GRAY
 	},
 	"triple_kill":{
 		"score" : 170,
 		"adrenaline": 10,
 		"name" : "triple kill",
-		"color":null
+		"color":Color.INDIAN_RED
 	},
-	"quadra_kill":{
+	"ultrakill":{
 		"score" : 30,
 		"adrenaline": 10,
-		"name" : "quadrakill",
-		"color":null
+		"name" : "ultrakill",
+		"color":Color.GOLDENROD
 	},
 	"shildbreak":{
 		"score" : 100,
@@ -59,18 +59,54 @@ extends Node
 		"score" : 80,
 		"adrenaline": 30,
 		"name" : "blocked",
-		"color":null
+		"color":Color.RED
 	},
 	"test":{
 		"score" : 50,
 		"adrenaline": 50,
 		"name" : "test",
-		"color":null
+		"color":Color.LIGHT_PINK
 	},
 	"crushed":{
-		"score" : 100,
-		"adrenaline": 10,
+		"score" : 20,
+		"adrenaline": 5,
 		"name" : "crushed",
-		"color":null
+		"color":Color.GRAY
+	},
+	"airkill":{
+		"score" : 50,
+		"adrenaline": 10,
+		"name" : "airkill",
+		"color":Color.GRAY
+	},
+	"absobed":{
+		"score" : 50,
+		"adrenaline": 10,
+		"name" : "absobed",
+		"color":Color.GRAY
+	},
+	"trick_shot":{
+		"score" : 20,
+		"adrenaline": 10,
+		"name" : "trickshot",
+		"color":Color.INDIAN_RED
+	},
+	"chared":{
+		"score" : 10,
+		"adrenaline": 10,
+		"name" : "chared",
+		"color":Color.CORAL
+	},
+	"grenadePunch":{
+		"score" : 40,
+		"adrenaline": 10,
+		"name" : "quick gas",
+		"color":Color.INDIAN_RED
+	},
+	"redirect":{
+		"score" : 40,
+		"adrenaline": 10,
+		"name" : "redirect",
+		"color":Color.GREEN
 	}
 } 

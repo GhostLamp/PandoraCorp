@@ -14,6 +14,10 @@ extends Enemy
 
 func _process(delta):
 	collision.position = pos.position
+	if !spawned:
+		return
+	
+	check_tile(delta)
 	if knock_down.is_stopped():
 		state_machine.state_process(delta)
 		
@@ -49,9 +53,9 @@ func animate():
 func parry(bullet_direction, _parry_force):
 	Target = bullet_direction
 	stunned = true
-	velocity = Target * momentun * 5
+	velocity = Target * speed_stat.current_speed * 5
 	var tween = get_tree().create_tween()
-	tween.tween_property(self,"momentun",0,2)
+	tween.tween_property(speed_stat,"current_speed",0,2)
 	anim_tree["parameters/conditions/Bonk"] = true
 	anim_tree["parameters/conditions/is_agro"] = false
 	await get_tree().create_timer(0.01).timeout
@@ -63,10 +67,16 @@ func parry(bullet_direction, _parry_force):
 func _on_atack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("handle_damage"):
 		body.handle_damage(damage)
+	if body.has_method("handle_hit"):
+		var attack = Attack.new()
+		attack.damage = 1
+		attack.direction = Target
+		attack.knockback = 10
+		body.handle_hit(attack)
 
 
 func _on_navigation_timer_timeout() -> void:
-	navigation_agent_2d.target_position = player.colision.global_position
+	navigation_agent_2d.target_position = player.coli.global_position
 	next_path_position = navigation_agent_2d.get_next_path_position()
 	
 

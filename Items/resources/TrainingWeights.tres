@@ -6,6 +6,9 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_u0n7n")
-mult = 2.0
+mult = 1.05
 texture = ExtResource("2_db5m2")
-item_region = Rect2(192, 4, 76, 84)
+item_region = Rect2(288, 36, 68, 52)
+name = "Training weights"
+activation = " every 10 combo"
+descripition = "gain 1.02x damage"

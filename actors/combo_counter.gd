@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	if stopped:
 		return
 	
-	combo_timer -= delta*10 * (combo_amout**2/5000 + 1)
+	combo_timer -= delta*10 * (combo_amout**2/2500 + 1)
 	
 	combo_amout = timer_left/100
 	
@@ -41,6 +41,9 @@ func style_adder(style):
 		
 		kill_count += 1
 		wait_time.start()
+		if kill_count > 20:
+			player.stylish("ultrakill")
+			return
 		if kill_count > 2:
 			player.stylish("multikill")
 			return
@@ -71,7 +74,10 @@ func time_added(time):
 	combo_timer += time
 
 func combo_time_left():
-	timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*200)
+	if timer_left < combo_timer:
+		timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*2*(combo_timer-timer_left))
+	else:
+		timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*200)
 	timer_left = clamp(timer_left,0 , 9999999999999)
 	return timer_left
 

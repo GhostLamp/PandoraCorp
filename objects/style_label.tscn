@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://qepwapfil1q4"]
 
 [ext_resource type="Script" path="res://objects/style_label.gd" id="1_ckuek"]
-[ext_resource type="FontFile" uid="uid://b6fsicrej43s4" path="res://bruh.ttf" id="1_m86ia"]
+[ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="1_m86ia"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ry1wk"]
 font = ExtResource("1_m86ia")

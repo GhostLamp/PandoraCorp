@@ -3,9 +3,7 @@ extends Projectile
 class_name Bomb
 
 @onready var sprite = $Sprite2D
-@onready var kill_timer = $kill_timer
 @onready var spinner = $spinner
-@onready var speed_stat = $speed
 @onready var audio = $AudioStreamPlayer
 @onready var body = $body
 
@@ -18,6 +16,8 @@ class_name Bomb
 
 
 func _ready():
+	bounces = 30
+	
 	static_body_2d.rotation = (-global_rotation)
 	direction = Vector2.RIGHT.rotated(global_rotation)
 	body.velocity.y = -0.8 * gravity * 60 /2
@@ -36,9 +36,11 @@ func _physics_process(delta):
 	var colision_info = move_and_collide(direction)
 	if colision_info:
 		if paried == true:
-			_on_kill_timer_timeout()
+			if colision_info.get_collider() is Enemy:
+				get_tree().current_scene.player.stylish("grenadePunch")
+			die()
 		else:
-			direction = direction.bounce(colision_info.get_normal())
+			wall_hit(colision_info)
 			spinner.play("spinout")
 	
 	sprite.rotation += delta * spin
@@ -50,9 +52,9 @@ func airborn():
 	sprite.position = body.position
 	body.velocity.y += gravity
 	if body.is_on_floor():
-		_on_kill_timer_timeout()
+		die()
 
-func _on_kill_timer_timeout():
+func die():
 	var new_explosion = explosion.instantiate()
 	new_explosion.position = global_position
 	new_explosion.damage = explosion_damage
@@ -64,19 +66,16 @@ func _on_kill_timer_timeout():
 func _on_area_2d_body_entered(_body):
 	if body.has_method("handle_hit"):
 		if paried == true:
-			_on_kill_timer_timeout()
+			die()
 		else:
-			var attack = Attack.new()
-			attack.damage = 5
-			attack.direction = direction * 0
-			body.handle_hit(attack)
+			deal_damage(_body)
 
 func parry(gun_direction, parry_force):
 	direction = gun_direction 
+	set_collision_mask_value(2,true)
 	body.velocity.y = 0
 	speed += 5000
 	explosion_damage += parry_force
-	collision_mask = 2
 	gravity= 0
 	kill_timer.start()
 	paried = true
@@ -86,8 +85,9 @@ func handle_hit(attack: Attack):
 		if attack.soft == false:
 			HitstopEfect.hitstop_efect_short()
 			HitstopManeger.hitstop_short()
-			var new_explosion = explosion.instantiate()
-			new_explosion.damage += attack.damage
+			var new_explosion:Explosion = explosion.instantiate()
+			new_explosion.damage += explosion_damage + attack.damage
+			new_explosion.scale = Vector2(1,1)*1.5
 			new_explosion.position = global_position
 			get_tree().root.call_deferred("add_child", new_explosion)
 			audio.play()
@@ -95,4 +95,5 @@ func handle_hit(attack: Attack):
 		else:
 			body.velocity.y = -( -h + (gravity*(0.8*60)*(0.8*60))/2)/(0.8*60)
 			speed += 1000
+			direction = attack.direction
 			

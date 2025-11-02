@@ -3,7 +3,7 @@ extends State
 
 func state_process(delta:float):
 	parent.charge_level -= delta
-	parent.velocity = parent.Target * parent.momentun / 5
+	parent.velocity = parent.Target * parent.speed_stat.current_speed / 5
 	if parent.charge_level <= 0:
 		parent.stunned = false
 		swapState("chasing")

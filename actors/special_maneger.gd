@@ -7,6 +7,11 @@ extends Node2D
 @onready var slot_2: Sprite2D = $"../../CanvasLayer/SpcSpriteHolder/item2"
 @onready var slot_3: Sprite2D = $"../../CanvasLayer/SpcSpriteHolder/item3"
 
+@onready var texture_progress_bar: TextureProgressBar = $"../../CanvasLayer/SpcSpriteHolder/TextureProgressBar"
+@onready var texture_progress_bar_2: TextureProgressBar = $"../../CanvasLayer/SpcSpriteHolder/TextureProgressBar2"
+@onready var texture_progress_bar_3: TextureProgressBar = $"../../CanvasLayer/SpcSpriteHolder/TextureProgressBar3"
+
+
 
 var item_pickup = preload("res://Items/item_pickup.tscn")
 @export var needs_update := false
@@ -14,10 +19,12 @@ var item_pickup = preload("res://Items/item_pickup.tscn")
 
 var specials: Array = [BaseActiveStrat]
 var slots: Array[Sprite2D]
+var bars:Array[TextureProgressBar]
 
 func _ready():
 	specials = get_children()
 	slots = [slot_1,slot_2,slot_3]
+	bars = [texture_progress_bar,texture_progress_bar_2,texture_progress_bar_3]
 	needs_update = true
 
 func add_special(special:PackedScene):
@@ -49,6 +56,11 @@ func _process(_delta: float) -> void:
 			else:
 				slots[i].modulate = Color("444444")
 		needs_update = false
+	
+	if !Engine.is_editor_hint():
+		for i in specials.size():
+			bars[i].value = player.adrenaline_stat.adrenaline
+			bars[i].max_value = specials[i].get_adrenaline_cost()
 
 
 

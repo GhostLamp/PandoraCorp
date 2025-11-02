@@ -8,3 +8,7 @@ resource_local_to_scene = true
 script = ExtResource("1_ln2fc")
 texture = ExtResource("2_k0qat")
 item_region = Rect2(472, 100, 76, 76)
+name = "Shap bullets"
+activation = "every 10 combo"
+descripition = "bullets will pierce
+an aditional enemy"

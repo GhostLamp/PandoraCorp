@@ -10,3 +10,7 @@ script = ExtResource("1_xni4u")
 texture = ExtResource("2_jxkyq")
 scene = ExtResource("1_dyesy")
 item_region = Rect2(96, 188, 84, 84)
+name = "yoyo"
+activation = "30 adrenaline"
+descripition = "pulls you to walls and 
+pulls enemies to you"

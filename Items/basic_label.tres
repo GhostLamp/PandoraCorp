@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b7y7skk3fh4ry"]
+
+[ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="1_3tvyp"]
+[ext_resource type="Texture2D" uid="uid://dgp4ducuq2u3b" path="res://pixel art/room_front.png" id="2_ey3eb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5r3e"]
+texture = ExtResource("2_ey3eb")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 9.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(476, 76, 48, 48)
+
+[resource]
+default_font = ExtResource("1_3tvyp")
+default_font_size = 8
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_3tvyp")
+Label/styles/normal = SubResource("StyleBoxTexture_x5r3e")

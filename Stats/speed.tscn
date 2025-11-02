@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Stats/speed.gd" id="1_ewlhk"]
 
-[node name="speed" type="Node2D"]
+[node name="speed" type="Node"]
 script = ExtResource("1_ewlhk")

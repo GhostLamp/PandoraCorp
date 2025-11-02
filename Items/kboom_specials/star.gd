@@ -1,7 +1,6 @@
 extends Projectile
 
 @onready var sprite = $Sprite2D
-@onready var speed_stat = $speed
 @onready var body: CharacterBody2D = $body
 
 @export var explosion_damage = 5
@@ -26,7 +25,7 @@ func _ready():
 	
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = speed * direction * 2
 	var colision_info = move_and_collide(direction)
 	if colision_info:
@@ -47,6 +46,9 @@ func airborn():
 func getClosest_enemy(bullet:Bullet):
 	var player:Player = get_tree().current_scene.player
 	var enemies:Array = player.currentRoom.enemy_manager.enemies
+	for i in enemies:
+		if i.held:
+			enemies.erase(i)
 	if enemies.size() > 0:
 		enemies.sort_custom(sort_interection_areas)
 		var enemy_chosen = enemies[0]
@@ -65,6 +67,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var new_effect:Explosive = explosive.instantiate()
 			
 			new_effect.insta_exosion = true
+			new_effect.hit_stop = true
 			
 			bullet.status_manager.new_effect(new_effect)
 			bullet.direction = getClosest_enemy(bullet)

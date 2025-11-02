@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6jfakk5qdnhw"]
+[gd_scene load_steps=7 format=3 uid="uid://c6jfakk5qdnhw"]
 
 [ext_resource type="Script" path="res://pickup.gd" id="1_mml8r"]
 [ext_resource type="PackedScene" uid="uid://cyi2v3ijs3jol" path="res://wearpons/single_use_weapon.tscn" id="2_b66at"]
 [ext_resource type="Texture2D" uid="uid://bdavv2120vocc" path="res://pixel art/pandoraCorpTilles.png" id="3_mbsuk"]
+[ext_resource type="Texture2D" uid="uid://c08usy5nl4tyw" path="res://pixel art/Fkey.png" id="4_qm7h4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_achsh"]
 size = Vector2(112, 112)
@@ -17,17 +18,23 @@ script = ExtResource("1_mml8r")
 weapon = ExtResource("2_b66at")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_achsh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_tsi0u")
 
+[node name="Fkey" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -153)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_qm7h4")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -28)
 texture = ExtResource("3_mbsuk")
 region_enabled = true
 region_rect = Rect2(384, 112, 64, 72)

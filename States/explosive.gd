@@ -6,6 +6,7 @@ extends Node2D
 @export var explosion : PackedScene
 @export var explosion_damage = 2
 var insta_exosion:bool = false
+var hit_stop:bool = false
 
 
 func on_hit(collider):
@@ -18,3 +19,7 @@ func on_hit(collider):
 		new_explosion.position = collider.global_position
 		new_explosion.damage = explosion_damage
 		get_tree().root.call_deferred("add_child", new_explosion)
+		
+		if hit_stop:
+			HitstopManeger.hitstop_weak()
+			HitstopEfect.hitstop_efect_short()

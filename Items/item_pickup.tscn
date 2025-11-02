@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://i65mk8q8one2"]
+[gd_scene load_steps=18 format=3 uid="uid://i65mk8q8one2"]
 
 [ext_resource type="Script" path="res://pick_item.gd" id="1_yuq28"]
 [ext_resource type="Resource" uid="uid://b3k1gcuraaxnj" path="res://Items/resources/QuickBoots.tres" id="2_rmka6"]
 [ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="3_pvpjh"]
+[ext_resource type="Texture2D" uid="uid://dgp4ducuq2u3b" path="res://pixel art/room_front.png" id="4_j0xp5"]
+[ext_resource type="Theme" uid="uid://b7y7skk3fh4ry" path="res://Items/basic_label.tres" id="5_k837j"]
+[ext_resource type="Texture2D" uid="uid://c08usy5nl4tyw" path="res://pixel art/Fkey.png" id="6_dtbh4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqhh1"]
 radius = 64.0
@@ -45,6 +48,179 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/descripition:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/descripition:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/activation:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/item_name:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/item_name:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/activation:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/pickup:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer/pickup:visible_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gl41j"]
+resource_name = "hide_info"
+length = 0.250006
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/descripition:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1875),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/descripition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/activation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/activation:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/item_name:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/item_name:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_npxmw"]
 resource_name = "on_spawn"
@@ -85,17 +261,139 @@ tracks/2/keys = {
 "values": [0.0, 0.174533, -0.174533, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_yysvd"]
+resource_name = "show_info"
+length = 0.250006
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/descripition:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/descripition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/activation:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/item_name:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/item_name:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/activation:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/pickup:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/pickup:visible_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_otxny"]
 _data = {
 "RESET": SubResource("Animation_elu0f"),
-"on_spawn": SubResource("Animation_npxmw")
+"hide_info": SubResource("Animation_gl41j"),
+"on_spawn": SubResource("Animation_npxmw"),
+"show_info": SubResource("Animation_yysvd")
 }
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_33cje"]
+texture = ExtResource("4_j0xp5")
+texture_margin_left = 10.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(476, 128, 48, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3t3x"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8afsk"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1wkju"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_74v3i"]
 
 [node name="ItemPickup" type="Area2D"]
 script = ExtResource("1_yuq28")
 item = ExtResource("2_rmka6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -16)
 shape = SubResource("CircleShape2D_jqhh1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -108,6 +406,71 @@ libraries = {
 "": SubResource("AnimationLibrary_otxny")
 }
 autoplay = "on_spawn"
+
+[node name="Fkey" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -168)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_dtbh4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="item_name" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1678.0
+offset_top = 256.0
+offset_right = -1660.0
+offset_bottom = 292.0
+grow_horizontal = 0
+theme = ExtResource("5_k837j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_33cje")
+text = "Quick Boots"
+label_settings = SubResource("LabelSettings_s3t3x")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="activation" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 274.0
+offset_bottom = 292.0
+theme = ExtResource("5_k837j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_33cje")
+text = "Passive"
+label_settings = SubResource("LabelSettings_8afsk")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="pickup" type="Label" parent="CanvasLayer"]
+visible = false
+offset_top = -270.0
+offset_right = 21.0
+offset_bottom = -234.0
+theme = ExtResource("5_k837j")
+text = "f to pickup"
+label_settings = SubResource("LabelSettings_1wkju")
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="descripition" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -712.0
+offset_top = 292.0
+offset_right = -691.0
+offset_bottom = 328.0
+grow_horizontal = 2
+theme = ExtResource("5_k837j")
+text = "raises speed by 1.1x
+f to pickup"
+label_settings = SubResource("LabelSettings_74v3i")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="body_entered"]
 [connection signal="body_exited" from="." to="." method="body_exited"]

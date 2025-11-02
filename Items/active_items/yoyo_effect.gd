@@ -7,16 +7,18 @@ extends BaseActiveStrat
 var yoyo_out:Array = []
 
 func get_adrenaline_cost():
+	if yoyo_out.size() > 0:
+		return 0
 	return adrenaline_cost
 
 func  special_activation():
 	special_cooldown.start()
-	var player = get_parent().get_parent().get_parent()
+	var player:Player = get_parent().get_parent().get_parent()
+	
 	if yoyo_out.size() > 0:
 		if is_instance_valid(yoyo_out[0]):
 			pass
 		else:
-			adrenaline_cost = 20
 			yoyo_out.clear()
 
 	
@@ -30,13 +32,12 @@ func  special_activation():
 		new_yoyo.dono.append(player)
 		yoyo_out.append(new_yoyo)
 		new_yoyo.rotation = barrel_origin.global_rotation
-		adrenaline_cost = 0
-		get_tree().root.call_deferred("add_child", new_yoyo)
+		get_tree().current_scene.call_deferred("add_child", new_yoyo)
 		
 	elif yoyo_out[0].pulling == true:
 		yoyo_out[0].queue_free()
 		yoyo_out.clear()
-		adrenaline_cost = 20
+
 
 func finish():
 	if yoyo_out.size() > 0:

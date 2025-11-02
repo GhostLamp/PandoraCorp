@@ -102,9 +102,9 @@ points = PackedVector2Array(0, 0)
 width_curve = SubResource("Curve_vlh52")
 default_color = Color(1, 1, 0, 1)
 
-[node name="hit_area" parent="body" instance=ExtResource("10_owsn0")]
-collision_layer = 0
+[node name="hit_area" parent="body" node_paths=PackedStringArray("damage_reciver") instance=ExtResource("10_owsn0")]
 collision_mask = 18
+damage_reciver = NodePath("../..")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="body/hit_area"]
 position = Vector2(0, 2)

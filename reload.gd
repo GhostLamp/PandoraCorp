@@ -1,8 +1,9 @@
-extends Node2D
+extends Node
+class_name Reload
 
+@export var reload:float  = 20: set = _set_reload
+@export var max_reload:float = 1
 
-@export var reload = 20: set = _set_reload
-
-func _set_reload(new_reload: int):
-	reload = clamp(new_reload,0 , 100)
+func _set_reload(new_reload: float):
+	reload = clamp(new_reload,0 , max_reload)
 	

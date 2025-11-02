@@ -10,3 +10,6 @@ script = ExtResource("2_c0jib")
 effect = ExtResource("1_ymnew")
 texture = ExtResource("2_x6vll")
 item_region = Rect2(376, 4, 76, 84)
+name = "Match Box"
+activation = "every 3th shot"
+descripition = "bullets come ou on fire"

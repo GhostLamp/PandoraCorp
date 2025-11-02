@@ -1,15 +1,14 @@
-[gd_scene load_steps=75 format=3 uid="uid://boayjfr6m6m7w"]
+[gd_scene load_steps=74 format=3 uid="uid://boayjfr6m6m7w"]
 
 [ext_resource type="Script" path="res://wearpons/shotgun.gd" id="1_1j1ra"]
 [ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_5rhxi"]
 [ext_resource type="PackedScene" uid="uid://ceua0aqoubv5i" path="res://bullets/Grenade.tscn" id="3_vdwby"]
+[ext_resource type="Texture2D" uid="uid://4pgg0rpo4yp2" path="res://Selection 2025-10-06T02.23.14.png" id="4_mrj7t"]
 [ext_resource type="Texture2D" uid="uid://bfqcqaqg6bviu" path="res://pixel art/shotgun.png" id="4_o11qa"]
 [ext_resource type="PackedScene" uid="uid://casvp34hmo6be" path="res://actors/charge_level.tscn" id="5_a7dma"]
-[ext_resource type="PackedScene" uid="uid://d0vwhrxna5oq2" path="res://actors/max_charge.tscn" id="6_31ewl"]
+[ext_resource type="Texture2D" uid="uid://cdauuitjbe0vv" path="res://Selection 2025-10-06T02.23.08.png" id="5_lesoe"]
 [ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="7_joyu0"]
-[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="8_i4ob3"]
 [ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="9_bve6n"]
-[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="10_hyjyx"]
 [ext_resource type="Texture2D" uid="uid://chhpnmlqiiba2" path="res://pixel art/shotgun_gauge (2).png" id="13_pm3db"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7x2p"]
@@ -206,7 +205,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -218,7 +217,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -230,14 +229,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(93.4, 0)]
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_susd5"]
@@ -246,7 +245,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -258,7 +257,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -270,14 +269,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(87, 0), Vector2(95, 0), Vector2(103, 0), Vector2(111, 0)]
+"values": [Vector2(-31, 0), Vector2(-23, 0), Vector2(-15, 0), Vector2(-7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wym3c"]
@@ -286,7 +285,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -298,7 +297,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -310,14 +309,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(87, 0), Vector2(95, 0), Vector2(103, 0), Vector2(111, 0)]
+"values": [Vector2(-31, 0), Vector2(-23, 0), Vector2(-15, 0), Vector2(-7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_6gawi"]
@@ -325,7 +324,7 @@ resource_name = "default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -337,7 +336,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -349,14 +348,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(119, 0)]
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_22rmw"]
@@ -364,7 +363,7 @@ resource_name = "default_no_gas"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -376,7 +375,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -388,14 +387,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(119, 0)]
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pf003"]
@@ -404,7 +403,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -416,7 +415,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -428,14 +427,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(103, 1), Vector2(79, -8), Vector2(71, 0), Vector2(79, 0), Vector2(103, -8)]
+"values": [Vector2(-15, 1), Vector2(-39, -8), Vector2(-47, 0), Vector2(-39, 0), Vector2(-15, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_hx0ra"]
@@ -444,7 +443,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -456,7 +455,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -468,14 +467,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(103, 1), Vector2(79, -8), Vector2(71, 0), Vector2(79, 0), Vector2(103, -8)]
+"values": [Vector2(-15, 1), Vector2(-39, -8), Vector2(-47, 0), Vector2(-39, 0), Vector2(-15, -8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50qeu"]
@@ -569,7 +568,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -584,7 +583,7 @@ resource_name = "charging"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -599,7 +598,7 @@ resource_name = "default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -614,7 +613,7 @@ resource_name = "full"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -670,20 +669,34 @@ states/full/node = SubResource("AnimationNodeAnimation_yua7f")
 states/full/position = Vector2(471, 180)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_mshrq"), "default", "charging", SubResource("AnimationNodeStateMachineTransition_gs4vd"), "charging", "default", SubResource("AnimationNodeStateMachineTransition_cdli8"), "charging", "full", SubResource("AnimationNodeStateMachineTransition_6pmr1"), "full", "default", SubResource("AnimationNodeStateMachineTransition_j7tmg")]
 
-[node name="shotgun" type="CharacterBody2D" node_paths=PackedStringArray("barrel_origin", "gas_origin")]
+[node name="shotgun" type="CharacterBody2D" node_paths=PackedStringArray("gas_origin", "barrel_origin")]
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_1j1ra")
+gas_origin = NodePath("gas_tank_origin")
 bullet = ExtResource("2_5rhxi")
 alt_fire = ExtResource("3_vdwby")
 bullet_count = 8
 arc = 10.0
 barrel_origin = NodePath("nuzzel")
-gas_origin = NodePath("gas_tank_origin")
+basic_shot_cost = 1.0
+alt_shot_cost = 4.0
+basic_shot_speed = 1500.0
+basic_shot_damage = 0.5
+texture_under = ExtResource("4_mrj7t")
+texture_progress = ExtResource("5_lesoe")
 
-[node name="gunsprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(119, 0)
+[node name="anim_maneger" type="Node2D" parent="."]
+position = Vector2(118, 0)
+
+[node name="gunsprite" type="AnimatedSprite2D" parent="anim_maneger"]
 sprite_frames = SubResource("SpriteFrames_vl1ac")
+
+[node name="Sprite2D" type="Sprite2D" parent="anim_maneger"]
+position = Vector2(1, 0)
+texture = ExtResource("13_pm3db")
+hframes = 4
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_m7sbm")
@@ -698,18 +711,13 @@ position = Vector2(175, 0)
 
 [node name="charge_level" parent="." instance=ExtResource("5_a7dma")]
 
-[node name="max_charge" parent="." instance=ExtResource("6_31ewl")]
-
 [node name="ammo" parent="." instance=ExtResource("7_joyu0")]
-ammo = 4
-
-[node name="max_ammo" parent="." instance=ExtResource("8_i4ob3")]
-max_ammo = 4
+ammo = 4.0
+max_ammo = 4.0
 
 [node name="reload" parent="." instance=ExtResource("9_bve6n")]
-reload = 0
-
-[node name="max_reload" parent="." instance=ExtResource("10_hyjyx")]
+reload = 0.8
+max_reload = 0.8
 
 [node name="attack_cooldown" type="Timer" parent="."]
 wait_time = 0.8
@@ -738,12 +746,6 @@ parameters/conditions/alt_fire = false
 parameters/conditions/has_gas = false
 parameters/conditions/no_gas = false
 parameters/conditions/shooting = false
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(93.4, 0)
-texture = ExtResource("13_pm3db")
-hframes = 4
-vframes = 4
 
 [node name="anim_gauge" type="AnimationPlayer" parent="."]
 libraries = {

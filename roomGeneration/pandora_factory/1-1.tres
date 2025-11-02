@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Dungeon" load_steps=18 format=3 uid="uid://dtkukxxqea302"]
+
+[ext_resource type="Script" path="res://roomGeneration/RoomType.gd" id="1_aaspi"]
+[ext_resource type="Script" path="res://roomGeneration/Dungeon.gd" id="2_aaxwg"]
+[ext_resource type="PackedScene" uid="uid://byrddwh7yhos7" path="res://roomGeneration/pandora_factory/rooms/Base1.tscn" id="2_denpd"]
+[ext_resource type="PackedScene" uid="uid://cquc22wa0dswy" path="res://roomGeneration/pandora_factory/rooms/spawn.tscn" id="2_tk2wv"]
+[ext_resource type="PackedScene" uid="uid://5dqn27aoanfr" path="res://roomGeneration/pandora_factory/rooms/Base2.tscn" id="3_dwv2h"]
+[ext_resource type="PackedScene" uid="uid://b6ck7ens7uln0" path="res://roomGeneration/pandora_factory/rooms/Base3.tscn" id="4_r2ffp"]
+[ext_resource type="PackedScene" uid="uid://bn4hc38tttwyy" path="res://roomGeneration/pandora_factory/rooms/Base4.tscn" id="5_b3amh"]
+[ext_resource type="PackedScene" uid="uid://oi42vgjorkki" path="res://roomGeneration/pandora_factory/rooms/Base5.tscn" id="6_rruel"]
+[ext_resource type="PackedScene" uid="uid://b86datj8xgmb1" path="res://roomGeneration/pandora_factory/rooms/Base6.tscn" id="7_0qu5s"]
+[ext_resource type="PackedScene" uid="uid://wheunfwoldai" path="res://roomGeneration/pandora_factory/rooms/Chest1.tscn" id="7_r7nud"]
+[ext_resource type="PackedScene" uid="uid://cwypqf23ys47e" path="res://roomGeneration/pandora_factory/rooms/Base7.tscn" id="8_5qahh"]
+[ext_resource type="PackedScene" uid="uid://7ns4fn3521yr" path="res://roomGeneration/pandora_factory/rooms/Base10.tscn" id="9_y70n8"]
+[ext_resource type="PackedScene" uid="uid://cow2soy5vx81" path="res://roomGeneration/pandora_factory/rooms/crusherMini1.tscn" id="12_u0bqx"]
+
+[sub_resource type="Resource" id="Resource_5c1dg"]
+script = ExtResource("1_aaspi")
+room_shape = Vector2(1, 1)
+position = Vector2i(0, 0)
+roomName = ""
+roomMap = Array[PackedScene]([ExtResource("2_denpd"), ExtResource("3_dwv2h"), ExtResource("4_r2ffp"), ExtResource("5_b3amh"), ExtResource("6_rruel"), ExtResource("9_y70n8"), ExtResource("7_0qu5s"), ExtResource("8_5qahh")])
+
+[sub_resource type="Resource" id="Resource_y2avu"]
+script = ExtResource("1_aaspi")
+room_shape = Vector2(1, 1)
+position = Vector2i(0, 0)
+roomName = "spawn"
+roomMap = Array[PackedScene]([ExtResource("2_tk2wv")])
+
+[sub_resource type="Resource" id="Resource_ektvx"]
+script = ExtResource("1_aaspi")
+room_shape = Vector2(1, 1)
+position = Vector2i(0, 0)
+roomName = "chest"
+roomMap = Array[PackedScene]([ExtResource("7_r7nud")])
+
+[sub_resource type="Resource" id="Resource_p8iej"]
+script = ExtResource("1_aaspi")
+room_shape = Vector2(2, 1)
+position = Vector2i(0, 0)
+roomName = ""
+roomMap = Array[PackedScene]([ExtResource("12_u0bqx")])
+
+[resource]
+script = ExtResource("2_aaxwg")
+dungeon_size = Vector2i(4, 4)
+room_radius = 15
+room_types = Array[ExtResource("1_aaspi")]([SubResource("Resource_5c1dg"), SubResource("Resource_y2avu"), SubResource("Resource_ektvx"), SubResource("Resource_p8iej")])
+erase_spots = Array[Vector2i]([Vector2i(1, 1), Vector2i(1, 4), Vector2i(4, 1), Vector2i(4, 4)])

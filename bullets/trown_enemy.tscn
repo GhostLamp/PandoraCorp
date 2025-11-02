@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://mq5iy58gl8fb"]
+
+[ext_resource type="Script" path="res://trown_enemy.gd" id="1_k4vsk"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_qs3ia"]
+[ext_resource type="Script" path="res://trail.gd" id="3_ebmnk"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="4_7gith"]
+[ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="5_aq41h"]
+[ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="6_aimd3"]
+[ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="7_rf67w"]
+[ext_resource type="PackedScene" uid="uid://nb7p6ae1fqg1" path="res://States/heated.tscn" id="8_uems6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8x4p"]
+size = Vector2(5, 5)
+
+[sub_resource type="Curve" id="Curve_ebe2u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_undme"]
+size = Vector2(89, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh2gm"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhwjw"]
+size = Vector2(88.5, 54)
+
+[node name="trown_enemy" type="CharacterBody2D" node_paths=PackedStringArray("status_manager")]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 3.14159
+floor_max_angle = 0.0
+script = ExtResource("1_k4vsk")
+status_manager = NodePath("status_manager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_k8x4p")
+
+[node name="status_manager" parent="." instance=ExtResource("2_qs3ia")]
+
+[node name="kill_timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="trail" type="Line2D" parent="."]
+y_sort_enabled = true
+width_curve = SubResource("Curve_ebe2u")
+default_color = Color(1, 1, 0, 1)
+script = ExtResource("3_ebmnk")
+lenght = 4
+
+[node name="Area2D" type="Area2D" parent="." groups=["projectile"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_undme")
+
+[node name="speed" parent="." instance=ExtResource("4_7gith")]
+speed = 2000.0
+
+[node name="parry_area" parent="." instance=ExtResource("5_aq41h")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry_area"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_mh2gm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("6_aimd3")
+
+[node name="flamable_area" parent="." instance=ExtResource("7_rf67w")]
+collision_mask = 8192
+burning = ExtResource("8_uems6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flamable_area"]
+position = Vector2(39.75, 0)
+shape = SubResource("RectangleShape2D_qhwjw")
+
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

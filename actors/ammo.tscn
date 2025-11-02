@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Stats/ammo.gd" id="1_fgc10"]
 
-[node name="ammo" type="Node2D"]
+[node name="ammo" type="Node"]
 script = ExtResource("1_fgc10")

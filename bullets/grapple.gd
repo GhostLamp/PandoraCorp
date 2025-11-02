@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 	velocity = speed * direction
 	var colision_info = move_and_collide(direction)
 	if colision_info and startTimer <= 0:
-		pullPlayer(dono[0])
+		pullPlayer(dono[0],_delta)
 		speed = 0
 	move_and_slide()
 	startTimer -= _delta
@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 			else:
 				rell_back(dono[0])
 		else:
-			pullPlayer(dono[0])
+			pullPlayer(dono[0],_delta)
 	
 	if realing == true:
 		rell_back(dono[0])
@@ -43,12 +43,12 @@ func _process(_delta: float) -> void:
 	line_2d.rotation = -rotation
 	line_2d.set_point_position(1,dono[0].coli.global_position - global_position)
 
-func pullPlayer(player:Player):
+func pullPlayer(player:Player,delta:float):
 	pulling = true
 	player_dector.monitoring = true
 	dire = (global_position - player.coli.global_position).normalized()
-	player.velocity = 4000 * dire
-	player.coli.position.y = -150
+	player.velocity += 4000 * dire*delta
+	player.coli.position.y = -10
 
 func pullEnemey(player:Player):
 	pulling = true
@@ -57,7 +57,7 @@ func pullEnemey(player:Player):
 	var attack = Attack.new()
 	pulling = true
 	attack.damage = 0
-	attack.knockback = -40
+	attack.knockback = -20
 	attack.direction = dire 
 	attached[0].handle_hit(attack)
 	
@@ -72,7 +72,7 @@ func rell_back(player:Player):
 	direction = Vector2.RIGHT.rotated(global_rotation)
 
 func _on_area_2d_body_entered(body):
-	if body is Door:
+	if not body is Enemy:
 		return
 	
 	if attached.size() == 0:
@@ -89,8 +89,12 @@ func _on_player_dector_body_entered(body: Node2D) -> void:
 	if body is Player:
 		pulling = false
 		var player:Player = dono[0]
-		player.velocity = player.velocity/2
+		player.velocity = Vector2(0,0)
+		
 		if attached.size() >0:
 			if is_instance_valid(attached[0]):
 				attached[0].velocity = Vector2(0,0)
+				queue_free()
+			
+		player.player_state_machine.set_state("slamming")
 		queue_free()

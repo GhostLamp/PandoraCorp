@@ -23,6 +23,7 @@ ComboCount="*res://combo_count.gd"
 PlayerHolder="*res://player_holder.gd"
 AudioGlobal="*res://audio_global.gd"
 FullscreenToggle="*res://fullscreen_toggle.gd"
+Background="*res://background.tscn"
 
 [display]
 
@@ -32,11 +33,6 @@ window/size/mode=2
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://pixel art/game_mouse.png"
 mouse_cursor/custom_image_hotspot=Vector2(26, 26)
-
-[global_group]
-
-gun_manager=""
-pick_up_weapon=""
 
 [input]
 
@@ -111,6 +107,10 @@ fullscreen={
 ]
 }
 
+[internationalization]
+
+locale/locale_filter_mode=0
+
 [layer_names]
 
 2d_physics/layer_1="tile_map_player_high_coli"
@@ -121,6 +121,14 @@ fullscreen={
 2d_physics/layer_8="tile_map_player_low_coli"
 2d_physics/layer_12="player stoper"
 2d_physics/layer_13="grenade stopper"
+2d_physics/layer_14="flamable"
+2d_physics/layer_15="enemy_navegation"
+2d_physics/layer_16="crusher"
+2d_physics/layer_17="fireset_layer"
+
+[navigation]
+
+2d/use_edge_connections=false
 
 [rendering]
 

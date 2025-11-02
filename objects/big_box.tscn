@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://1jd2lll3popv"]
+
+[ext_resource type="Script" path="res://objects/box.gd" id="1_6f7x2"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_cclfa"]
+[ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="3_rglxg"]
+[ext_resource type="Texture2D" uid="uid://bdavv2120vocc" path="res://pixel art/pandoraCorpTilles.png" id="4_w20ck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr0pm"]
+size = Vector2(112, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ub3d"]
+size = Vector2(112, 88)
+
+[node name="big_box" type="CharacterBody2D"]
+position = Vector2(0, 24)
+collision_layer = 132
+collision_mask = 0
+script = ExtResource("1_6f7x2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(32, -44)
+shape = SubResource("RectangleShape2D_fr0pm")
+
+[node name="status_manager" parent="." instance=ExtResource("2_cclfa")]
+
+[node name="hit_area" parent="." node_paths=PackedStringArray("damage_reciver") instance=ExtResource("3_rglxg")]
+filter_quick = false
+damage_reciver = NodePath("..")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hit_area"]
+position = Vector2(32, -44)
+shape = SubResource("RectangleShape2D_2ub3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, -56)
+texture = ExtResource("4_w20ck")
+region_enabled = true
+region_rect = Rect2(384, 448, 128, 128)

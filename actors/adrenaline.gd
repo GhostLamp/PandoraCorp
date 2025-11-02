@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var adrenaline = 100: set = _set_adrenaline
 

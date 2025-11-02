@@ -9,7 +9,7 @@ script = ExtResource("1_8nt3u")
 yoyo = ExtResource("2_0jfxr")
 barrel_origin = NodePath("Node2D/Marker2D")
 special_cooldown = NodePath("special_cooldown")
-adrenaline_cost = 20.0
+adrenaline_cost = 30.0
 item_region = Rect2(96, 188, 84, 84)
 
 [node name="Node2D" type="Node2D" parent="."]

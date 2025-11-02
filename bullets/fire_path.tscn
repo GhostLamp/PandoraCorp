@@ -1,9 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkc6cl0itawju"]
+[gd_scene load_steps=6 format=3 uid="uid://dkc6cl0itawju"]
 
 [ext_resource type="Script" path="res://bullets/fire_path.gd" id="1_76cyb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pktq"]
 size = Vector2(1088, 512)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_867kr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.964706)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_360mf"]
+Panel/styles/panel = SubResource("StyleBoxFlat_867kr")
 
 [sub_resource type="LabelSettings" id="LabelSettings_yrmx1"]
 font_size = 64
@@ -18,12 +33,13 @@ script = ExtResource("1_76cyb")
 shape = SubResource("RectangleShape2D_8pktq")
 
 [node name="Panel" type="Panel" parent="."]
-modulate = Color(1, 0.631373, 0.313726, 1)
+self_modulate = Color(1, 0.533333, 0.0666667, 1)
 offset_left = -544.0
 offset_top = -256.0
 offset_right = 544.0
 offset_bottom = 256.0
 mouse_filter = 2
+theme = SubResource("Theme_360mf")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0

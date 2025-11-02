@@ -8,3 +8,4 @@ var direction: Vector2 = Vector2(0,0)
 var knockback: int = 0
 var quick:bool = false
 var type:String
+var style_modifiers:Array[String] = []

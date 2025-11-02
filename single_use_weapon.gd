@@ -1,12 +1,9 @@
-extends CharacterBody2D
+extends Gun
 class_name SingleUseWeapon
 
 signal remove_weapon
 
-@export var bullet : PackedScene
-@export var bullet_count: int = 1
-@export_range(0, 360) var arc:float = 0
-@export var barrel_origin: Marker2D
+
 
 @export var texture: Texture2D
 @export var texture_region:Rect2
@@ -16,12 +13,8 @@ signal remove_weapon
 
 @export var effect:PackedScene
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var ammo: Node2D = $ammo
-@onready var max_ammo: Node2D = $max_ammo
-@onready var reload: Node2D = $reload
-@onready var max_reload: Node2D = $max_reload
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $anim_maneger/Sprite2D
+
 
 var await_time = 0.2
 var quick = false
@@ -32,14 +25,11 @@ var quick = false
 
 
 
-var mouse
 var Left = true
 var charging = false
 var charge_text = false
 var charged = false
-@export var shooting = false
 var melee_mode = false
-var bullet_direction
 
 
 
@@ -66,13 +56,13 @@ func follow_mouse():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot") or  event.is_action_pressed("alt_fire"):
-		animation_player.play("trow")
+		anim.play("trow")
 		if await_time > 0:
 			await get_tree().create_timer(0.2).timeout
 		shooting = true
 
 func swap_out():
-	animation_player.play("trow")
+	anim.play("trow")
 	if await_time > 0:
 		await get_tree().create_timer(0.2).timeout
 	shoot()
@@ -89,8 +79,8 @@ func shoot():
 				
 			
 			new_bullet.quick = quick
-			new_bullet.damage = 2
-			new_bullet.speed = 3000
+			new_bullet.damage = basic_shot_damage
+			new_bullet.speed = basic_shot_speed
 			if bullet_count == 1:
 				new_bullet.rotation = global_rotation
 			else:

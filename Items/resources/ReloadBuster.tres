@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="ReloadBuster" load_steps=3 format=3 uid="uid://cvul5ixaw8om2"]
+[gd_resource type="Resource" script_class="ReloadBuster" load_steps=4 format=3 uid="uid://cvul5ixaw8om2"]
 
+[ext_resource type="PackedScene" uid="uid://cgv4shgiye761" path="res://actors/targeted_ray.tscn" id="1_gov4d"]
 [ext_resource type="Script" path="res://Items/script/ReloadBuster.gd" id="1_wi35p"]
 [ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_fou7s"]
 
 [resource]
 script = ExtResource("1_wi35p")
 texture = ExtResource("2_fou7s")
+scene = ExtResource("1_gov4d")
 item_region = Rect2(480, 12, 56, 72)
+name = "Reload Buster"
+activation = "on reload"
+descripition = "launches an ray of energy at 
+enemies for every leftover ammo"

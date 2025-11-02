@@ -11,13 +11,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.interaction.append(self)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
+	hideFKey()
 	if body is Player:
 		body.interaction.erase(self)
 
 
 func interact(player:Player):
 	await player.interact()
+	if player.gun_maneger.weapons.size() >3:
+		return
 	var bruh:SingleUseWeapon = weapon.instantiate()
+	bruh.basic_shot_damage = 4
+	
 	bruh.texture = sprite_2d.texture
 	
 	bruh.texture_region = sprite_2d.region_rect

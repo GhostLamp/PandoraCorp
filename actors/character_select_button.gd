@@ -24,6 +24,15 @@ func _on_mouse_entered() -> void:
 			if child.selected == true:
 				return
 	
+	var tween = get_tree().create_tween()
+	$"../Panel/ColorRect".material["shader_parameter/noise_amount"] = 0.3
+	$"../Panel/ColorRect".material["shader_parameter/interference_amount"] = 1
+	$"../Panel/ColorRect".material["shader_parameter/roll_speed"] = 8
+	$"../Panel/ColorRect".material["shader_parameter/scan_line_strength"] = -1
+	tween.tween_property($"../Panel/ColorRect","material:shader_parameter/noise_amount",0.03,0.2)
+	tween.parallel().tween_property($"../Panel/ColorRect","material:shader_parameter/interference_amount",0.2,0.2)
+	tween.parallel().tween_property($"../Panel/ColorRect","material:shader_parameter/roll_speed",1,0.2)
+	tween.parallel().tween_property($"../Panel/ColorRect","material:shader_parameter/scan_line_strength",-8,0.2)
 	sprite.visible = true
 
 func _on_mouse_exited() -> void:
@@ -35,8 +44,6 @@ func unselect():
 	button_pressed = false
 	selected = false
 	_on_mouse_exited()
-	var tween = get_tree().create_tween()
-	tween.tween_property(self,"position",Vector2(position.x,847),0.1)
 
 
 func select():
@@ -47,5 +54,3 @@ func select():
 	selected = true
 	_on_mouse_entered()
 	get_parent().selectCharacter(self)
-	var tween = get_tree().create_tween()
-	tween.tween_property(self,"position",Vector2(position.x,776),0.1)

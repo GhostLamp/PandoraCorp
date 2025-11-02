@@ -11,20 +11,28 @@ var doors_positions = []
 var free_spots:Array = []
 
 
-
+@onready var camera_maneger:CameraManager = $camera_maneger
 @export var tile_map:TileMapLayer
 @export var player:Player
 @export var dungeon:Dungeon
+@export var doorScene:PackedScene
 var doorScenes:Array[Door]
+var roomIndicators:Array[Node2D]
 
 
 
 func _ready():
 	var new_player = PlayerHolder.player.instantiate()
+	new_player.camera_manager = camera_maneger
+	new_player.camera_2d = $camera_maneger/Camera2D
+	
 	call_deferred("add_child",new_player)
+	
 	player = new_player
 	player.currentPalette = PlayerHolder.current_palette
 	player.paletts = PlayerHolder.paletts
+	camera_maneger.target = player
+	
 	
 	room_size = dungeon.room_radius*2 + 2
 	
@@ -41,6 +49,10 @@ func _ready():
 	
 	generate_level()
 	player.maxFuel = dungeon_fuel*2/3 
+	
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(self,"modulate",Color.WHITE,1)
 
 
 func generate_rooms(start_p, room_type):
@@ -98,11 +110,18 @@ func tile_fill(room):
 func create_doors(doors_position:Array):
 	for door in doors_position:
 		if doors_position.count(door) >=2:
-			tile_map.erase_cell(door)
-			tile_map.erase_cell(door+Vector2(0,1))
-			tile_map.erase_cell(door+Vector2(1,0))
-			tile_map.erase_cell(door+Vector2(0,-1))
-			tile_map.erase_cell(door+Vector2(-1,0))
+			tile_map.erase_cell(door["pos"])
+			tile_map.erase_cell(door["pos"]+Vector2(0,1))
+			tile_map.erase_cell(door["pos"]+Vector2(1,0))
+			tile_map.erase_cell(door["pos"]+Vector2(0,-1))
+			tile_map.erase_cell(door["pos"]+Vector2(-1,0))
+			var new_door:Door = doorScene.instantiate()
+			new_door.sidaways = door["side"]
+			new_door.position = (Vector2i(door["pos"].x,door["pos"].y))*tile_map.tile_set.tile_size + Vector2i(32,32)
+			call_deferred("add_child",new_door)
+			doorScenes.append(new_door)
+			
+	
 
 
 func generate_level():
@@ -120,8 +139,10 @@ func generate_level():
 		var baseRoom = dungeon.room_types[0]
 		generate_rooms(i*room_size,baseRoom.room_shape)
 		
-		var new_room:Node2D = baseRoom.roomMap.pick_random().instantiate()
-		dungeon_fuel += new_room.enemy_manager.budget *5
+		var new_room:Room = baseRoom.roomMap.pick_random().instantiate()
+		if new_room.enemy_manager.budget:
+			pass
+		dungeon_fuel += new_room.enemy_manager.budget *5 *2
 		new_room.position = (i*room_size - Vector2i(1,1)*dungeon.room_radius)*tile_map.tile_set.tile_size 
 		add_child(new_room)
 		new_room.getDoors()

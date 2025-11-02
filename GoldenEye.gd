@@ -12,7 +12,6 @@ func  special_activation():
 	
 	bruh.texture = sprite_2d.texture
 	bruh.texture_region = sprite_2d.region_rect
-	
 	bruh.await_time = 0.0
 	bruh.quick = true
 	

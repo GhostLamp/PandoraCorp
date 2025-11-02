@@ -1,8 +1,9 @@
-extends Node2D
+extends Node
+class_name  Ammo
 
+@export var ammo:float  = 20: set = _set_ammo
+@export var max_ammo:float = 20
 
-@export var ammo = 20: set = _set_ammo
-
-func _set_ammo(new_ammo: int):
+func _set_ammo(new_ammo: float):
 	ammo = clamp(new_ammo,0 , 100)
 	

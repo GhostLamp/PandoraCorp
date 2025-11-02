@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvojy81fjgxbq"]
+[gd_scene load_steps=22 format=3 uid="uid://bvojy81fjgxbq"]
 
 [ext_resource type="Script" path="res://Items/tevii_specials/wall_bouncer.gd" id="1_cfq2y"]
 [ext_resource type="Texture2D" uid="uid://deh83bs2decrg" path="res://pixel art/spritesheet (2).png" id="2_pk41p"]
 [ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="3_otrvj"]
 [ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="4_uiogh"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="5_3quti"]
+[ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="6_ca38g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hybyq"]
 size = Vector2(360, 280)
@@ -121,7 +122,7 @@ size = Vector2(400, 320)
 visibility_layer = 2
 z_index = -1
 scale = Vector2(0.8, 0.8)
-collision_layer = 16
+collision_layer = 0
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_cfq2y")
@@ -171,6 +172,13 @@ position = Vector2(0, 1.90735e-05)
 shape = SubResource("RectangleShape2D_x3q8t")
 
 [node name="status_manager2" parent="." instance=ExtResource("5_3quti")]
+
+[node name="hit_area" parent="." node_paths=PackedStringArray("damage_reciver") instance=ExtResource("6_ca38g")]
+damage_reciver = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_area"]
+position = Vector2(0, 1.90735e-05)
+shape = SubResource("RectangleShape2D_yrxiu")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -9,12 +9,15 @@ extends BaseItemStrat
 @export var speed_boost = 800
 
 func apply_boost(player: Player):
-	player.speed_stat.speed += speed_boost
+	player.speed_stat.speed *= speed_boost
 "
 
 [resource]
 resource_local_to_scene = true
 script = SubResource("GDScript_x3vbh")
-speed_boost = 300
+speed_boost = 1
 texture = ExtResource("1_r001y")
 item_region = Rect2(12, 24, 68, 64)
+name = "Quick Boots"
+activation = "Passive"
+descripition = "raises speed by 1.1x"

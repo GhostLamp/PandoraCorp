@@ -1,11 +1,21 @@
 extends Button
 
+var tween:Tween
+
+func  _ready() -> void:
+	size.x = 268
 
 func _on_mouse_entered() -> void:
-	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	get_parent().get_parent().buttonEntered()
+	if tween:
+		tween.kill
+	$"../../ParallaxBackground/Parallax2D".scroll_scale = Vector2(1,4)
+	tween = get_tree().create_tween()
+	tween.tween_property(self,"size",Vector2(716,126),0.2).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($"../../ParallaxBackground/Parallax2D","scroll_scale",Vector2(1,1),1)
 
 
 func _on_mouse_exited() -> void:
-	self.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	get_parent().get_parent().buttonLeft()
+	if tween:
+		tween.kill
+	tween = get_tree().create_tween()
+	tween.tween_property(self,"size",Vector2(268,126),0.2).set_trans(Tween.TRANS_CUBIC)

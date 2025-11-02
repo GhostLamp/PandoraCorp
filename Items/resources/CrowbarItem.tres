@@ -10,3 +10,7 @@ script = ExtResource("2_mjx4t")
 effect = ExtResource("1_tnylm")
 texture = ExtResource("3_mceuc")
 item_region = Rect2(196, 96, 68, 84)
+name = "crowbar"
+activation = "on hit"
+descripition = "deals 1.2x damage when 
+the enemy is at full health"

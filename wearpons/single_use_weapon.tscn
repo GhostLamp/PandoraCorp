@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyi2v3ijs3jol"]
+[gd_scene load_steps=33 format=3 uid="uid://cyi2v3ijs3jol"]
 
 [ext_resource type="Script" path="res://single_use_weapon.gd" id="1_xs0y3"]
 [ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_pojvn"]
 [ext_resource type="Texture2D" uid="uid://cvu7r1xuuf253" path="res://pixel art/table_and_chair.png" id="3_dk0bn"]
 [ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="4_c0xq4"]
-[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="5_gylvf"]
 [ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="6_ungya"]
-[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="7_c87dn"]
+[ext_resource type="PackedScene" uid="uid://casvp34hmo6be" path="res://actors/charge_level.tscn" id="8_45w04"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b31nv"]
 
@@ -15,7 +14,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +31,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("anim_maneger/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,36 +47,156 @@ _data = {
 "trow": SubResource("Animation_n5017")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k1b8m"]
+animation = &"alt_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_38bt7"]
+animation = &"charged"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljuex"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7pi7l"]
+animation = &"melee"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22yaf"]
+animation = &"shooting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tu1jk"]
+animation = &"unloaded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tf24o"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dnfnd"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbumb"]
+advance_mode = 2
+advance_condition = &"no_ammo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ssyas"]
+advance_mode = 2
+advance_condition = &"has_ammo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_om2oj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyskc"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1p62"]
+advance_mode = 2
+advance_condition = &"alt_fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3iol"]
+advance_mode = 2
+advance_condition = &"charged"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qd2hw"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgvxe"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"charged"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_38iy4"]
+advance_mode = 2
+advance_condition = &"alt_fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxl5o"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fw6di"]
+advance_mode = 2
+advance_condition = &"alt_melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12gl4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_son66"]
+advance_mode = 2
+advance_condition = &"shooting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pu85h"]
+states/End/position = Vector2(903, 93)
+states/Start/position = Vector2(-7, 93)
+states/alt_fire/node = SubResource("AnimationNodeAnimation_k1b8m")
+states/alt_fire/position = Vector2(685, 192)
+states/charged/node = SubResource("AnimationNodeAnimation_38bt7")
+states/charged/position = Vector2(471, 93)
+states/default/node = SubResource("AnimationNodeAnimation_ljuex")
+states/default/position = Vector2(166, 93)
+states/melee/node = SubResource("AnimationNodeAnimation_7pi7l")
+states/melee/position = Vector2(685, 93)
+states/shooting/node = SubResource("AnimationNodeAnimation_22yaf")
+states/shooting/position = Vector2(471, 285)
+states/unloaded/node = SubResource("AnimationNodeAnimation_tu1jk")
+states/unloaded/position = Vector2(166, 285)
+transitions = ["default", "shooting", SubResource("AnimationNodeStateMachineTransition_tf24o"), "shooting", "default", SubResource("AnimationNodeStateMachineTransition_dnfnd"), "default", "unloaded", SubResource("AnimationNodeStateMachineTransition_xbumb"), "unloaded", "default", SubResource("AnimationNodeStateMachineTransition_ssyas"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_om2oj"), "unloaded", "shooting", SubResource("AnimationNodeStateMachineTransition_gyskc"), "unloaded", "alt_fire", SubResource("AnimationNodeStateMachineTransition_q1p62"), "default", "charged", SubResource("AnimationNodeStateMachineTransition_c3iol"), "charged", "default", SubResource("AnimationNodeStateMachineTransition_qd2hw"), "shooting", "charged", SubResource("AnimationNodeStateMachineTransition_hgvxe"), "charged", "alt_fire", SubResource("AnimationNodeStateMachineTransition_38iy4"), "alt_fire", "charged", SubResource("AnimationNodeStateMachineTransition_lxl5o"), "charged", "melee", SubResource("AnimationNodeStateMachineTransition_fw6di"), "melee", "charged", SubResource("AnimationNodeStateMachineTransition_12gl4"), "charged", "shooting", SubResource("AnimationNodeStateMachineTransition_son66")]
+graph_offset = Vector2(-199, 55)
+
 [node name="single_use_weapon" type="CharacterBody2D" node_paths=PackedStringArray("barrel_origin") groups=["pick_up_weapon"]]
 script = ExtResource("1_xs0y3")
 bullet = ExtResource("2_pojvn")
 barrel_origin = NodePath("Marker2D")
+basic_shot_cost = 1.0
+basic_shot_speed = 3000.0
+basic_shot_damage = 2.0
+
+[node name="anim_maneger" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="anim_maneger"]
+position = Vector2(64, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_dk0bn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b31nv")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(64, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("3_dk0bn")
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(64, 0)
 
 [node name="ammo" parent="." instance=ExtResource("4_c0xq4")]
-position = Vector2(30.0027, 136.264)
 ammo = 1
-
-[node name="max_ammo" parent="." instance=ExtResource("5_gylvf")]
-max_ammo = 1
 
 [node name="reload" parent="." instance=ExtResource("6_ungya")]
 reload = 50
 
-[node name="max_reload" parent="." instance=ExtResource("7_c87dn")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="amin" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7ol70")
 }
+
+[node name="nuzzel" type="Marker2D" parent="."]
+position = Vector2(300, 0)
+gizmo_extents = 1.0
+
+[node name="charge_level" parent="." instance=ExtResource("8_45w04")]
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_pu85h")
+anim_player = NodePath("../amin")
+parameters/conditions/alt_fire = false
+parameters/conditions/alt_melee = false
+parameters/conditions/charged = false
+parameters/conditions/has_ammo = false
+parameters/conditions/idle = false
+parameters/conditions/no_ammo = false
+parameters/conditions/shooting = false

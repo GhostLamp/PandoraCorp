@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cwy8hml084on5"]
 
-[ext_resource type="FontFile" uid="uid://b6fsicrej43s4" path="res://bruh.ttf" id="1_y2hcg"]
+[ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="1_y2hcg"]
 [ext_resource type="Texture2D" uid="uid://b43qrp782lj0m" path="res://pixel art/buttonLayout.png" id="2_ek7ft"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kq1i"]
@@ -31,7 +31,7 @@ region_rect = Rect2(0, 272, 448, 136)
 [resource]
 resource_local_to_scene = true
 Button/colors/font_color = Color(1, 0, 0, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)

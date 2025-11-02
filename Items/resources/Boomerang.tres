@@ -6,7 +6,10 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_gepa4")
-mult = 1.5
+mult = 1.2
 speed_boost = -1.0
 texture = ExtResource("2_kdjng")
 item_region = Rect2(380, 100, 72, 80)
+name = "Boomerang"
+activation = "on shot"
+descripition = "bullets will accelerate backards \\n and deal 1.2x damage"

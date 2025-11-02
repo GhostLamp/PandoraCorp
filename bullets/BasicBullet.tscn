@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://busvpfuvqyv68"]
+[gd_scene load_steps=14 format=3 uid="uid://busvpfuvqyv68"]
 
 [ext_resource type="Script" path="res://bullets/BasicBullet.gd" id="1_p0xng"]
 [ext_resource type="PackedScene" uid="uid://nb7p6ae1fqg1" path="res://States/heated.tscn" id="3_5rnuu"]
@@ -17,10 +17,13 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_undme"]
-size = Vector2(89, 10)
+size = Vector2(89, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh2gm"]
 size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhwjw"]
+size = Vector2(88.5, 54)
 
 [node name="BasicBullet" type="CharacterBody2D" node_paths=PackedStringArray("status_manager")]
 y_sort_enabled = true
@@ -72,11 +75,12 @@ scale = Vector2(10, 10)
 texture = ExtResource("8_b138g")
 
 [node name="flamable_area" parent="." instance=ExtResource("7_1fuyt")]
+collision_mask = 8192
 burning = ExtResource("3_5rnuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flamable_area"]
-position = Vector2(40, 0)
-shape = SubResource("RectangleShape2D_undme")
+position = Vector2(13.75, 0)
+shape = SubResource("RectangleShape2D_qhwjw")
 
 [connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

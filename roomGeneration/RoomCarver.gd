@@ -39,4 +39,6 @@ func carve_room():
 
 func carve_door():
 	for i in roomToCreate.door_positions:
-		doors.append(i*(roomToCreate.radius+1) + (roomToCreate.start_position))
+		doors.append({"pos":i["pos"]*(roomToCreate.radius+1) + (roomToCreate.start_position),"side":i["side"]})
+	
+	

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://reload.gd" id="1_2tkd8"]
 
-[node name="reload" type="Node2D"]
+[node name="reload" type="Node"]
 script = ExtResource("1_2tkd8")

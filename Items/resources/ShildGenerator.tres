@@ -10,3 +10,6 @@ script = ExtResource("1_q2tcq")
 texture = ExtResource("2_8rnbi")
 scene = ExtResource("1_pmwl1")
 item_region = Rect2(556, 4, 84, 84)
+name = "Shild generator"
+activation = "damaged"
+descripition = "once per area blocks damage and creates an eletric explosion"

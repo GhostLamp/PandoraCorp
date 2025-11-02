@@ -1,14 +1,15 @@
 extends Area2D
 
+@export var filter_quick:bool = true
+@export var damage_reciver:Node2D
+@export var total_hits:int = 1
 
 func _on_area_entered(area: Area2D) -> void:
+	if total_hits <= 0:
+		return
+	
 	if area.get_parent() is Bullet:
-		if area.get_parent().quick == true:
-			var bullet:Bullet = area.get_parent()
-			var attack = Attack.new()
-			attack.damage = bullet.damage
-			attack.direction = bullet.direction
-			attack.knockback = 5
-			attack.quick = bullet.quick
-			get_parent().get_parent().handle_hit(attack)
-			bullet.pierce -= 1
+		total_hits -= 1
+		var bullet:Bullet = area.get_parent()
+		if bullet.quick == true or !filter_quick:
+			bullet.deal_damage(damage_reciver)

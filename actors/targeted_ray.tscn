@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgv4shgiye761"]
+
+[ext_resource type="Script" path="res://actors/targeted_ray.gd" id="1_plyny"]
+[ext_resource type="Script" path="res://trail.gd" id="2_u8wkc"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="3_p0qqj"]
+[ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="4_nulic"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="5_50y5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja2p0"]
+
+[sub_resource type="Curve" id="Curve_d878m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="TargetedRay" type="CharacterBody2D" node_paths=PackedStringArray("status_manager")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_plyny")
+status_manager = NodePath("status_manager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ja2p0")
+disabled = true
+
+[node name="kill_timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="trail" type="Line2D" parent="."]
+y_sort_enabled = true
+width_curve = SubResource("Curve_d878m")
+default_color = Color(0, 1, 0, 1)
+script = ExtResource("2_u8wkc")
+lenght = 4
+
+[node name="speed" parent="." instance=ExtResource("3_p0qqj")]
+speed = 2000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("4_nulic")
+
+[node name="status_manager" parent="." instance=ExtResource("5_50y5t")]
+
+[connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

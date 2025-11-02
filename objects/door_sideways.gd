@@ -8,7 +8,8 @@ class_name Door
 var isLocked = false
 var isOpen = false
 
-
+func _ready() -> void:
+	unlock()
 
 func unlock():
 	isLocked = false
@@ -39,9 +40,9 @@ func lock():
 	
 	isOpen = false
 	if sidaways:
-		animation_player.play("closed_side")
+		animation_player.call_deferred("play","closed_side")
 		return
-	animation_player.play("closed_upward")
+	animation_player.call_deferred("play","closed_upward")
 
 
 func handle_hit(_attack:Attack):

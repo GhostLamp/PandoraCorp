@@ -4,6 +4,9 @@ extends Resource
 @export var texture: Texture = preload("res://items_sprite.png")
 @export var scene: PackedScene
 @export var item_region:Rect2
+@export var name:String
+@export var activation:String
+@export_multiline var descripition:String
 
 
 
@@ -22,5 +25,5 @@ func on_hit(_enemy):
 func on_player_damaged(_player:Player):
 	pass
 
-func on_reload(_player:Player):
+func on_reload(_player:Player,_ammo,_max_ammo):
 	pass

@@ -1,4 +1,4 @@
-extends interactive
+extends RigidBody2D
 class_name Chest
 
 
@@ -10,10 +10,12 @@ class_name Chest
 var opened = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	return
 	if body is Player:
 		body.interaction.append(self)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
+	return
 	if body is Player:
 		body.interaction.erase(self)
 

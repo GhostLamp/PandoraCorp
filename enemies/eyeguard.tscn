@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://cg6xonvvpj6fr"]
+[gd_scene load_steps=43 format=3 uid="uid://cg6xonvvpj6fr"]
 
 [ext_resource type="Script" path="res://enemies/eyeguard.gd" id="1_w8x4m"]
 [ext_resource type="PackedScene" uid="uid://dtqshcltkvliw" path="res://enemy_bullet.tscn" id="2_3470f"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_xngco"]
 [ext_resource type="Script" path="res://enemies/state_machine.gd" id="3_h16uu"]
+[ext_resource type="Script" path="res://actors/position_line.gd" id="3_ptwbb"]
 [ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="3_r2tdk"]
 [ext_resource type="Script" path="res://enemies/state_chasing.gd" id="4_gx2ys"]
 [ext_resource type="Script" path="res://actors/enemy_body.gd" id="4_met2q"]
@@ -20,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="13_bqkw3"]
 [ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="13_udt57"]
 [ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="16_aglfn"]
+
+[sub_resource type="Curve" id="Curve_tb32b"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.249, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(0.749, 0.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(0.99, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 9
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdjxm"]
 radius = 112.0
@@ -232,6 +237,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ng75r"]
 resource_name = "spawn"
@@ -296,6 +313,15 @@ bullet_count = 1
 arc = 10.0
 barrel_origin = NodePath("nuzzelHolder/nuzzel")
 cost = 2.0
+damage = 10.0
+
+[node name="position_line" type="Line2D" parent="." node_paths=PackedStringArray("main_part", "pos")]
+points = PackedVector2Array(0, 88, 0, 0)
+width_curve = SubResource("Curve_tb32b")
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("3_ptwbb")
+main_part = NodePath("..")
+pos = NodePath("../body")
 
 [node name="stateMachine" type="Node" parent="."]
 script = ExtResource("3_h16uu")
@@ -337,6 +363,7 @@ autostart = true
 [node name="status_manager" parent="." instance=ExtResource("2_xngco")]
 
 [node name="flamable_area" parent="." instance=ExtResource("3_r2tdk")]
+collision_mask = 8192
 burning = ExtResource("5_elaay")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="flamable_area"]
@@ -369,7 +396,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="body/anim_maneger"]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_vuhrv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/CHARGING = false
@@ -418,9 +444,9 @@ rotation = 0.785398
 scale = Vector2(72, 72)
 texture = ExtResource("13_bqkw3")
 
-[node name="hit_area" parent="nuzzelHolder/nuzzel" instance=ExtResource("16_aglfn")]
-collision_layer = 0
+[node name="hit_area" parent="nuzzelHolder/nuzzel" node_paths=PackedStringArray("damage_reciver") instance=ExtResource("16_aglfn")]
 collision_mask = 18
+damage_reciver = NodePath("../..")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="nuzzelHolder/nuzzel/hit_area"]
 position = Vector2(32.5, 0)

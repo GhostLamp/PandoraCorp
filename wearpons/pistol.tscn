@@ -1,17 +1,16 @@
-[gd_scene load_steps=69 format=3 uid="uid://b3g6p3txi2t3a"]
+[gd_scene load_steps=68 format=3 uid="uid://b3g6p3txi2t3a"]
 
 [ext_resource type="Script" path="res://wearpons/pistol.gd" id="1_ngd4q"]
 [ext_resource type="PackedScene" uid="uid://busvpfuvqyv68" path="res://bullets/BasicBullet.tscn" id="2_kt6sd"]
 [ext_resource type="PackedScene" uid="uid://cio5dq42dnlps" path="res://bullets/alt__fire.tscn" id="3_je8sk"]
 [ext_resource type="Texture2D" uid="uid://cq1mr3noctavi" path="res://pixel art/revolver2.png" id="4_agatt"]
+[ext_resource type="Texture2D" uid="uid://bot5yboag2kdx" path="res://Selection 2025-10-06T02.22.52.png" id="4_ibhsy"]
+[ext_resource type="Texture2D" uid="uid://bxdkyew1ftahk" path="res://Selection 2025-10-06T02.22.46.png" id="5_5fufw"]
 [ext_resource type="Texture2D" uid="uid://dfcwmg07chtut" path="res://pixel art/goddamn.png" id="5_vwisx"]
 [ext_resource type="Texture2D" uid="uid://bwrqa3i2fbhnp" path="res://pixel art/revolver_melee.png" id="6_ud1dn"]
 [ext_resource type="PackedScene" uid="uid://casvp34hmo6be" path="res://actors/charge_level.tscn" id="7_ecogo"]
-[ext_resource type="PackedScene" uid="uid://d0vwhrxna5oq2" path="res://actors/max_charge.tscn" id="8_vkxrs"]
 [ext_resource type="PackedScene" uid="uid://bkib36xl7f6mu" path="res://actors/ammo.tscn" id="9_jr3qj"]
-[ext_resource type="PackedScene" uid="uid://qko5kwe3tkkr" path="res://actors/max_ammo.tscn" id="10_5kl8j"]
 [ext_resource type="PackedScene" uid="uid://bn2qjyaov1sg8" path="res://actors/reload.tscn" id="11_aafqc"]
-[ext_resource type="PackedScene" uid="uid://bo3bcubotgnaa" path="res://actors/max_reload.tscn" id="12_2fkgv"]
 [ext_resource type="PackedScene" uid="uid://dblol432kkq2a" path="res://States/parry.tscn" id="16_mbl1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgj85"]
@@ -173,10 +172,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qevke"]
-radius = 35.97
-height = 259.94
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_lveus"]
 atlas = ExtResource("5_vwisx")
 region = Rect2(0, 2184, 728, 728)
@@ -206,12 +201,16 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qevke"]
+radius = 35.97
+height = 259.94
+
 [sub_resource type="Animation" id="Animation_svfa2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -223,7 +222,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -264,7 +263,7 @@ step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -276,7 +275,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -294,7 +293,7 @@ step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -306,7 +305,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -321,7 +320,7 @@ resource_name = "default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -333,7 +332,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -350,7 +349,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -362,7 +361,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -403,7 +402,7 @@ step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -415,7 +414,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -430,7 +429,7 @@ resource_name = "unloaded"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("gunsprite:animation")
+tracks/0/path = NodePath("anim_maneger/gunsprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -442,7 +441,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("gunsprite:frame")
+tracks/1/path = NodePath("anim_maneger/gunsprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -569,15 +568,33 @@ collision_layer = 16
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_ngd4q")
+parry_force = 2
 bullet = ExtResource("2_kt6sd")
 alt_fire = ExtResource("3_je8sk")
 arc = 10.0
 barrel_origin = NodePath("nuzzel")
-parry_force = 2
+basic_shot_cost = 1.0
+alt_shot_cost = 4.0
+basic_shot_speed = 5000.0
+alt_shot_speed = 5000.0
+basic_shot_damage = 1.0
+alt_shot_damage = 2.0
+texture_under = ExtResource("4_ibhsy")
+texture_progress = ExtResource("5_5fufw")
 
-[node name="gunsprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(117, -4.76837e-07)
+[node name="anim_maneger" type="Node2D" parent="."]
+position = Vector2(117, 0)
+
+[node name="gunsprite" type="AnimatedSprite2D" parent="anim_maneger"]
+position = Vector2(0, -4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_vl1ac")
+
+[node name="charge" type="AnimatedSprite2D" parent="anim_maneger"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_2k0mm")
+animation = &"ready"
+autoplay = "ready"
+frame_progress = 0.979382
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(183, 0)
@@ -589,27 +606,15 @@ disabled = true
 position = Vector2(300, 0)
 gizmo_extents = 1.0
 
-[node name="charge" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(117, 0)
-sprite_frames = SubResource("SpriteFrames_2k0mm")
-animation = &"ready"
-autoplay = "ready"
-frame_progress = 0.979382
-
 [node name="charge_level" parent="." instance=ExtResource("7_ecogo")]
 
-[node name="max_charge" parent="." instance=ExtResource("8_vkxrs")]
-
 [node name="ammo" parent="." instance=ExtResource("9_jr3qj")]
-ammo = 6
-
-[node name="max_ammo" parent="." instance=ExtResource("10_5kl8j")]
+ammo = 6.0
+max_ammo = 6.0
 
 [node name="reload" parent="." instance=ExtResource("11_aafqc")]
-reload = 0
-
-[node name="max_reload" parent="." instance=ExtResource("12_2fkgv")]
+reload = 0.7
+max_reload = 0.7
 
 [node name="attack_cooldown" type="Timer" parent="."]
 wait_time = 0.3

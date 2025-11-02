@@ -8,3 +8,6 @@ resource_local_to_scene = true
 script = ExtResource("1_voydk")
 texture = ExtResource("2_jfd66")
 item_region = Rect2(192, 4, 76, 84)
+name = "Split Shooter"
+activation = "every 15 combo"
+descripition = "an extra bullet will be shot"

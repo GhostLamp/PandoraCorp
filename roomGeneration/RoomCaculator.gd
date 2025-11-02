@@ -4,7 +4,7 @@ class_name RoomCalculator
 var size:int  = 1
 var type:Vector2 = Vector2(1,1)
 var room_position: Array = []
-var door_positions:Array = []
+var door_positions:Array[Dictionary]
 var radius: int = 1
 var start_position:Vector2
 
@@ -27,7 +27,8 @@ func find_doors():
 	for i in room_position:
 		for f in 4:
 			var new_door = i+Vector2(cos(f*PI/2),sin(f*PI/2))
-			if new_door in room_position:
-				pass
-			else:
-				door_positions.append(new_door+(i))
+			if not (new_door in room_position):
+				if roundf(sin(f*PI/2)) != 0:
+					door_positions.append({"pos":new_door+(i),"side":true})
+					continue
+				door_positions.append({"pos":new_door+(i),"side":false})
