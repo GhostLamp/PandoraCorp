@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://explosion.gd" id="1_454kk"]
 [ext_resource type="Texture2D" uid="uid://bswv10n1fn3bj" path="res://pixel art/spritesheet.png" id="2_6moh7"]
-[ext_resource type="Texture2D" uid="uid://bwfgli1r6vrr1" path="res://pixel art/explosion.png" id="4_lt2f1"]
+[ext_resource type="PackedScene" uid="uid://cv21g76lngdft" path="res://explosion_particle.tscn" id="4_baada"]
 [ext_resource type="Shader" path="res://shockwave.gdshader" id="5_aepe1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b2gc"]
@@ -106,30 +106,6 @@ _data = {
 "boom": SubResource("Animation_gor3a")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fosfa"]
-particles_animation = true
-particles_anim_h_frames = 5
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_y47ts"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_uut4g"]
-gradient = SubResource("Gradient_y47ts")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2blae"]
-lifetime_randomness = 0.5
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 0.01
-spread = 180.0
-gravity = Vector3(0, -100, 0)
-scale_max = 1.5
-color_ramp = SubResource("GradientTexture1D_uut4g")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
 [sub_resource type="Curve" id="Curve_xjn4n"]
 min_value = -1.0
 _data = [Vector2(0, -0.00277972), 0.0, 0.0, 0, 0, Vector2(0.221476, -0.0364864), 0.0, 0.0, 0, 0, Vector2(0.583893, -0.00135124), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -147,6 +123,33 @@ shader_parameter/size = 0.0
 shader_parameter/thick = 0.2
 shader_parameter/curve = SubResource("CurveTexture_kunxd")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_07cth"]
+resource_local_to_scene = true
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_kbxvl"]
+offsets = PackedFloat32Array(0, 0.173913, 0.815217, 1)
+colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157, 0, 0, 0, 0.392157, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tkxrk"]
+gradient = SubResource("Gradient_kbxvl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xt00w"]
+resource_local_to_scene = true
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector3(0, -100, 0)
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_tkxrk")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [node name="shock_wave" type="Area2D"]
 collision_layer = 135
 collision_mask = 135
@@ -162,6 +165,7 @@ frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2b2gc")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -169,14 +173,6 @@ libraries = {
 "": SubResource("AnimationLibrary_dwgnk")
 }
 autoplay = "boom"
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_fosfa")
-amount = 1
-process_material = SubResource("ParticleProcessMaterial_2blae")
-texture = ExtResource("4_lt2f1")
-lifetime = 0.8
-explosiveness = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ymwd5")
@@ -190,6 +186,13 @@ offset_top = -704.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
+
+[node name="explosionParticle" parent="." instance=ExtResource("4_baada")]
+material = SubResource("CanvasItemMaterial_07cth")
+emitting = true
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_xt00w")
+one_shot = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

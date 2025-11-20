@@ -1,13 +1,16 @@
-[gd_scene load_steps=43 format=3 uid="uid://cg6xonvvpj6fr"]
+[gd_scene load_steps=47 format=3 uid="uid://cg6xonvvpj6fr"]
 
 [ext_resource type="Script" path="res://enemies/eyeguard.gd" id="1_w8x4m"]
 [ext_resource type="PackedScene" uid="uid://dtqshcltkvliw" path="res://enemy_bullet.tscn" id="2_3470f"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_xngco"]
+[ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="3_6ekgv"]
 [ext_resource type="Script" path="res://enemies/state_machine.gd" id="3_h16uu"]
 [ext_resource type="Script" path="res://actors/position_line.gd" id="3_ptwbb"]
 [ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="3_r2tdk"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="4_bj0fk"]
 [ext_resource type="Script" path="res://enemies/state_chasing.gd" id="4_gx2ys"]
 [ext_resource type="Script" path="res://actors/enemy_body.gd" id="4_met2q"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="5_dlv3l"]
 [ext_resource type="PackedScene" uid="uid://dorcbsanudkgh" path="res://States/burning.tscn" id="5_elaay"]
 [ext_resource type="Script" path="res://enemies/state_charging_bullet.gd" id="5_ldidp"]
 [ext_resource type="Texture2D" uid="uid://b6kgfx4egq7e2" path="res://pixel art/eyeguard.png" id="5_rsvlm"]
@@ -21,6 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="13_bqkw3"]
 [ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="13_udt57"]
 [ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="16_aglfn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3vqp"]
+shader = ExtResource("4_bj0fk")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
 
 [sub_resource type="Curve" id="Curve_tb32b"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.249, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(0.749, 0.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(0.99, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -315,6 +323,15 @@ barrel_origin = NodePath("nuzzelHolder/nuzzel")
 cost = 2.0
 damage = 10.0
 
+[node name="shadow" parent="." instance=ExtResource("3_6ekgv")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_e3vqp")
+position = Vector2(0, 304)
+scale = Vector2(2, -1)
+texture = ExtResource("5_dlv3l")
+
 [node name="position_line" type="Line2D" parent="." node_paths=PackedStringArray("main_part", "pos")]
 points = PackedVector2Array(0, 88, 0, 0)
 width_curve = SubResource("Curve_tb32b")
@@ -363,7 +380,6 @@ autostart = true
 [node name="status_manager" parent="." instance=ExtResource("2_xngco")]
 
 [node name="flamable_area" parent="." instance=ExtResource("3_r2tdk")]
-collision_mask = 8192
 burning = ExtResource("5_elaay")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="flamable_area"]

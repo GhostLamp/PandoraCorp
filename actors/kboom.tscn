@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=3 uid="uid://b6b47xs3351vu"]
+[gd_scene load_steps=164 format=3 uid="uid://b6b47xs3351vu"]
 
 [ext_resource type="Script" path="res://actors/player.gd" id="1_adfnf"]
 [ext_resource type="PackedScene" uid="uid://bvojy81fjgxbq" path="res://Items/tevii_specials/wall_bouncer.tscn" id="2_m6ydj"]
@@ -22,11 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://ut4sv0etowy2" path="res://pixel art/KboomSheet.png" id="12_xe05q"]
 [ext_resource type="Script" path="res://actors/falling.gd" id="13_hq7gg"]
 [ext_resource type="Script" path="res://actors/gun_maneger.gd" id="13_qkhlh"]
+[ext_resource type="Script" path="res://actors/stunned.gd" id="14_ouvpb"]
 [ext_resource type="PackedScene" uid="uid://b3g6p3txi2t3a" path="res://wearpons/pistol.tscn" id="14_xo2f4"]
 [ext_resource type="PackedScene" uid="uid://boayjfr6m6m7w" path="res://wearpons/shotgun.tscn" id="15_tklf8"]
 [ext_resource type="PackedScene" uid="uid://r1mp4rmj3yn" path="res://wearpons/katana.tscn" id="16_n5dxo"]
+[ext_resource type="Texture2D" uid="uid://cn683f0wjc4f3" path="res://pixel art/hammer_spin.png" id="17_4f5hb"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="17_eiqkh"]
 [ext_resource type="Script" path="res://actors/hud.gd" id="17_i0di3"]
 [ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="18_0a1bm"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="18_5sfm2"]
 [ext_resource type="Script" path="res://actors/timer.gd" id="19_0qtg4"]
 [ext_resource type="Texture2D" uid="uid://0u5hq5bysan" path="res://pixel art/combo_bar (2).png" id="20_2tdiw"]
 [ext_resource type="Texture2D" uid="uid://bibtaad78d2f6" path="res://pixel art/combo_fill.png" id="21_ja3j2"]
@@ -39,10 +43,7 @@
 [ext_resource type="FontFile" uid="uid://ce1ejb8vmlyof" path="res://GrapeSoda.ttf" id="27_33os6"]
 [ext_resource type="Texture2D" uid="uid://dgp4ducuq2u3b" path="res://pixel art/room_front.png" id="28_8jra4"]
 [ext_resource type="Texture2D" uid="uid://b3lbti8gejv55" path="res://side_bar.png" id="28_buwmm"]
-[ext_resource type="Texture2D" uid="uid://clpe5i3d27q3a" path="res://pixel art/Selection 2024-12-19T07.38.33.png" id="29_gvhji"]
-[ext_resource type="Texture2D" uid="uid://c58cnksvx1ol3" path="res://pixel art/Selection 2024-12-19T07.34.31.png" id="30_x8vmm"]
 [ext_resource type="Script" path="res://actors/adrenaline_buffer.gd" id="31_3ln7c"]
-[ext_resource type="Texture2D" uid="uid://xx4w13v5oe8t" path="res://pixel art/Selection 2024-12-19T07.34.19.png" id="32_cx4om"]
 [ext_resource type="Script" path="res://actors/fuel_counter.gd" id="33_icrr7"]
 [ext_resource type="Texture2D" uid="uid://dcee4ih8fx77h" path="res://ItemSlot1.png" id="34_feufq"]
 [ext_resource type="Texture2D" uid="uid://b5xykgfuehie2" path="res://ItemSlot2.png" id="35_u83h2"]
@@ -62,7 +63,10 @@
 [ext_resource type="PackedScene" uid="uid://c8mvclecndtut" path="res://actors/style_manger.tscn" id="45_lnepe"]
 [ext_resource type="Texture2D" uid="uid://vxq601jy53ty" path="res://pixel art/qtfo_bar.png" id="46_e3yck"]
 [ext_resource type="Texture2D" uid="uid://7aiepihaoxef" path="res://item_slot_bar.png" id="46_mrrjc"]
+[ext_resource type="Texture2D" uid="uid://cbao3r2boxwd5" path="res://pixel art/kboom_bar_back.png" id="47_8d3xv"]
+[ext_resource type="Texture2D" uid="uid://2xwll3dtf4d3" path="res://pixel art/kboom_bar_mid.png" id="48_sdvyp"]
 [ext_resource type="Texture2D" uid="uid://bot5yboag2kdx" path="res://Selection 2025-10-06T02.22.52.png" id="50_3kstg"]
+[ext_resource type="Texture2D" uid="uid://vtcgj6eab66u" path="res://pixel art/kboom_bar_front.png" id="50_opnpy"]
 [ext_resource type="Texture2D" uid="uid://bxdkyew1ftahk" path="res://Selection 2025-10-06T02.22.46.png" id="51_2kw6x"]
 
 [sub_resource type="Curve" id="Curve_x84er"]
@@ -72,6 +76,15 @@ point_count = 9
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bivcc"]
 radius = 64.0
 height = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02f5p"]
+shader = ExtResource("17_eiqkh")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+shader_parameter/color_swap = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8mx8"]
+radius = 239.893
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f4f34"]
 resource_local_to_scene = true
@@ -142,7 +155,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -156,6 +169,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Area2D/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_cmlfd"]
@@ -196,7 +221,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -226,7 +251,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -268,8 +293,20 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Area2D/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
 }
 
 [sub_resource type="Animation" id="Animation_n6pnk"]
@@ -297,7 +334,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -327,7 +364,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -369,7 +406,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -411,7 +448,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -453,7 +490,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -494,7 +531,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -535,7 +572,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -588,8 +625,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_muw6c"]
 resource_name = "swing_back"
-length = 0.4
-step = 0.0625
+length = 0.3
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -597,10 +634,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [31, 25, 27, 29]
+"values": [25, 27, 29]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -611,7 +648,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -629,7 +666,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_son5b"]
 resource_name = "swing_front"
-length = 0.4
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -638,10 +675,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [30, 24, 26, 28]
+"values": [24, 26, 28]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -652,7 +689,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/2/type = "value"
@@ -1052,9 +1089,6 @@ _data = {
 "lose": SubResource("Animation_1x7jj")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a8mx8"]
-radius = 112.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4yud"]
 radius = 64.0
 height = 192.0
@@ -1280,6 +1314,11 @@ position_smoothing_speed = 10.0
 [node name="player_state_machine" type="Node" parent="."]
 script = ExtResource("7_0j28h")
 
+[node name="slamming" type="Node" parent="player_state_machine"]
+script = ExtResource("11_8vyvj")
+shock_wave = ExtResource("4_48seq")
+stateName = "slamming"
+
 [node name="grounded" type="Node" parent="player_state_machine"]
 script = ExtResource("8_mygpp")
 stateName = "grounded"
@@ -1292,11 +1331,6 @@ stateName = "dashing"
 script = ExtResource("10_3646x")
 stateName = "airborn"
 
-[node name="slamming" type="Node" parent="player_state_machine"]
-script = ExtResource("11_8vyvj")
-shock_wave = ExtResource("4_48seq")
-stateName = "slamming"
-
 [node name="controlling" type="Node" parent="player_state_machine"]
 script = ExtResource("12_if7vh")
 stateName = "controlling"
@@ -1304,6 +1338,10 @@ stateName = "controlling"
 [node name="falling" type="Node" parent="player_state_machine"]
 script = ExtResource("13_hq7gg")
 stateName = "falling"
+
+[node name="stunned" type="Node" parent="player_state_machine"]
+script = ExtResource("14_ouvpb")
+stateName = "stunned"
 
 [node name="position_line" type="Line2D" parent="." node_paths=PackedStringArray("main_part", "pos")]
 points = PackedVector2Array(0, 88, 0, 0)
@@ -1320,13 +1358,34 @@ one_way_collision_margin = 0.0
 
 [node name="shadow" parent="." instance=ExtResource("7_dscu6")]
 position = Vector2(0, -40)
-wall_min_slide_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_02f5p")
+position = Vector2(0.270399, 128.26)
+scale = Vector2(1, -0.5)
+texture = ExtResource("18_5sfm2")
 
 [node name="body" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
 collision_layer = 320
 collision_mask = 320
 script = ExtResource("8_totln")
+
+[node name="Area2D" type="Area2D" parent="body"]
+visible = false
+scale = Vector2(0.667, 0.667)
+collision_layer = 2
+collision_mask = 6
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
+shape = SubResource("CircleShape2D_a8mx8")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="body/Area2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("17_4f5hb")
+hframes = 3
 
 [node name="animation_manager" type="Node2D" parent="body"]
 
@@ -1385,14 +1444,6 @@ adrenaline_cost = 35.0
 visible = false
 adrenaline_cost = 50.0
 
-[node name="Area2D" type="Area2D" parent="body"]
-collision_layer = 2
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
-shape = SubResource("CircleShape2D_a8mx8")
-disabled = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 shape = SubResource("CapsuleShape2D_k4yud")
 
@@ -1417,6 +1468,76 @@ position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
+
+[node name="SpcSpriteHolder" type="Node2D" parent="CanvasLayer"]
+position = Vector2(0, -24)
+scale = Vector2(0.5, 0.5)
+
+[node name="slot" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+position = Vector2(188, 1204)
+texture = ExtResource("34_feufq")
+
+[node name="slot2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+position = Vector2(188, 1444)
+texture = ExtResource("35_u83h2")
+
+[node name="slot3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+position = Vector2(188, 1684)
+texture = ExtResource("36_yyp8t")
+
+[node name="item" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+position = Vector2(188, 1204)
+scale = Vector2(2, 2)
+texture = ExtResource("37_vrd3m")
+region_enabled = true
+region_rect = Rect2(464, 188, 80, 84)
+
+[node name="item2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+position = Vector2(188, 1444)
+scale = Vector2(2, 2)
+texture = ExtResource("37_vrd3m")
+region_enabled = true
+region_rect = Rect2(556, 192, 84, 76)
+
+[node name="item3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
+visible = false
+position = Vector2(188, 1684)
+scale = Vector2(2, 2)
+texture = ExtResource("37_vrd3m")
+region_enabled = true
+region_rect = Rect2(96, 188, 84, 84)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
+modulate = Color(1, 0.85098, 0, 1)
+offset_left = 72.0
+offset_top = 1088.0
+offset_right = 188.0
+offset_bottom = 1204.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("46_mrrjc")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
+modulate = Color(1, 0.85098, 0, 1)
+offset_left = 72.0
+offset_top = 1328.0
+offset_right = 188.0
+offset_bottom = 1444.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("46_mrrjc")
+
+[node name="TextureProgressBar3" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
+modulate = Color(1, 0.85098, 0, 1)
+offset_left = 72.0
+offset_top = 1568.0
+offset_right = 188.0
+offset_bottom = 1684.0
+scale = Vector2(2, 2)
+fill_mode = 4
+texture_progress = ExtResource("46_mrrjc")
 
 [node name="HUD" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("timer_label", "timer_lost", "combo_label")]
 scale = Vector2(0.5, 0.5)
@@ -1530,7 +1651,15 @@ position = Vector2(412, 1908)
 scale = Vector2(2, 2)
 texture = ExtResource("28_buwmm")
 
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/HUD"]
+z_index = 1
+position = Vector2(176, 1844)
+texture = ExtResource("41_pe5io")
+hframes = 2
+frame = 1
+
 [node name="adrenaline_buffer" type="TextureProgressBar" parent="CanvasLayer/HUD"]
+z_index = 1
 offset_top = 2008.0
 offset_right = 848.0
 offset_bottom = 2160.0
@@ -1538,11 +1667,12 @@ min_value = -3.0
 max_value = 103.0
 step = 0.0
 value = 103.0
-texture_under = ExtResource("29_gvhji")
-texture_progress = ExtResource("30_x8vmm")
+texture_under = ExtResource("47_8d3xv")
+texture_progress = ExtResource("48_sdvyp")
 script = ExtResource("31_3ln7c")
 
 [node name="adrenaline_bar" type="TextureProgressBar" parent="CanvasLayer/HUD"]
+z_index = 1
 offset_top = 2008.0
 offset_right = 848.0
 offset_bottom = 2160.0
@@ -1550,7 +1680,7 @@ min_value = -3.0
 max_value = 103.0
 step = 0.0
 value = 103.0
-texture_progress = ExtResource("32_cx4om")
+texture_progress = ExtResource("50_opnpy")
 
 [node name="fuel_counter" type="Node" parent="CanvasLayer/HUD" node_paths=PackedStringArray("node_2d")]
 script = ExtResource("33_icrr7")
@@ -1596,76 +1726,6 @@ libraries = {
 "": SubResource("AnimationLibrary_femd0")
 }
 
-[node name="SpcSpriteHolder" type="Node2D" parent="CanvasLayer"]
-position = Vector2(0, -24)
-scale = Vector2(0.5, 0.5)
-
-[node name="slot" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(188, 1204)
-texture = ExtResource("34_feufq")
-
-[node name="slot2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(188, 1444)
-texture = ExtResource("35_u83h2")
-
-[node name="slot3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(188, 1684)
-texture = ExtResource("36_yyp8t")
-
-[node name="item" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(188, 1204)
-scale = Vector2(2, 2)
-texture = ExtResource("37_vrd3m")
-region_enabled = true
-region_rect = Rect2(464, 188, 80, 84)
-
-[node name="item2" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-position = Vector2(188, 1444)
-scale = Vector2(2, 2)
-texture = ExtResource("37_vrd3m")
-region_enabled = true
-region_rect = Rect2(556, 192, 84, 76)
-
-[node name="item3" type="Sprite2D" parent="CanvasLayer/SpcSpriteHolder"]
-visible = false
-position = Vector2(188, 1684)
-scale = Vector2(2, 2)
-texture = ExtResource("37_vrd3m")
-region_enabled = true
-region_rect = Rect2(96, 188, 84, 84)
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
-modulate = Color(1, 0.85098, 0, 1)
-offset_left = 72.0
-offset_top = 1088.0
-offset_right = 188.0
-offset_bottom = 1204.0
-scale = Vector2(2, 2)
-value = 100.0
-fill_mode = 4
-texture_progress = ExtResource("46_mrrjc")
-
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
-modulate = Color(1, 0.85098, 0, 1)
-offset_left = 72.0
-offset_top = 1328.0
-offset_right = 188.0
-offset_bottom = 1444.0
-scale = Vector2(2, 2)
-value = 100.0
-fill_mode = 4
-texture_progress = ExtResource("46_mrrjc")
-
-[node name="TextureProgressBar3" type="TextureProgressBar" parent="CanvasLayer/SpcSpriteHolder"]
-modulate = Color(1, 0.85098, 0, 1)
-offset_left = 72.0
-offset_top = 1568.0
-offset_right = 188.0
-offset_bottom = 1684.0
-scale = Vector2(2, 2)
-fill_mode = 4
-texture_progress = ExtResource("46_mrrjc")
-
 [node name="GUI" type="Node2D" parent="CanvasLayer"]
 position = Vector2(0, -24)
 scale = Vector2(0.5, 0.5)
@@ -1706,13 +1766,6 @@ value = 6.0
 fill_mode = 3
 texture_under = ExtResource("50_3kstg")
 texture_progress = ExtResource("51_2kw6x")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(88, 922)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("41_pe5io")
-hframes = 2
-frame = 1
 
 [node name="health" parent="." instance=ExtResource("42_m8eaf")]
 

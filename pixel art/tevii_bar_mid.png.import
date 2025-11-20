@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xx4w13v5oe8t"
-path="res://.godot/imported/Selection 2024-12-19T07.34.19.png-98b6d407ddda91ba175c86568d9761fa.ctex"
+uid="uid://c58cnksvx1ol3"
+path="res://.godot/imported/tevii_bar_mid.png-9b70007f8991dd6620a284ef93cb1c8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixel art/Selection 2024-12-19T07.34.19.png"
-dest_files=["res://.godot/imported/Selection 2024-12-19T07.34.19.png-98b6d407ddda91ba175c86568d9761fa.ctex"]
+source_file="res://pixel art/tevii_bar_mid.png"
+dest_files=["res://.godot/imported/tevii_bar_mid.png-9b70007f8991dd6620a284ef93cb1c8a.ctex"]
 
 [params]
 

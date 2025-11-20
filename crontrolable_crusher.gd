@@ -35,6 +35,7 @@ func end(player: Player):
 	navegation_deleter.monitoring = false
 	player.player_state_machine.force_swap("grounded")
 	player.camera_manager.target = player
+	player.addExtra("gamer")
 	interactable = false
 	active = false
 
@@ -44,7 +45,7 @@ func _process(delta: float) -> void:
 	
 	direction = Input.get_vector("left", "right", "up", "down")
 	if direction:
-		crusher.velocity = crusher.velocity.move_toward(800*direction , (400)*delta )
+		crusher.velocity = crusher.velocity.move_toward(1200*direction , (600)*delta )
 	
 	
 	else:

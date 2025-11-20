@@ -11,9 +11,7 @@ extends Enemy
 @onready var nuzzel_holder: Node2D = $nuzzelHolder
 @onready var anim_tree = $body/anim_maneger/AnimationTree
 @onready var collision = $CollisionShape2D2
-@onready var status_maneger = $status_manager
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var status_manager: Node2D = $status_manager2
 
 
 
@@ -29,8 +27,7 @@ func _process(delta):
 	
 	move_and_slide()
 
-func _physics_process(_delta):
-	animate()
+
 
 func flipping():
 	var mouse = (next_path_position - global_position).normalized()

@@ -27,3 +27,10 @@ func on_player_damaged(_player:Player):
 
 func on_reload(_player:Player,_ammo,_max_ammo):
 	pass
+
+func on_dash_hit(_player:Player):
+	pass
+
+func on_combo_gain(_player:Player):
+	
+	pass

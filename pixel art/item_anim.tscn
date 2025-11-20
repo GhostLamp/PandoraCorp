@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://co6aj8n4fsxyf"]
+
+[ext_resource type="Texture2D" uid="uid://b4vvo6s1nt0uu" path="res://pixel art/pole_launch.png" id="1_7acbf"]
+
+[sub_resource type="Animation" id="Animation_ycpw2"]
+resource_name = "spawn"
+length = 0.312506
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_kd3cn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qnolb"]
+_data = {
+"RESET": SubResource("Animation_kd3cn"),
+"spawn": SubResource("Animation_ycpw2")
+}
+
+[node name="ItemAnim" type="Sprite2D"]
+texture = ExtResource("1_7acbf")
+hframes = 2
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qnolb")
+}
+autoplay = "spawn"

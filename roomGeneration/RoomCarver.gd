@@ -20,15 +20,10 @@ func makeRoom():
 
 
 func carve_room():
-	var roomx = roomToCreate.type.x
-	var roomy = roomToCreate.type.y
-	var size = Vector2(roomToCreate.size*roomx + roomx -2,roomToCreate.size*roomy + roomy -2).ceil()
+	var size = Vector2(roomToCreate.size*roomToCreate.type.x -1,roomToCreate.size*roomToCreate.type.y -1).ceil()
 	var top_left_corner = (roomToCreate.start_position - Vector2(roomToCreate.radius,roomToCreate.radius)).ceil()
 	
-	if roomx>1:
-		size.x -=1
-	if roomy>1:
-		size.y -=1
+	
 	
 	
 	for y in size.y:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdktll1tu4chu"]
+[gd_scene load_steps=19 format=3 uid="uid://cdktll1tu4chu"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_fgeo2"]
 [ext_resource type="Resource" uid="uid://dtkukxxqea302" path="res://roomGeneration/pandora_factory/1-1.tres" id="2_hjrw7"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cl8qjdcc8dxux" path="res://audio/airshipfort2.mp3" id="9_ymga3"]
 [ext_resource type="PackedScene" uid="uid://c6jfakk5qdnhw" path="res://chair.tscn" id="10_131n2"]
 [ext_resource type="Script" path="res://camera_maneger.gd" id="11_ln3e3"]
+[ext_resource type="PackedScene" uid="uid://dscnt372noah7" path="res://minimap_layer.tscn" id="13_560n7"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_mlxrs"]
 scenes/1/scene = ExtResource("10_131n2")
@@ -90,3 +91,5 @@ script = ExtResource("11_ln3e3")
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="MinimapLayer" parent="." instance=ExtResource("13_560n7")]

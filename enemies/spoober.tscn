@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cvr6l6f0i3pxl"]
+[gd_scene load_steps=59 format=3 uid="uid://cvr6l6f0i3pxl"]
 
 [ext_resource type="Script" path="res://enemies/spoober.gd" id="1_8skbn"]
 [ext_resource type="Texture2D" uid="uid://c7ivg1mbs3osx" path="res://pixel art/spoober_sheet.png" id="2_kmf54"]
@@ -7,11 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://caa8xnoi5y7ln" path="res://actors/health.tscn" id="3_a5u88"]
 [ext_resource type="Script" path="res://actors/position_line.gd" id="3_gn2nw"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="3_n5n5t"]
+[ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="3_no2ud"]
 [ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="3_nuu5d"]
 [ext_resource type="Script" path="res://enemies/state_chasing.gd" id="4_2uyac"]
 [ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="4_bwj06"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="4_qywco"]
 [ext_resource type="Script" path="res://actors/enemy_body.gd" id="4_uc8o4"]
 [ext_resource type="Script" path="res://enemies/state_charging_melee.gd" id="5_f1nqp"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="5_yc85f"]
 [ext_resource type="Shader" path="res://actors/damage.gdshader" id="6_avawq"]
 [ext_resource type="Script" path="res://enemies/state_airborn.gd" id="6_j8nu5"]
 [ext_resource type="Script" path="res://enemies/state_dashing_attack.gd" id="7_qpk4p"]
@@ -19,6 +22,11 @@
 [ext_resource type="Script" path="res://enemies/state_stunned.gd" id="8_o402d"]
 [ext_resource type="PackedScene" uid="uid://dorcbsanudkgh" path="res://States/burning.tscn" id="9_badtp"]
 [ext_resource type="Theme" uid="uid://ca0ew121r0sxm" path="res://danger.tres" id="10_85f6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0b1t"]
+shader = ExtResource("4_qywco")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
 
 [sub_resource type="Curve" id="Curve_a6cvq"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.249, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(0.749, 0.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(0.99, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -525,6 +533,15 @@ ghost = ExtResource("2_qhdi0")
 char_color = Color(1, 0, 0, 1)
 damage = 20.0
 
+[node name="shadow" parent="." instance=ExtResource("3_no2ud")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_m0b1t")
+position = Vector2(0, 224)
+scale = Vector2(2, -1)
+texture = ExtResource("5_yc85f")
+
 [node name="position_line" type="Line2D" parent="." node_paths=PackedStringArray("main_part", "pos")]
 points = PackedVector2Array(0, 88, 0, 0)
 width_curve = SubResource("Curve_a6cvq")
@@ -667,7 +684,6 @@ one_shot = true
 autostart = true
 
 [node name="flamable_area" parent="." instance=ExtResource("8_kqqg1")]
-collision_mask = 8192
 burning = ExtResource("9_badtp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="flamable_area"]

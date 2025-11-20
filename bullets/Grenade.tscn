@@ -4,12 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="2_fix0b"]
 [ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="3_dwwdw"]
 [ext_resource type="Script" path="res://actors/body.gd" id="4_47yq8"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="4_3250q"]
 [ext_resource type="PackedScene" uid="uid://dars5mmvvhu6t" path="res://actors/trail.tscn" id="5_gviqp"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="5_mhi68"]
 [ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="6_5bjmm"]
 [ext_resource type="Texture2D" uid="uid://bfqcqaqg6bviu" path="res://pixel art/shotgun.png" id="7_e3mcg"]
 [ext_resource type="AudioStream" uid="uid://c2jarkoqqjsrm" path="res://audio/gas_hit.wav" id="8_7jx4n"]
 [ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="9_rc6yu"]
 [ext_resource type="PackedScene" uid="uid://dgrcmjr4ncv02" path="res://actors/hit_area.tscn" id="10_owsn0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxh8g"]
+shader = ExtResource("4_3250q")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+shader_parameter/color_swap = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q1k3"]
 
@@ -22,16 +30,6 @@ radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7i86m"]
 radius = 12.0
-
-[sub_resource type="Animation" id="Animation_6dcfy"]
-resource_name = "spinout"
-length = 0.7
-step = 0.05
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8p5l"]
-_data = {
-"spinout": SubResource("Animation_6dcfy")
-}
 
 [sub_resource type="Animation" id="Animation_xqqpq"]
 length = 0.001
@@ -72,9 +70,6 @@ _data = {
 "amin": SubResource("Animation_eyeb3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_blmap"]
-size = Vector2(96, 20)
-
 [node name="grenade" type="CharacterBody2D"]
 visibility_layer = 2
 z_index = 1
@@ -87,11 +82,16 @@ explosion = ExtResource("2_fix0b")
 
 [node name="shadow" parent="." instance=ExtResource("3_dwwdw")]
 scale = Vector2(0.5, 0.5)
-wall_min_slide_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_dxh8g")
+position = Vector2(0, 48)
+scale = Vector2(1, -0.5)
+texture = ExtResource("5_mhi68")
 
 [node name="body" type="CharacterBody2D" parent="."]
-collision_layer = 4096
-collision_mask = 4096
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("4_47yq8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
@@ -121,11 +121,6 @@ one_shot = true
 [node name="speed" parent="." instance=ExtResource("6_5bjmm")]
 speed = 2500.0
 
-[node name="spinner" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_v8p5l")
-}
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_e3mcg")
@@ -149,13 +144,5 @@ collision_mask = 32
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_6op6s")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 4096
-collision_mask = 4096
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 72)
-shape = SubResource("RectangleShape2D_blmap")
 
 [connection signal="timeout" from="kill_timer" to="." method="_on_kill_timer_timeout"]

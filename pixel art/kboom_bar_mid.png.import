@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c58cnksvx1ol3"
-path="res://.godot/imported/Selection 2024-12-19T07.34.31.png-99024853998b1ee60a7c8fa036cda813.ctex"
+uid="uid://2xwll3dtf4d3"
+path="res://.godot/imported/kboom_bar_mid.png-cba5ec2ace13a1e78959fa00062a1728.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixel art/Selection 2024-12-19T07.34.31.png"
-dest_files=["res://.godot/imported/Selection 2024-12-19T07.34.31.png-99024853998b1ee60a7c8fa036cda813.ctex"]
+source_file="res://pixel art/kboom_bar_mid.png"
+dest_files=["res://.godot/imported/kboom_bar_mid.png-cba5ec2ace13a1e78959fa00062a1728.ctex"]
 
 [params]
 

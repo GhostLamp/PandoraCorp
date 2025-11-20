@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://mcgylmyfq533"]
+
+[ext_resource type="Script" path="res://enemy_projectile.gd" id="1_s6rjf"]
+[ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_wnfqq"]
+[ext_resource type="PackedScene" uid="uid://sltxkgybombj" path="res://Stats/speed.tscn" id="3_vuukq"]
+[ext_resource type="PackedScene" uid="uid://g57ejr7n7epa" path="res://States/parry_area.tscn" id="4_tiq1k"]
+[ext_resource type="Texture2D" uid="uid://bmlbiisfulxrs" path="res://pixel art/Selection 2025-11-12T15.50.53.png" id="5_dt12s"]
+[ext_resource type="Script" path="res://actors/body.gd" id="6_g3p4e"]
+[ext_resource type="PackedScene" uid="uid://dars5mmvvhu6t" path="res://actors/trail.tscn" id="7_cs6ts"]
+[ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="8_rheca"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="9_68s7e"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="10_bxx05"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxka"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mumms"]
+size = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0dv8"]
+
+[sub_resource type="Curve" id="Curve_7j61g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b13b"]
+size = Vector2(30, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur0rk"]
+shader = ExtResource("9_68s7e")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+
+[node name="enemy_projectile" type="CharacterBody2D" node_paths=PackedStringArray("status_manager")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_s6rjf")
+status_manager = NodePath("status_manager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ktxka")
+
+[node name="status_manager" parent="." instance=ExtResource("2_wnfqq")]
+
+[node name="speed" parent="." instance=ExtResource("3_vuukq")]
+speed = 2000.0
+
+[node name="parry_area" parent="." instance=ExtResource("4_tiq1k")]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="parry_area"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_mumms")
+
+[node name="body" type="CharacterBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("6_g3p4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+shape = SubResource("RectangleShape2D_y0dv8")
+
+[node name="trail" parent="body" instance=ExtResource("7_cs6ts")]
+points = PackedVector2Array(0, 0)
+width_curve = SubResource("Curve_7j61g")
+default_color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="body" groups=["projectile"]]
+collision_layer = 64
+collision_mask = 64
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
+shape = SubResource("RectangleShape2D_0b13b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dt12s")
+region_enabled = true
+region_rect = Rect2(304, 568, 104, 104)
+
+[node name="kill_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="shadow" parent="." instance=ExtResource("8_rheca")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_ur0rk")
+position = Vector2(0, 48)
+scale = Vector2(1, -0.5)
+texture = ExtResource("10_bxx05")
+
+[connection signal="area_entered" from="body/Area2D" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="body/Area2D" to="." method="_on_area_2d_body_entered"]

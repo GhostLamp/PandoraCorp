@@ -9,5 +9,4 @@ func state_process(delta:float):
 	if parent.charge_level >= 2:
 		swapState("attacking")
 	
-	
 	parent.flipping()

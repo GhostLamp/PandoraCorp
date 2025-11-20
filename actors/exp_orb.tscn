@@ -22,7 +22,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1)
 offsets = PackedFloat32Array(0, 0.630435, 0.757246, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.576265, 0.464418, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mmqor"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j5afc"]
 gradient = SubResource("Gradient_gc72b")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ftp86"]
@@ -41,7 +41,7 @@ tangential_accel_min = -30.0
 tangential_accel_max = 30.0
 scale_min = 15.0
 scale_max = 15.0
-color_ramp = SubResource("GradientTexture1D_mmqor")
+color_ramp = SubResource("GradientTexture1D_j5afc")
 
 [node name="ExpOrb" type="CharacterBody2D"]
 collision_layer = 0

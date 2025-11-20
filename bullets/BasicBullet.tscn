@@ -75,7 +75,6 @@ scale = Vector2(10, 10)
 texture = ExtResource("8_b138g")
 
 [node name="flamable_area" parent="." instance=ExtResource("7_1fuyt")]
-collision_mask = 8192
 burning = ExtResource("3_5rnuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flamable_area"]

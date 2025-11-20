@@ -59,6 +59,8 @@ func parry(gun_direction, parry_force):
 	damage = damage * parry_force
 	kill_timer.start()
 
+func add_effect(effect):
+	status_manager.new_effect(effect)
 
 func die():
 	queue_free()

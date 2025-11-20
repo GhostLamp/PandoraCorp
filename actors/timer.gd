@@ -5,6 +5,7 @@ class_name stopwatch
 @onready var wait_time = $wait_time
 
 @export var time = 0.0
+@export var total_time = 0.0
 var time_drain = 0.0
 var stopped = false
 @export var time_lost = 5.0
@@ -13,6 +14,7 @@ signal time_changed
 
 func _ready() -> void:
 	time *= 60
+	total_time *= 60
 
 
 func _process(delta: float) -> void:
@@ -22,13 +24,14 @@ func _process(delta: float) -> void:
 	drain(delta)
 	
 	time -= delta
+	total_time -= delta
 	time = clamp(time,0,99999999)
 
 func drain(delta):
 	if wait_time.is_stopped():
 		if time_drain > 0:
-			time_drain -= delta*time_lost
-			time -= delta*time_lost
+			time_drain -= delta*(1 + time_drain)*time_lost
+			time -= delta*(1 + time_drain)*time_lost
 
 func damaged(damage):
 	time_drain += damage

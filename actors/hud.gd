@@ -9,7 +9,6 @@ extends Node2D
 @onready var timer_wait_time = $timer/wait_time
 @onready var combo_bar: TextureProgressBar = $combo_bar
 
-
 func _process(_delta: float) -> void:
 	update_timer()
 	update_combo()
@@ -20,6 +19,7 @@ func update_timer():
 func update_combo():
 	combo_bar.value = combo_counter.combo_time_left()%100
 	combo_label.text = combo_counter.combo_left()
+	
 
 
 func _on_wait_time_timeout() -> void:

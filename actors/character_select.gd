@@ -3,6 +3,11 @@ extends Node2D
 @onready var next: Button = $next
 @onready var pallate_author: Label = $Panel/pallate_author
 @onready var character_name: Label = $Panel/character_name
+@onready var specialtext: Sprite2D = $Panel/SpecialSprite/specialtext
+@onready var special_2_text: Sprite2D = $Panel/SpecialSprite2/special2text
+@onready var specialdescr: Label = $Panel/SpecialSprite/specialdescr
+@onready var special_2_descr: Label = $Panel/SpecialSprite2/special2descr
+
 
 var tween:Tween
 var bru = load("res://world.gd")
@@ -34,6 +39,11 @@ func selectCharacter(charSel:CharSelButton):
 	names = charSel.names
 	authors = charSel.authors
 	current_palette = 0
+	specialtext.region_rect = charSel.Special1Region
+	special_2_text.region_rect = charSel.Special2Region
+	specialdescr.text = charSel.Special1Descr
+	special_2_descr.text = charSel.Special2Descr
+	
 	next.disabled = false
 	next.visible = true
 	setPalette()
@@ -72,19 +82,9 @@ func _on_next_pressed() -> void:
 	PlayerHolder.paletts = paletts
 	PlayerHolder.current_palette = current_palette
 	
-	if tween:
-		tween.kill()
-	tween = get_tree().create_tween()
+	await HitstopEfect.swap_to_level_in()
 	
-	var world = load("res://world.gd")
-	for i in stuff.size():
-		if stuff[i] == $Panel:
-			tween.tween_property(stuff[i],"position",stuff[i].position+ Vector2(0,1500),0.5).set_trans(Tween.TRANS_CUBIC)
-			continue
-		tween.set_parallel().tween_property(stuff[i],"position",stuff[i].position+ Vector2(0,1500),0.5).set_trans(Tween.TRANS_CUBIC).set_delay(0.1*i)
-	
-	tween.set_parallel(false).tween_callback(change_to_world)
-
+	change_to_world()
 func change_to_world():
 	get_tree().change_scene_to_file("res://world.tscn")
 

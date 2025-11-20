@@ -6,8 +6,8 @@ func state_process(_delta):
 	await get_tree().create_timer(_delta).timeout
 	parent.anim_tree["parameters/conditions/attacking"] = false
 	for i in parent.bullet_count:
-		var new_bullet = parent.bullet.instantiate()
-		new_bullet.position = parent.barrel_origin.global_position if parent.barrel_origin else parent.global_position
+		var new_bullet:Bullet = parent.bullet.instantiate()
+		new_bullet.global_position = parent.barrel_origin.global_position if parent.barrel_origin else parent.global_position
 		new_bullet.damage = parent.damage
 		if parent.bullet_count == 1:
 			new_bullet.rotation = parent.barrel_origin.global_rotation

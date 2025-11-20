@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ch1goftlgxwa2"]
 
-[ext_resource type="Script" path="res://sheriff_star.gd" id="1_xmvnd"]
+[ext_resource type="Script" path="res://Items/kboom_specials/sheriff_star.gd" id="1_xmvnd"]
 [ext_resource type="PackedScene" uid="uid://06w4stx0t306" path="res://Items/kboom_specials/Star.tscn" id="2_2h34q"]
 
 [node name="SheriffStar" type="Node2D" node_paths=PackedStringArray("special_cooldown")]

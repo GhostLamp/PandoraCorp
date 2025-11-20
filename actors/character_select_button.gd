@@ -6,6 +6,11 @@ class_name CharSelButton
 @export var names:Array[String]
 @export var authors:Array[String]
 @export var sprite: Sprite2D
+@export var Special1Region:Rect2
+@export_multiline var Special1Descr:String
+@export var Special2Region:Rect2
+@export_multiline var Special2Descr:String
+
 
 
 var selected:bool = false
@@ -13,6 +18,11 @@ var selected:bool = false
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	button_down.connect(select)
+	var special_sprite: Panel = $"../Panel/SpecialSprite"
+	var special_sprite_2: Panel = $"../Panel/SpecialSprite2"
+	
+	special_sprite.position.x -= 300
+	special_sprite_2.position.x -= 300
 
 func _on_mouse_entered() -> void:
 	var children = get_parent().get_children()
@@ -54,3 +64,13 @@ func select():
 	selected = true
 	_on_mouse_entered()
 	get_parent().selectCharacter(self)
+	
+	var special_sprite: Panel = $"../Panel/SpecialSprite"
+	var special_sprite_2: Panel = $"../Panel/SpecialSprite2"
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(special_sprite,"position",Vector2(328,89),0.1).set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel().tween_property(special_sprite_2,"position",Vector2(328,314),0.1).set_trans(Tween.TRANS_CUBIC)
+	
+	tween.tween_property(special_sprite,"position",Vector2(728,89),0.2).set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel().tween_property(special_sprite_2,"position",Vector2(728,314),0.2).set_trans(Tween.TRANS_CUBIC)

@@ -16,6 +16,9 @@ func _ready() -> void:
 func state_process(_delta:float):
 	pass
 
+func state_physics_process(_delta:float):
+	pass
+
 func state_enter():
 	pass
 

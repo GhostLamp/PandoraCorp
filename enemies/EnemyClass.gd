@@ -7,11 +7,12 @@ signal style
 @onready var health_stat:Health = $health
 @onready var knock_down:Timer = $knock_down
 @onready var speed_stat:SpeedStat = $speed
-@onready var pos = $body
+@onready var pos:CharacterBody2D = $body
 @onready var anim = $body/anim_maneger
 @onready var ghost_timer = $ghost_timer
 @onready var state_machine: StateMachine = $stateMachine
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var status_manager = $status_manager
 
 @export var ghost : PackedScene
 @onready var anim_sprite: Sprite2D = $body/anim_maneger/Sprite2D
@@ -44,6 +45,15 @@ func _ready() -> void:
 	next_path_position = position
 	spawning()
 
+func add_effect(effect):
+	status_manager.new_effect(effect)
+
+func _physics_process(delta):
+	state_machine.state_physics_process(delta)
+	animate()
+
+func animate():
+	pass
 
 func handle_hit(attack: Attack):
 	hit_anim.play("hit")
@@ -52,6 +62,7 @@ func handle_hit(attack: Attack):
 	
 	if health_stat.health > 0:
 		health_stat.health -= attack.damage
+		pos.velocity.y *= 0
 		if attack.direction != Vector2(0,0):
 			knock_down.start()
 			last_knokbacck = attack.direction

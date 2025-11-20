@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://deasprax4y5r6"]
+[gd_scene load_steps=37 format=3 uid="uid://deasprax4y5r6"]
 
 [ext_resource type="Script" path="res://objects/chest.gd" id="1_wipen"]
 [ext_resource type="PackedScene" uid="uid://cjncsqrktcsaa" path="res://States/status_manager.tscn" id="2_4jef8"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://objects/chestLoot/expLoot.gd" id="18_3dpro"]
 [ext_resource type="Script" path="res://objects/chestLoot/itemLoot.gd" id="18_gqa8w"]
 [ext_resource type="Script" path="res://objects/chestLoot/activeLoot.gd" id="18_reuff"]
+[ext_resource type="Resource" uid="uid://bchu77or467tx" path="res://Items/resources/MightyFnHammer.tres" id="19_a7nnu"]
 [ext_resource type="Shader" path="res://actors/palette_swap.gdshader" id="22_juevw"]
 [ext_resource type="Texture2D" uid="uid://bdavv2120vocc" path="res://pixel art/pandoraCorpTilles.png" id="23_t0bhf"]
 
@@ -34,7 +35,7 @@ chance = 5.0
 
 [sub_resource type="Resource" id="Resource_p8fg3"]
 script = ExtResource("18_gqa8w")
-reward = Array[ExtResource("7_1hyl1")]([ExtResource("8_i3414"), ExtResource("9_sqyut"), ExtResource("10_3i1kv"), ExtResource("11_oqi4n"), ExtResource("12_5tvex"), ExtResource("13_3isd6"), ExtResource("14_essbn"), ExtResource("15_i24x3"), ExtResource("16_uap1t"), ExtResource("17_1mh8k")])
+reward = Array[ExtResource("7_1hyl1")]([ExtResource("8_i3414"), ExtResource("9_sqyut"), ExtResource("10_3i1kv"), ExtResource("11_oqi4n"), ExtResource("12_5tvex"), ExtResource("13_3isd6"), ExtResource("14_essbn"), ExtResource("15_i24x3"), ExtResource("16_uap1t"), ExtResource("17_1mh8k"), ExtResource("19_a7nnu")])
 chance = 30.0
 
 [sub_resource type="Resource" id="Resource_372jv"]
@@ -55,6 +56,7 @@ shader = ExtResource("22_juevw")
 shader_parameter/shader_color = Color(1, 0, 0, 1)
 shader_parameter/alpha = 0.0
 shader_parameter/whitedout = null
+shader_parameter/shadowing = null
 shader_parameter/original_0 = Color(0.227451, 0.266667, 0.4, 1)
 shader_parameter/replace_0 = Color(0, 0, 0, 1)
 shader_parameter/original_1 = Color(0.352941, 0.411765, 0.533333, 1)

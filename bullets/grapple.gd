@@ -1,8 +1,9 @@
-extends Projectile
+extends Bullet
 class_name Grapple
 var pulling = false
 var realing = false
 var dire
+var dono:Array = []
 var attached = []
 var startTimer = 0.1
 @onready var player_dector: Area2D = $player_dector
@@ -11,7 +12,6 @@ var startTimer = 0.1
 
 func _ready():
 	direction = Vector2.RIGHT.rotated(global_rotation)
-	speed = (((target.x - position.x)**2 + (target.y - position.y)**2)**0.5)*4
 	speed = 4000
 
 

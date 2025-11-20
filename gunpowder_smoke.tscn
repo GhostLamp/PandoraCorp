@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://jgssram82s8u"]
+
+[ext_resource type="Script" path="res://gunpowder_smoke.gd" id="1_12wqy"]
+[ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="1_eqgpe"]
+[ext_resource type="PackedScene" uid="uid://y4hc2jjwm7ot" path="res://explosion.tscn" id="2_ucoay"]
+[ext_resource type="PackedScene" uid="uid://13vhve2al7ld" path="res://States/flamable_area.tscn" id="4_co5us"]
+[ext_resource type="PackedScene" uid="uid://dorcbsanudkgh" path="res://States/burning.tscn" id="5_542d5"]
+
+[sub_resource type="Gradient" id="Gradient_cpc3h"]
+offsets = PackedFloat32Array(0, 0.427536, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.054902, 0.054902, 0.054902, 0.188235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mmqor"]
+gradient = SubResource("Gradient_cpc3h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_na47u"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 56.76
+linear_accel_max = 100.0
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = 100.0
+tangential_accel_max = 100.0
+scale_min = 300.0
+scale_max = 400.0
+scale_over_velocity_max = 400.0
+color_ramp = SubResource("GradientTexture1D_mmqor")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5edv"]
+radius = 188.043
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bta6k"]
+radius = 188.043
+
+[node name="GunpowderSmoke" type="Node2D"]
+z_index = 1
+script = ExtResource("1_12wqy")
+explosion = ExtResource("2_ucoay")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+process_material = SubResource("ParticleProcessMaterial_na47u")
+texture = ExtResource("1_eqgpe")
+speed_scale = 1.73
+visibility_rect = Rect2(-800, -800, 800, 800)
+
+[node name="flamable_area" parent="." instance=ExtResource("4_co5us")]
+collision_layer = 8192
+burning = ExtResource("5_542d5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flamable_area"]
+shape = SubResource("CircleShape2D_x5edv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bta6k")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

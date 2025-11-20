@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GunpowderSmoke" load_steps=4 format=3 uid="uid://dygbj7nnjdib8"]
+
+[ext_resource type="PackedScene" uid="uid://jgssram82s8u" path="res://gunpowder_smoke.tscn" id="1_camph"]
+[ext_resource type="Script" path="res://Items/script/GunpowderSmoke.gd" id="1_dx14j"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_32221"]
+
+[resource]
+script = ExtResource("1_dx14j")
+texture = ExtResource("2_32221")
+scene = ExtResource("1_camph")
+item_region = Rect2(560, 120, 76, 60)
+name = "Gunpowder Smoke"
+activation = "5 combo gain"
+descripition = "places smoke that will 
+explode if hit with fire"

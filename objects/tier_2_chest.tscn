@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cu6b4nmm41jpn"]
+[gd_scene load_steps=29 format=3 uid="uid://cu6b4nmm41jpn"]
 
 [ext_resource type="Script" path="res://objects/chest.gd" id="1_4kr2q"]
 [ext_resource type="Script" path="res://objects/chestLoot/chestLoot.gd" id="2_3yw5t"]
@@ -20,6 +20,8 @@
 [ext_resource type="Resource" uid="uid://b0o06j21ngy0x" path="res://Items/resources/ShildGenerator.tres" id="14_i0b5f"]
 [ext_resource type="Resource" uid="uid://bt4xggfqueu67" path="res://Items/resources/SplitShooter.tres" id="15_oklo6"]
 [ext_resource type="Resource" uid="uid://ni0hxh5fpvib" path="res://Items/resources/TrainingWeights.tres" id="16_nlsxl"]
+[ext_resource type="Resource" uid="uid://bchu77or467tx" path="res://Items/resources/MightyFnHammer.tres" id="19_7lgty"]
+[ext_resource type="Resource" uid="uid://d0mbdj5traqqq" path="res://Items/resources/PoleArm.tres" id="20_f66wr"]
 [ext_resource type="Texture2D" uid="uid://dykxfkrakmb6k" path="res://pixel art/chest.png" id="20_u5oh4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s4bao"]
@@ -31,7 +33,7 @@ chance = 30.0
 
 [sub_resource type="Resource" id="Resource_q2tut"]
 script = ExtResource("6_m8sn5")
-reward = Array[ExtResource("3_ijl35")]([ExtResource("7_eo6n4"), ExtResource("8_4xy8e"), ExtResource("9_453wt"), ExtResource("10_oxufj"), ExtResource("11_l3nks"), ExtResource("12_ai1ju"), ExtResource("13_25yfr"), ExtResource("14_i0b5f"), ExtResource("15_oklo6"), ExtResource("16_nlsxl")])
+reward = Array[ExtResource("3_ijl35")]([ExtResource("7_eo6n4"), ExtResource("8_4xy8e"), ExtResource("9_453wt"), ExtResource("10_oxufj"), ExtResource("11_l3nks"), ExtResource("12_ai1ju"), ExtResource("13_25yfr"), ExtResource("14_i0b5f"), ExtResource("15_oklo6"), ExtResource("16_nlsxl"), ExtResource("19_7lgty"), ExtResource("20_f66wr")])
 chance = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8k5k"]

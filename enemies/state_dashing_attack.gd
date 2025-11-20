@@ -21,7 +21,8 @@ func state_process(delta:float):
 		parent.anim_tree["parameters/conditions/Bonk"] = false
 		
 		swapState("stunned")
-		
+	
+	
 	parent.charge_level -= delta*2
 	if parent.charge_level <= 0:
 		attackEnd()

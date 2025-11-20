@@ -1,5 +1,4 @@
 extends Area2D
-
 class_name Explosion
 
 @onready var collision = $CollisionShape2D
@@ -7,6 +6,7 @@ class_name Explosion
 var player_made = true
 var mouse
 var kills:int = 0
+
 
 
 func _on_body_entered(body):

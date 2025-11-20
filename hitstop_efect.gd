@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var anim = $AnimationPlayer
 @onready var room_finish_anim: AnimationPlayer = $roomFinishAnim
 
-@export var bruh: int
+@onready var fuel_full_label: Label = $FuelFullLabel
 
 @onready var level_name_1: Label = $levelName1
 @onready var level_name_2: Label = $levelName2
@@ -14,6 +14,9 @@ extends CanvasLayer
 
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 
+func overtime_start():
+	print("bruh2")
+	animation_player_2.play("overtime_wave")
 
 
 func show_level(name1:String,name2:String,level:String):
@@ -26,8 +29,17 @@ func show_level(name1:String,name2:String,level:String):
 func _ready():
 	color_rect.visible = false
 	anim.animation_finished.connect(_on_animation_finished)
-	
-	
+
+func swap_to_level_in():
+	animation_player_2.play("level_in")
+	await  get_tree().create_timer(0.38).timeout
+	return
+
+func swap_to_level_out():
+	animation_player_2.play("level_out")
+	await get_tree().create_timer(0.38).timeout
+	return
+
 func _on_animation_finished(_anim_name):
 	color_rect.visible = false
 	anim.play("RESET")

@@ -37,9 +37,6 @@ func _on_kill_timer_timeout():
 
 
 
-
-
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("handle_hit"):
 		deal_damage(body)

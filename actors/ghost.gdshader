@@ -1,11 +1,14 @@
 shader_type canvas_item;
 uniform vec4 shader_color: source_color = vec4(1.0);
 uniform float alpha;
+uniform bool color_swap;
 
 void fragment() {
+	if (color_swap){
 	vec4 color = texture(TEXTURE,UV);
 	color.rgb = mix(color.rgb,shader_color.rgb,1);
 	COLOR = color;
+	}
 	if (COLOR.a !=0.0){
 		COLOR.a = alpha;
 	}

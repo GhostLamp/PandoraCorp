@@ -22,12 +22,14 @@ func set_fuel(new_fuel:float):
 	progress_bar_2.min_value = mimFuel
 	node_2d.look_at(Vector2(0,0))
 	if fuel >= maxFuel:
+		if times_filled <= 0:
+			HitstopManeger.slowdown()
+		
 		times_filled += 1
 		mimFuel = maxFuel 
 		maxFuel += dungeon_fuel
-		progress_bar_2
 		AudioGlobal.low_time_left = "LowTime"
-		node_2d.visible = true
+		
 		
 		if times_filled > 1:
 			label.visible = true

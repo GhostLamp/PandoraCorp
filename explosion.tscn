@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://explosion.gd" id="1_5y1um"]
 [ext_resource type="Shader" path="res://shockwave.gdshader" id="1_11u25"]
 [ext_resource type="Texture2D" uid="uid://bswv10n1fn3bj" path="res://pixel art/spritesheet.png" id="2_cbhfs"]
-[ext_resource type="Texture2D" uid="uid://bwfgli1r6vrr1" path="res://pixel art/explosion.png" id="4_wkgb2"]
+[ext_resource type="PackedScene" uid="uid://cv21g76lngdft" path="res://explosion_particle.tscn" id="2_uwp4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b2gc"]
 radius = 208.614
@@ -106,20 +106,22 @@ _data = {
 "boom": SubResource("Animation_gor3a")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fosfa"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_g5uuw"]
+resource_local_to_scene = true
 particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_y47ts"]
+[sub_resource type="Gradient" id="Gradient_emlhs"]
 offsets = PackedFloat32Array(0, 0.266667, 0.281481, 0.518519, 0.540741, 0.718518, 0.740741, 0.844444, 0.859259)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0.54902, 0, 1, 1, 0.54902, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tkxrk"]
-gradient = SubResource("Gradient_y47ts")
+gradient = SubResource("Gradient_emlhs")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hdmw8"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0r66"]
+resource_local_to_scene = true
 lifetime_randomness = 0.5
 particle_flag_disable_z = true
 emission_shape = 1
@@ -140,6 +142,7 @@ point_count = 4
 curve = SubResource("Curve_vxfpl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g0ygw"]
+resource_local_to_scene = true
 shader = ExtResource("1_11u25")
 shader_parameter/center = Vector2(0.5, 0.5)
 shader_parameter/force = 0.05
@@ -170,15 +173,16 @@ libraries = {
 }
 autoplay = "boom"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_fosfa")
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_hdmw8")
-texture = ExtResource("4_wkgb2")
-lifetime = 0.8
-explosiveness = 1.0
+[node name="explosionParticle" parent="." instance=ExtResource("2_uwp4m")]
+material = SubResource("CanvasItemMaterial_g5uuw")
+emitting = true
+amount = 8
+process_material = SubResource("ParticleProcessMaterial_t0r66")
+one_shot = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 2
+visibility_layer = 2
 material = SubResource("ShaderMaterial_g0ygw")
 offset_left = -704.0
 offset_top = -704.0

@@ -1,4 +1,6 @@
 extends Node
+class_name PlayerComboCounter
+
 @export var combo_amout: int
 @export var combo_timer: float
 var stopped = false
@@ -7,6 +9,8 @@ var stopped = false
 signal add_style
 signal remove_style
 @onready var wait_time: Timer = $wait_time
+@onready var player: Player = $"../../.."
+
 
 var timer_left:int = 0
 var kill_count:int = 0
@@ -16,7 +20,8 @@ func _process(delta: float) -> void:
 	if stopped:
 		return
 	
-	combo_timer -= delta*10 * (combo_amout**2/2500 + 1)
+	if combo_timer > 0:
+		combo_timer -= delta*10 * (combo_amout**2/2500 + 1)
 	
 	combo_amout = timer_left/100
 	
@@ -29,16 +34,13 @@ func _process(delta: float) -> void:
 
 
 func combo_left():
-	var combo = combo_amout
 	var format_string = "%02d"
-	var real_string = format_string % [combo]
-	ComboCount.comboCount = combo_amout
+	var real_string = format_string % [combo_amout]
+	ComboCount.setCombo(combo_amout)
 	return real_string
 
 func style_adder(style):
 	if style["name"] == "kill":
-		var player:Player = get_parent().get_parent().get_parent()
-		
 		kill_count += 1
 		wait_time.start()
 		if kill_count > 20:
@@ -74,11 +76,16 @@ func time_added(time):
 	combo_timer += time
 
 func combo_time_left():
+	var timer_before = timer_left
 	if timer_left < combo_timer:
-		timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*2*(combo_timer-timer_left))
+		timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*4*(combo_timer-timer_left))
 	else:
 		timer_left = move_toward(timer_left,combo_timer,get_process_delta_time()*200)
 	timer_left = clamp(timer_left,0 , 9999999999999)
+	
+	if roundf(timer_before/100) < roundf(timer_left/100):
+		player.combo_gain()
+	
 	return timer_left
 
 

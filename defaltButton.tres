@@ -1,32 +1,40 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cwy8hml084on5"]
 
 [ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="1_y2hcg"]
-[ext_resource type="Texture2D" uid="uid://b43qrp782lj0m" path="res://pixel art/buttonLayout.png" id="2_ek7ft"]
+[ext_resource type="Texture2D" uid="uid://cqhvwpr0f2ql1" path="res://pixel art/pandoraLogo.png" id="2_pnniy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kq1i"]
-texture = ExtResource("2_ek7ft")
+texture = ExtResource("2_pnniy")
 texture_margin_left = 80.0
+texture_margin_top = 40.0
 texture_margin_right = 80.0
-region_rect = Rect2(0, 0, 448, 136)
+texture_margin_bottom = 40.0
+region_rect = Rect2(660, 140, 112, 56)
 modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_147ht"]
-texture = ExtResource("2_ek7ft")
+texture = ExtResource("2_pnniy")
 texture_margin_left = 80.0
+texture_margin_top = 40.0
 texture_margin_right = 80.0
-region_rect = Rect2(0, 136, 448, 136)
+texture_margin_bottom = 40.0
+region_rect = Rect2(660, 268, 112, 56)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lixkq"]
-texture = ExtResource("2_ek7ft")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guse7"]
+texture = ExtResource("2_pnniy")
 texture_margin_left = 80.0
+texture_margin_top = 40.0
 texture_margin_right = 80.0
-region_rect = Rect2(0, 0, 448, 136)
+texture_margin_bottom = 40.0
+region_rect = Rect2(660, 140, 112, 56)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8v0dw"]
-texture = ExtResource("2_ek7ft")
+texture = ExtResource("2_pnniy")
 texture_margin_left = 80.0
+texture_margin_top = 40.0
 texture_margin_right = 80.0
-region_rect = Rect2(0, 272, 448, 136)
+texture_margin_bottom = 40.0
+region_rect = Rect2(660, 204, 112, 56)
 
 [resource]
 resource_local_to_scene = true
@@ -52,5 +60,5 @@ Button/fonts/font = ExtResource("1_y2hcg")
 Button/styles/disabled = SubResource("StyleBoxTexture_8kq1i")
 Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxTexture_147ht")
-Button/styles/normal = SubResource("StyleBoxTexture_lixkq")
+Button/styles/normal = SubResource("StyleBoxTexture_guse7")
 Button/styles/pressed = SubResource("StyleBoxTexture_8v0dw")

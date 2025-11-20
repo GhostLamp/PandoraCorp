@@ -1,6 +1,6 @@
 extends State
 
-func state_process(_delta:float):
+func state_physics_process(delta:float):
 	parent.pos.velocity.y += parent.gravity
 	parent.Yvel += parent.gravity
 	

@@ -8,6 +8,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_qjq78")
 shader_parameter/shader_color = Color(0.231373, 0.917647, 0.964706, 1)
 shader_parameter/alpha = 1.0
+shader_parameter/color_swap = true
 
 [sub_resource type="Animation" id="Animation_3oyp0"]
 length = 0.001

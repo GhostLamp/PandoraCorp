@@ -1,8 +1,11 @@
 extends State
 
+func state_enter():
+	player.gravity = 40
+	player.coli.set_collision_layer_value(7,false)
+
 func state_process(delta:float):
 	player.direction = Input.get_vector("left", "right", "up", "down")
-	player.gravity = 40
 	
 	
 	
@@ -16,18 +19,13 @@ func state_process(delta:float):
 	if player.coli.is_on_floor():
 		player.check_tile(delta)
 		swapState("grounded")
+		player.coli.set_collision_layer_value(7,true)
 	
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		player.coli.velocity.y += -2000
 		player.gravity = 200
 		player.slam_counter += 1
-		
-		player.tevii_tree["parameters/conditions/slam"] = true
-		player.tevii_tree["parameters/conditions/Look_front"] = false
-		player.tevii_tree["parameters/conditions/Look_back"] = false
-		await get_tree().create_timer(delta).timeout
-		player.tevii_tree["parameters/conditions/slam"] = false
 		
 		swapState("slamming")
 		

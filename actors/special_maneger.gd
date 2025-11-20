@@ -48,7 +48,6 @@ func swap_special(special:PackedScene):
 func _process(_delta: float) -> void:
 	if needs_update:
 		for i in specials.size():
-			slots[i].texture = specials[i].texture
 			slots[i].region_rect = specials[i].item_region
 			slots[i].visible = true
 			if specials[i].special_cooldown.is_stopped():

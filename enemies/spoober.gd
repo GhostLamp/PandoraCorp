@@ -8,7 +8,6 @@ extends Enemy
 @onready var attack_timer = $attack_timer
 @onready var parry_area = $parry_area/CollisionShape2D2
 @onready var collision = $CollisionShape2D2
-@onready var status_manager = $status_manager
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 
@@ -24,9 +23,7 @@ func _process(delta):
 	move_and_slide()
 	
 
-func _physics_process(_delta):
-	animate()
-	
+
 
 func flipping():
 	var mouse = (next_path_position - global_position).normalized()

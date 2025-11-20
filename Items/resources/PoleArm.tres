@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PoleArm" load_steps=5 format=3 uid="uid://d0mbdj5traqqq"]
+
+[ext_resource type="PackedScene" uid="uid://co6aj8n4fsxyf" path="res://pixel art/item_anim.tscn" id="1_de032"]
+[ext_resource type="Script" path="res://Items/script/PoleArm.gd" id="1_hjgxa"]
+[ext_resource type="Texture2D" uid="uid://bxi07v56q1g85" path="res://items_sprite.png" id="2_fk4j0"]
+[ext_resource type="Texture2D" uid="uid://b4vvo6s1nt0uu" path="res://pixel art/pole_launch.png" id="3_lgc7w"]
+
+[resource]
+script = ExtResource("1_hjgxa")
+sprite = ExtResource("3_lgc7w")
+frame_size = Vector2(2, 3)
+texture = ExtResource("2_fk4j0")
+scene = ExtResource("1_de032")
+item_region = Rect2(4, 280, 84, 84)
+name = "pole arm"
+activation = "dash hit"
+descripition = "Launches you upward"

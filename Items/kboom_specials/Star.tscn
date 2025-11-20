@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://06w4stx0t306"]
+[gd_scene load_steps=17 format=3 uid="uid://06w4stx0t306"]
 
 [ext_resource type="Script" path="res://Items/kboom_specials/star.gd" id="1_o338q"]
 [ext_resource type="PackedScene" uid="uid://brlwp8kfr2trq" path="res://States/Explosive.tscn" id="2_chrf7"]
@@ -8,28 +8,33 @@
 [ext_resource type="Texture2D" uid="uid://dmqlt8ehtam1g" path="res://pixel art/bullet.png" id="6_kacpi"]
 [ext_resource type="Script" path="res://actors/body.gd" id="6_uqh5w"]
 [ext_resource type="PackedScene" uid="uid://dars5mmvvhu6t" path="res://actors/trail.tscn" id="7_vsbt5"]
+[ext_resource type="PackedScene" uid="uid://d0kmeaejfcnlo" path="res://shadow.tscn" id="9_uvavv"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="10_5mh8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxka"]
 size = Vector2(5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mumms"]
-size = Vector2(5, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0dv8"]
+size = Vector2(14, 13)
 
 [sub_resource type="Curve" id="Curve_7j61g"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b13b"]
-size = Vector2(56, 56)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0dv8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_intup"]
-size = Vector2(96, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b13b"]
+size = Vector2(30, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72yhu"]
+shader = ExtResource("10_5mh8g")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+shader_parameter/color_swap = null
 
 [node name="Star" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_o338q")
 explosive = ExtResource("2_chrf7")
 
@@ -53,9 +58,37 @@ position = Vector2(-9.53674e-07, -9.53674e-07)
 scale = Vector2(32, 32)
 texture = ExtResource("6_kacpi")
 
+[node name="trail" parent="Sprite2D" instance=ExtResource("7_vsbt5")]
+position = Vector2(0.9375, 2.98023e-08)
+scale = Vector2(0.03125, 0.03125)
+width_curve = SubResource("Curve_7j61g")
+default_color = Color(1, 1, 0, 1)
+lenght = 4
+
+[node name="trail2" parent="Sprite2D" instance=ExtResource("7_vsbt5")]
+position = Vector2(2.98023e-08, 0.9375)
+scale = Vector2(0.03125, 0.03125)
+width_curve = SubResource("Curve_7j61g")
+default_color = Color(1, 1, 0, 1)
+lenght = 4
+
+[node name="trail3" parent="Sprite2D" instance=ExtResource("7_vsbt5")]
+position = Vector2(-0.9375, 2.98023e-08)
+scale = Vector2(0.03125, 0.03125)
+width_curve = SubResource("Curve_7j61g")
+default_color = Color(1, 1, 0, 1)
+lenght = 4
+
+[node name="trail4" parent="Sprite2D" instance=ExtResource("7_vsbt5")]
+position = Vector2(2.98023e-08, -0.9375)
+scale = Vector2(0.03125, 0.03125)
+width_curve = SubResource("Curve_7j61g")
+default_color = Color(1, 1, 0, 1)
+lenght = 4
+
 [node name="body" type="CharacterBody2D" parent="."]
-collision_layer = 4096
-collision_mask = 4096
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("6_uqh5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
@@ -73,13 +106,17 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
 shape = SubResource("RectangleShape2D_0b13b")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 4096
-collision_mask = 4096
+[node name="kill_timer" type="Timer" parent="."]
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 72)
-shape = SubResource("RectangleShape2D_intup")
+[node name="shadow" parent="." instance=ExtResource("9_uvavv")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_72yhu")
+position = Vector2(0, 48)
+scale = Vector2(128, 32)
+texture = ExtResource("6_kacpi")
 
 [connection signal="area_entered" from="body/Area2D" to="." method="_on_area_entered"]
 [connection signal="body_entered" from="body/Area2D" to="." method="_on_area_2d_body_entered"]

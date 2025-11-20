@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 var Left = true
-var direction
+var direction= Vector2(0,0)
 var gravity = 40
 
 
@@ -18,6 +18,9 @@ var gravity = 40
 
 @export var paletts:Array[ShaderMaterial]
 
+@export var dash_knockback:float = 10
+@export var dash_damage:float = 1
+
 var camera_2d: Camera2D 
 var camera_manager:CameraManager
 
@@ -27,14 +30,20 @@ var camera_manager:CameraManager
 @onready var gun_maneger:PlayerGunManager = $body/gun_maneger
 
 @onready var anim_maneger:Node2D = $body/animation_manager
+
 @onready var dashing_time = $dashing_time
 @onready var dash_cooldown = $dash_cooldown
+@onready var dash_area:Area2D = $body/Area2D
+@onready var dash_hammer: Sprite2D = $body/Area2D/Sprite2D
+var can_dash:bool = false
+
+
 @onready var coli:CharacterBody2D = $body
 @onready var collision:CollisionShape2D = $CollisionShape2D
 @onready var ghost_timer = $ghost_timer
 @onready var adrenaline_bar = $CanvasLayer/HUD/adrenaline_bar
 @onready var adrenaline_stat =  $adrenaline
-@onready var timer = $CanvasLayer/HUD/timer
+@onready var timer:stopwatch = $CanvasLayer/HUD/timer
 @onready var sprite: Sprite2D = $body/animation_manager/tevii_sprite
 @onready var tevii_tree: AnimationTree = $body/animation_manager/tevii_tree
 @onready var combo_counter: Node = $CanvasLayer/HUD/combo_counter
@@ -46,7 +55,7 @@ var camera_manager:CameraManager
 
 @onready var player_state_machine: PlayerStateMachine = $player_state_machine
 
-
+var rooms_to_explore:Array[Room]
 
 var currentRoom:Room
 var currentPalette:int
@@ -62,9 +71,16 @@ var maxFuel:float = 100
 var safe_position_timer:float = 1
 var safe_positions:Array[Vector2] = [Vector2(0,0),Vector2(0,0),Vector2(0,0)]
  
-@export var items: Array[BaseItemStrat] = []
-@export var active_item:Array[ActivePickup] = []
-@export var interaction: Array[interactive] = []
+var items: Array[BaseItemStrat] = []
+var active_item:Array[ActivePickup] = []
+var interaction: Array[interactive] = []
+
+var amount_hit:float = 0
+var win = true
+var max_combo:int = 0
+
+var extras:Array[Dictionary]
+
 var item_pickup = preload("res://Items/item_pickup.tscn")
 
 func _ready() -> void:
@@ -72,6 +88,7 @@ func _ready() -> void:
 	fuel_counter.dungeon_fuel = maxFuel
 	fuel_counter.maxFuel = maxFuel
 	speed_stat.current_speed = speed_stat.speed
+	coli.position.y -= 4000
 	_set_palette(currentPalette)
 
 func _set_palette(palette:int):
@@ -99,6 +116,10 @@ func drop_item():
 	new_item.position = global_position
 	get_tree().root.call_deferred("add_child", new_item)
 	active_item.pop_front()
+
+func addExtra(extraName:String):
+	extras.append(StyleBonus.extra_bonus[extraName])
+	
 
 func stylish(style_name):
 	adrenaline_stat.adrenaline += StyleBonus.style_bonus[style_name]["adrenaline"]
@@ -161,7 +182,18 @@ func interact():
 	tevii_tree["parameters/back/conditions/swing"] = false
 	
 
-
+func end_level():
+	if amount_hit <= 0:
+		addExtra("no_hit")
+	if rooms_to_explore.size() <= 0:
+		addExtra("explorer")
+	PlayerHolder.totalfuel = fuel/maxFuel
+	PlayerHolder.time = timer.time
+	PlayerHolder.amountHit = amount_hit
+	PlayerHolder.win = win
+	PlayerHolder.extras.append_array(extras)
+	
+	get_parent().change_to_results()
 
 
 func damaged(damage):
@@ -174,13 +206,19 @@ func damaged(damage):
 	if invulnerable:
 		return
 	
+	amount_hit +=1
 	if timer.time <= 0:
+		win = false
+		addExtra("defeat")
 		var world:Node2D = get_tree().current_scene
 		var tween = get_tree().create_tween()
 		tween.tween_property(world,"modulate",Color(1,1,1,0.01),1)
 		get_node("body/animation_manager/lose_anim").play("lose")
+		await get_tree().create_timer(0.625).timeout
+		HitstopEfect.animation_player_2.play("loose")
+		await get_tree().create_timer(1-0.625).timeout
+		end_level()
 		return
-	
 	
 	timer.damaged(damage)
 	invulnerability(0.5)
@@ -202,7 +240,7 @@ func flipping(_delta , mouse):
 
 func _process(delta):
 	player_state_machine.state_process(delta)
-	
+	camera_manager.update_camera()
 	speed_stat.current_speed = move_toward(speed_stat.current_speed,speed_stat.speed,delta*speed_stat.speed*2)
 	
 	
@@ -217,12 +255,17 @@ func _process(delta):
 	if Input.is_action_just_pressed("interact"):
 		if interaction.size() > 0:
 			interaction[0].interact(self)
+		
+	if Input.is_action_just_pressed("ui_down"):
+		stylish("test")
 	
 	
 	move_and_slide()
-	camera_manager.update_camera()
 	animate()
 
+func combo_gain():
+	for it in items:
+			it.on_combo_gain(self)
 
 func adrenaline_cost(cost):
 	if adrenaline_stat.adrenaline >= cost:
@@ -317,10 +360,14 @@ func invulnerability(time:float):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("handle_hit"):
 		var attack = Attack.new()
-		attack.damage = 1
+		attack.damage = dash_damage
 		attack.direction = direction
-		attack.knockback = 10
+		attack.knockback = dash_knockback
 		body.handle_hit(attack)
 		if body is Box or body is Chest or body is Door:
 			return
+		can_dash = true
+		for it in items:
+			it.on_dash_hit(self)
+		
 		HitstopManeger.hitstop_short()

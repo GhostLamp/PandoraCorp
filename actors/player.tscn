@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=3 uid="uid://bapvy71043313"]
+[gd_scene load_steps=167 format=3 uid="uid://bapvy71043313"]
 
 [ext_resource type="Script" path="res://actors/player.gd" id="1_kjq6k"]
 [ext_resource type="PackedScene" uid="uid://bvojy81fjgxbq" path="res://Items/tevii_specials/wall_bouncer.tscn" id="2_d3igb"]
@@ -30,13 +30,16 @@
 [ext_resource type="Script" path="res://actors/stunned.gd" id="14_doch2"]
 [ext_resource type="PackedScene" uid="uid://r1mp4rmj3yn" path="res://wearpons/katana.tscn" id="14_r6euk"]
 [ext_resource type="Texture2D" uid="uid://cwwdqfjxwqhfh" path="res://pixel art/teviiZeroSprite.png" id="14_t8sws"]
-[ext_resource type="Texture2D" uid="uid://clpe5i3d27q3a" path="res://pixel art/Selection 2024-12-19T07.38.33.png" id="20_r0l35"]
+[ext_resource type="Shader" path="res://actors/ghost.gdshader" id="17_av2wh"]
+[ext_resource type="Texture2D" uid="uid://i4pxg5y4cbnq" path="res://pixel art/shadow.png" id="18_chnr6"]
+[ext_resource type="Texture2D" uid="uid://cn683f0wjc4f3" path="res://pixel art/hammer_spin.png" id="18_wgybu"]
+[ext_resource type="Texture2D" uid="uid://clpe5i3d27q3a" path="res://pixel art/tevii_bar_back.png" id="20_r0l35"]
 [ext_resource type="PackedScene" uid="uid://bwsrm8i4m1en6" path="res://Items/tevii_specials/reboot.tscn" id="21_602b1"]
 [ext_resource type="Script" path="res://actors/hud.gd" id="21_bh5s2"]
-[ext_resource type="Texture2D" uid="uid://xx4w13v5oe8t" path="res://pixel art/Selection 2024-12-19T07.34.19.png" id="21_vc6ps"]
+[ext_resource type="Texture2D" uid="uid://xx4w13v5oe8t" path="res://pixel art/tevii_bar_front.png" id="21_vc6ps"]
 [ext_resource type="FontFile" uid="uid://ce1ejb8vmlyof" path="res://GrapeSoda.ttf" id="22_a4cbq"]
 [ext_resource type="Script" path="res://actors/timer.gd" id="23_l5fig"]
-[ext_resource type="Texture2D" uid="uid://c58cnksvx1ol3" path="res://pixel art/Selection 2024-12-19T07.34.31.png" id="23_uy4dl"]
+[ext_resource type="Texture2D" uid="uid://c58cnksvx1ol3" path="res://pixel art/tevii_bar_mid.png" id="23_uy4dl"]
 [ext_resource type="PackedScene" uid="uid://1toe42bysdwu" path="res://actors/adrenaline.tscn" id="24_2r8al"]
 [ext_resource type="Script" path="res://actors/adrenaline_buffer.gd" id="24_aapja"]
 [ext_resource type="FontFile" uid="uid://dy6gy84ucib6k" path="res://bruh.ttf" id="25_4iv2r"]
@@ -64,6 +67,8 @@
 [ext_resource type="Texture2D" uid="uid://vxq601jy53ty" path="res://pixel art/qtfo_bar.png" id="46_a8y2l"]
 [ext_resource type="Texture2D" uid="uid://bot5yboag2kdx" path="res://Selection 2025-10-06T02.22.52.png" id="49_q2cyv"]
 [ext_resource type="Texture2D" uid="uid://bxdkyew1ftahk" path="res://Selection 2025-10-06T02.22.46.png" id="50_ns73a"]
+[ext_resource type="TileSet" uid="uid://cmxv0lsay04ft" path="res://roomGeneration/pandora_factory/rooms/tileset.tres" id="64_wdy1d"]
+[ext_resource type="Texture2D" uid="uid://cqhvwpr0f2ql1" path="res://pixel art/pandoraLogo.png" id="68_86yl2"]
 
 [sub_resource type="Curve" id="Curve_hjx2m"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.249, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(0.749, 0.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(0.99, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -72,6 +77,15 @@ point_count = 9
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bivcc"]
 radius = 64.0
 height = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fy0d7"]
+shader = ExtResource("17_av2wh")
+shader_parameter/shader_color = Color(0, 0, 0, 1)
+shader_parameter/alpha = 0.5
+shader_parameter/color_swap = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pe5vd"]
+radius = 239.893
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f4f34"]
 resource_local_to_scene = true
@@ -136,22 +150,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -187,18 +189,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Area2D/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_01exl"]
 resource_name = "backward_front"
@@ -220,22 +210,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -262,14 +240,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../Area2D/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false]
+"values": [0, 1, 2, 1]
 }
 
 [sub_resource type="Animation" id="Animation_n6pnk"]
@@ -287,18 +265,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [24]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5np6s"]
@@ -321,22 +287,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -363,22 +317,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -405,22 +347,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -447,22 +377,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -488,22 +406,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -529,22 +435,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -605,22 +499,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -646,22 +528,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../../CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1052,9 +922,6 @@ _data = {
 "lose": SubResource("Animation_1x7jj")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pe5vd"]
-radius = 112.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4yud"]
 radius = 64.0
 height = 192.0
@@ -1258,6 +1125,18 @@ size = Vector2(96, 17)
 [sub_resource type="LabelSettings" id="LabelSettings_hqypm"]
 font_size = 128
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gibb0"]
+shader = ExtResource("17_av2wh")
+shader_parameter/shader_color = Color(1, 0, 0, 1)
+shader_parameter/alpha = 1.0
+shader_parameter/color_swap = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy43q"]
+shader = ExtResource("17_av2wh")
+shader_parameter/shader_color = Color(1, 0, 0, 1)
+shader_parameter/alpha = 1.0
+shader_parameter/color_swap = false
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 collision_layer = 129
@@ -1274,7 +1153,6 @@ metadata/_edit_horizontal_guides_ = [32.0]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_smoothed = true
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="player_state_machine" type="Node" parent="."]
@@ -1324,13 +1202,34 @@ one_way_collision_margin = 0.0
 
 [node name="shadow" parent="." instance=ExtResource("2_ytfir")]
 position = Vector2(0, -40)
-wall_min_slide_angle = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="shadow"]
+material = SubResource("ShaderMaterial_fy0d7")
+position = Vector2(0.270399, 128.26)
+scale = Vector2(1, -0.5)
+texture = ExtResource("18_chnr6")
 
 [node name="body" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
 collision_layer = 320
 collision_mask = 320
 script = ExtResource("2_tqqrk")
+
+[node name="Area2D" type="Area2D" parent="body"]
+visible = false
+scale = Vector2(0.667, 0.667)
+collision_layer = 2
+collision_mask = 6
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="body/Area2D"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("18_wgybu")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
+shape = SubResource("CircleShape2D_pe5vd")
 
 [node name="animation_manager" type="Node2D" parent="body"]
 
@@ -1389,14 +1288,6 @@ item_region = Rect2(188, 188, 84, 84)
 adrenaline_cost = 40.0
 item_region = Rect2(280, 196, 84, 68)
 
-[node name="Area2D" type="Area2D" parent="body"]
-collision_layer = 2
-collision_mask = 6
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
-shape = SubResource("CircleShape2D_pe5vd")
-disabled = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 shape = SubResource("CapsuleShape2D_k4yud")
 
@@ -1450,6 +1341,7 @@ text = "00:00:0
 [node name="timer" type="Node" parent="CanvasLayer/HUD"]
 script = ExtResource("23_l5fig")
 time = 5.0
+total_time = 5.0
 
 [node name="wait_time" type="Timer" parent="CanvasLayer/HUD/timer"]
 wait_time = 0.3
@@ -1492,7 +1384,6 @@ label_settings = SubResource("LabelSettings_i6rb4")
 [node name="combo_counter" type="Node" parent="CanvasLayer/HUD"]
 script = ExtResource("34_877qg")
 combo_amout = 20
-combo_timer = 100.0
 style_label = ExtResource("32_76s7p")
 
 [node name="wait_time" type="Timer" parent="CanvasLayer/HUD/combo_counter"]
@@ -1553,7 +1444,7 @@ texture_progress = ExtResource("21_vc6ps")
 
 [node name="fuel_counter" type="Node" parent="CanvasLayer/HUD" node_paths=PackedStringArray("node_2d")]
 script = ExtResource("33_pxx16")
-node_2d = NodePath("../../../Node2D")
+node_2d = NodePath("../../../rose_hoder")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer/HUD/fuel_counter"]
 material = SubResource("ShaderMaterial_8mgks")
@@ -1712,6 +1603,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("41_wqhql")
 hframes = 2
 
+[node name="TileMapLayer" type="TileMapLayer" parent="CanvasLayer"]
+tile_set = ExtResource("64_wdy1d")
+
 [node name="health" parent="." instance=ExtResource("11_b5qkl")]
 
 [node name="speed" parent="." instance=ExtResource("5_e6i7q")]
@@ -1742,11 +1636,14 @@ collision_mask = 256
 position = Vector2(0, 104.5)
 shape = SubResource("RectangleShape2D_32rbb")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="rose_hoder" type="Node2D" parent="."]
 visible = false
+z_index = 5
 position = Vector2(0, -336)
+scale = Vector2(1.5, 1.5)
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="Label" type="Label" parent="rose_hoder"]
+visible = false
 modulate = Color(1, 0, 0, 1)
 offset_left = -64.0
 offset_top = -96.0
@@ -1756,6 +1653,20 @@ pivot_offset = Vector2(77, 87)
 text = "-->"
 label_settings = SubResource("LabelSettings_hqypm")
 metadata/_edit_use_anchors_ = true
+
+[node name="rose" type="Sprite2D" parent="rose_hoder"]
+material = SubResource("ShaderMaterial_gibb0")
+rotation = 1.5708
+texture = ExtResource("68_86yl2")
+region_enabled = true
+region_rect = Rect2(800, 84, 172, 188)
+
+[node name="rose_fade_out" type="Sprite2D" parent="rose_hoder"]
+material = SubResource("ShaderMaterial_cy43q")
+rotation = 1.5708
+texture = ExtResource("68_86yl2")
+region_enabled = true
+region_rect = Rect2(800, 84, 172, 188)
 
 [connection signal="body_entered" from="body/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="time_changed" from="CanvasLayer/HUD/timer" to="CanvasLayer/HUD" method="_on_timer_time_changed"]

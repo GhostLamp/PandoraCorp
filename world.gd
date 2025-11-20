@@ -1,8 +1,11 @@
 extends Node2D
+class_name Level
 
 
 @onready var enemy_maneger: Node2D = $enemy_maneger
+@onready var minimap_layer: CanvasLayer = $MinimapLayer
 
+var resul = load("res://result_screen.tscn")
 var tiles_placed = []
 var dungeon_fuel:float = 0
 var room_placed = []
@@ -29,9 +32,7 @@ func _ready():
 	call_deferred("add_child",new_player)
 	
 	player = new_player
-	player.currentPalette = PlayerHolder.current_palette
-	player.paletts = PlayerHolder.paletts
-	camera_maneger.target = player
+	
 	
 	
 	room_size = dungeon.room_radius*2 + 2
@@ -48,11 +49,15 @@ func _ready():
 		i.position = room_size* tile_fill(i.room_shape)
 	
 	generate_level()
-	player.maxFuel = dungeon_fuel*2/3 
+	player.maxFuel = dungeon_fuel*3/5 
 	
-	
+	HitstopEfect.swap_to_level_in()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self,"modulate",Color.WHITE,1)
+	
+	player.currentPalette = PlayerHolder.current_palette
+	player.paletts = PlayerHolder.paletts
+	camera_maneger.target = player
 
 
 func generate_rooms(start_p, room_type):
@@ -62,7 +67,6 @@ func generate_rooms(start_p, room_type):
 	var area_to_carve:CarvedArea = roomMaker.makeRoom()
 	
 	var rooms = area_to_carve.room
-	
 	doors_positions.append_array(area_to_carve.door)
 	
 	roomMaker.queue_free()
@@ -130,37 +134,52 @@ func generate_level():
 		for y in totalDungeonSize.y+room_size:
 			tile_map.set_cell(Vector2(x,y),3,Vector2(3,3))
 	
+	minimap_layer.set_map(dungeon)
+	
 	for i in dungeon.room_types:
 		generate_rooms(i.position,i.room_shape)
 		if i.roomName == "spawn":
 			player.position = (i.position)*tile_map.tile_set.tile_size
-	
-	for i in free_spots:
-		var baseRoom = dungeon.room_types[0]
-		generate_rooms(i*room_size,baseRoom.room_shape)
 		
-		var new_room:Room = baseRoom.roomMap.pick_random().instantiate()
-		if new_room.enemy_manager.budget:
-			pass
-		dungeon_fuel += new_room.enemy_manager.budget *5 *2
-		new_room.position = (i*room_size - Vector2i(1,1)*dungeon.room_radius)*tile_map.tile_set.tile_size 
-		add_child(new_room)
-		new_room.getDoors()
 		
-	
-	create_doors(doors_positions)
-	
-	var used_cells = tile_map.get_used_cells()
-	tile_map.set_cells_terrain_connect(used_cells,1 , 1)
-	
-	for i in dungeon.room_types:
+		minimap_layer.generate_rooms(i.position*4/room_size,i.room_shape)
+		var blocker = minimap_layer.hide_room(i.position*4/room_size,i.room_shape)
+		
+		
 		if i.roomMap:
 			var new_room:Room = i.roomMap.pick_random().instantiate()
 			dungeon_fuel += new_room.enemy_manager.budget *5
 			new_room.position = (i.position- Vector2i(1,1)*dungeon.room_radius)*tile_map.tile_set.tile_size 
 			add_child(new_room)
 			new_room.getDoors()
+			new_room.blocker = blocker
+			player.rooms_to_explore.append(new_room)
+	
+	for i in free_spots:
+		var baseRoom = dungeon.room_types[0]
+		generate_rooms(i*room_size,baseRoom.room_shape)
+		
+		minimap_layer.generate_rooms(i*4,baseRoom.room_shape)
+		var blocker = minimap_layer.hide_room(i*4,baseRoom.room_shape)
+		
+		var new_room:Room = baseRoom.roomMap.pick_random().instantiate()
+		dungeon_fuel += new_room.enemy_manager.budget *5 *2
+		new_room.position = (i*room_size - Vector2i(1,1)*dungeon.room_radius)*tile_map.tile_set.tile_size 
+		add_child(new_room)
+		new_room.getDoors()
+		new_room.blocker = blocker
+		player.rooms_to_explore.append(new_room)
+	
+	create_doors(doors_positions)
+	minimap_layer.create_doors(minimap_layer.doors_positions)
+	
+	var used_cells = tile_map.get_used_cells()
+	tile_map.set_cells_terrain_connect(used_cells,1 , 1)
+
+func change_to_results():
+	get_tree().change_scene_to_file("res://result_screen.tscn")
+	HitstopEfect.swap_to_level_out()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shift"):
+	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()

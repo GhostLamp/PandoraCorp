@@ -8,7 +8,6 @@ class_name MinigameSpoober
 @onready var attack_timer = $attack_timer
 @onready var parry_area = $parry_area/CollisionShape2D2
 @onready var collision = $CollisionShape2D2
-@onready var status_manager = $status_manager
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 var kill_time = 1

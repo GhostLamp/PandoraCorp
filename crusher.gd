@@ -21,7 +21,7 @@ func crush():
 	
 	animation_player.speed_scale = crush_speed
 	animation_player.play("crush")
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1/crush_speed).timeout
 	velocity = Vector2(0,0)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

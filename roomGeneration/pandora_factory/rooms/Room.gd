@@ -8,7 +8,7 @@ class_name Room
 @onready var effect_layer: TileMapLayer = $effect_layer
 
 
-
+@export var cell_pos:Vector2 = Vector2(1,4)
 @export var camera_lock: CameraLock 
 @export var enemy_manager: EnemyManeger 
 @export var minigame:Minigame
@@ -18,6 +18,25 @@ var chest:PackedScene = preload("res://objects/chest.tscn")
 var battleReady:bool = true
 var batteling = false
 var active = false
+var blocker:Array
+
+func _ready() -> void:
+	fade_out()
+
+func fade_in():
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(self,"modulate",Color.WHITE,0.5)
+	
+	if blocker:
+		get_tree().current_scene.minimap_layer.showMap(blocker,cell_pos)
+		blocker = []
+
+func fade_out():
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(self,"modulate",Color.TRANSPARENT,0.5)
+
 
 func getDoors():
 	for child in get_children():

@@ -1,5 +1,28 @@
 extends Node
 
+var extra_bonus = {
+	"explorer":{
+		"score": 50,
+		"name":"explorer"
+	},
+	"gamer":{
+		"score": 30,
+		"name":"gamer"
+	},
+	"speedrunner":{
+		"score": 80,
+		"name":"speedrunner"
+	},
+	"defeat":{
+		"score": -100,
+		"name":"defeat"
+	},
+	"no_hit":{
+		"score": 300,
+		"name":"no hit"
+	}
+}
+
 @export var style_bonus = {
 	"enemy_hit":{
 		"score" : 0,
