@@ -192,7 +192,7 @@ func end_level():
 	PlayerHolder.amountHit = amount_hit
 	PlayerHolder.win = win
 	PlayerHolder.extras.append_array(extras)
-	
+	Mouse.mouse_type = Mouse.mouseType.MenuMouse
 	get_parent().change_to_results()
 
 

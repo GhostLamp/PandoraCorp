@@ -39,8 +39,8 @@ func _unhandled_input(event):
 		
 		if event.is_action_released("alt_fire") and ammo.ammo >= 4:
 			melee_mode = true
+			charging = false
 			alt_laser()
-		charging = false
 	else:
 		if event.is_action_pressed("alt_fire"):
 			melee()
@@ -71,7 +71,7 @@ func shoot():
 			else:
 				var arc_rad = deg_to_rad(arc)
 				var increment = arc_rad / (bullet_count - 1)
-				new_bullet.global_rotation = ( global_rotation + increment * i - arc_rad / 2)
+				new_bullet.global_rotation = (global_rotation + randf_range(arc_rad/2,-arc_rad/2))
 			get_tree().root.call_deferred("add_child", new_bullet)
 			get_parent().apply_items(new_bullet)
 			
@@ -89,9 +89,10 @@ func shoot():
 func alt_laser():
 	if ammo.ammo >= alt_shot_cost:
 		for i in bullet_count:
-			var new_alt = alt_fire.instantiate()
+			var new_alt:Alt_fire = alt_fire.instantiate()
 			new_alt.damage = alt_shot_damage
 			new_alt.position = barrel_origin.global_position if barrel_origin else global_position
+			new_alt.bounces *= charge_level.charge
 			if bullet_count == 1:
 				new_alt.rotation = global_rotation
 			else:
@@ -149,9 +150,11 @@ func _physics_process(delta: float) -> void:
 		update_reload(delta)
 	else:
 		alt_fire_timer.stop()
+	
 	follow_mouse()
 
 func _process(delta):
+	Mouse.mouse_type = Mouse.mouseType.BulletMouse
 	charge_up(delta)
 	if shooting == true:
 		shoot()

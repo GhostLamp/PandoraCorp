@@ -7,6 +7,7 @@ var tween:Tween
 
 func  _ready() -> void:
 	size.x = 268
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _on_mouse_entered() -> void:
 	if tween:

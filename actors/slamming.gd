@@ -15,14 +15,8 @@ func state_process(delta:float):
 	player.tevii_tree["parameters/conditions/Look_back"] = false
 	
 	if player.coli.is_on_floor():
-		if player.check_tile(delta) == "unsafe":
-			player.velocity = Vector2(0,0)
-			player.direction = Vector2(0,0)
-			player.speed_stat.current_speed = 0
-			player.damaged(10)
-			player.respawn()
-			player.coli.set_collision_layer_value(7,true)
-			swapState("grounded")
+		player.check_tile(delta)
+		player.coli.set_collision_layer_value(7,true)
 		
 		slam_end()
 	

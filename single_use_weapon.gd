@@ -104,6 +104,8 @@ func shoot():
 func _process(_delta):
 	if shooting == true: 
 		shoot()
+	
+	Mouse.mouse_type = Mouse.mouseType.BulletMouse
 
 	
 func _physics_process(_delta):

@@ -1,20 +1,21 @@
 extends Gun
 
 
-
 @onready var gunsprite = $anim_maneger/gunsprite
 @onready var smear_over = $anim_maneger/smear_over
 @onready var smear_under = $anim_maneger/smear_under
 
 @onready var dash_position = $Marker2D
 
+var player:Player
 var Left = true
 var charging = false
 var charged = false
 var attack_type = 1
 
 
-
+func _ready() -> void:
+	player = get_parent().get_parent().get_parent()
 
 func follow_mouse():
 	mouse = get_global_mouse_position()
@@ -31,11 +32,11 @@ func follow_mouse():
 		anim_tree["parameters/conditions/waiting"] = false
 		
 		if dire.dot(Vector2(-1,0)) < dire.dot(Vector2(1,0)):
-			rotation_degrees = 180
+			rotation_degrees = player.anim_maneger.rotation_degrees + 180
 			anim_maneger.scale.y = -1
 			
 		else:
-			rotation_degrees = 0
+			rotation_degrees = player.anim_maneger.rotation_degrees
 			anim_maneger.scale.y = 1
 		
 		
@@ -52,15 +53,16 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("alt_fire") and ammo.ammo >= 4:
 		charging = true
-		var player:Player = get_parent().get_parent().get_parent()
 		player.direction = bullet_direction
-		player.jump(-1000)
+		player.jump(-1200)
 		
 	
 
 
 func shoot():
 	if atack_cooldown.is_stopped():
+		atack_cooldown.start()
+		look_at(mouse)
 		if attack_type == 1:
 			anim_tree["parameters/conditions/attacking"] = true
 			await get_tree().create_timer(0.01).timeout
@@ -78,20 +80,18 @@ func shoot():
 			attack_type = 1
 			anim_tree["parameters/attack/conditions/A1"] = true
 			anim_tree["parameters/attack/conditions/A2"] = false
-			
-		look_at(mouse)
-		atack_cooldown.start()
+		
 		if ammo.ammo < 4:
 			ammo.ammo += 1
 		
 
 func alt_laser():
 	if ammo.ammo >= 4:
+		atack_cooldown
 		anim_tree["parameters/conditions/alt_fire"] = true
 		await get_tree().create_timer(0.01).timeout
 		anim_tree["parameters/conditions/alt_fire"] = false
 		ammo.ammo -=4
-		atack_cooldown.start()
 
 func _on_melee_hitbox_area_entered(area):
 	if area.has_method("handle_hit"):
@@ -110,6 +110,7 @@ func _process(_delta):
 			alt_laser()
 			charging = false
 	
+	Mouse.mouse_type = Mouse.mouseType.MeleeMouse
 	follow_mouse()
 
 

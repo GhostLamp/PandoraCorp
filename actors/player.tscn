@@ -1278,7 +1278,6 @@ libraries = {
 
 [node name="special_maneger" type="Node2D" parent="body"]
 script = ExtResource("9_nunak")
-needs_update = true
 
 [node name="reboot" parent="body/special_maneger" instance=ExtResource("21_602b1")]
 adrenaline_cost = 20.0

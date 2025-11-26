@@ -19,9 +19,12 @@ func _ready():
 	for weapon in weapons:
 		weapon.hide()
 		weapon.set_process_unhandled_input(false)
+		weapon.set_process(false)
 		connect_signals(weapon)
 	current_weapon.show()
 	current_weapon.set_process_unhandled_input(true)
+	current_weapon.set_process(true)
+	current_weapon.swap_in()
 
 func connect_signals(weapon):
 	if weapon.has_signal("remove_weapon"):
@@ -76,4 +79,5 @@ func switch_weapons(weapon):
 	weapon.show()
 	weapon.set_process_unhandled_input(true)
 	weapon.set_process(true)
+	weapon.swap_in()
 	current_weapon = weapon

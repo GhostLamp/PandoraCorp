@@ -676,6 +676,7 @@ script = ExtResource("1_1j1ra")
 gas_origin = NodePath("gas_tank_origin")
 bullet = ExtResource("2_5rhxi")
 alt_fire = ExtResource("3_vdwby")
+color = Color(1, 0.843137, 0, 1)
 bullet_count = 8
 arc = 10.0
 barrel_origin = NodePath("nuzzel")
@@ -685,6 +686,7 @@ basic_shot_speed = 1500.0
 basic_shot_damage = 0.5
 texture_under = ExtResource("4_mrj7t")
 texture_progress = ExtResource("5_lesoe")
+aoe_range = 208.0
 
 [node name="anim_maneger" type="Node2D" parent="."]
 position = Vector2(118, 0)

@@ -1,9 +1,5 @@
 extends Gun
 
-
-
-
-
 @export var gas_origin: Marker2D
 
 
@@ -58,11 +54,12 @@ func _unhandled_input(event):
 	
 
 func charge_up(delta):
-	
 	if charging == true:
+		Mouse.mouse_type = Mouse.mouseType.ProjectileMouse
 		if charge_level.charge < charge_level.max_charge:
 			charge_level.charge += delta
 	else:
+		Mouse.mouse_type = Mouse.mouseType.BulletMouse
 		charge_level.charge -=  delta
 	charge_level.charge = clamp(charge_level.charge, 0 , charge_level.max_charge)
 	
@@ -87,7 +84,7 @@ func shoot():
 			else:
 				var arc_rad = deg_to_rad(arc)
 				var increment = arc_rad / (bullet_count - 1)
-				new_bullet.global_rotation = ( global_rotation + increment * i * - arc_rad / 2 + randf_range(-0.2, 0.2) )
+				new_bullet.global_rotation = (global_rotation + randf_range(arc_rad/2,-arc_rad/2))
 			
 			get_tree().root.call_deferred("add_child", new_bullet)
 			get_parent().apply_items(new_bullet)
@@ -147,7 +144,6 @@ func _physics_process(delta: float) -> void:
 	follow_mouse()
 
 func _process(delta):
-	
 	if shooting == true:
 		shoot()
 	

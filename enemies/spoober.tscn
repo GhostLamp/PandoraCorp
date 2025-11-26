@@ -27,6 +27,7 @@
 shader = ExtResource("4_qywco")
 shader_parameter/shader_color = Color(0, 0, 0, 1)
 shader_parameter/alpha = 0.5
+shader_parameter/color_swap = null
 
 [sub_resource type="Curve" id="Curve_a6cvq"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.249, 0.5), 0.0, 0.0, 0, 0, Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(0.749, 0.5), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(0.99, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]

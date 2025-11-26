@@ -24,6 +24,7 @@ PlayerHolder="*res://player_holder.gd"
 AudioGlobal="*res://audio_global.gd"
 FullscreenToggle="*res://fullscreen_toggle.gd"
 Background="*res://background.tscn"
+Mouse="*res://mouse.tscn"
 
 [display]
 
@@ -31,8 +32,11 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
-mouse_cursor/custom_image="res://pixel art/game_mouse.png"
-mouse_cursor/custom_image_hotspot=Vector2(26, 26)
+window/vsync/vsync_mode=0
+
+[editor]
+
+movie_writer/disable_vsync=true
 
 [input]
 
